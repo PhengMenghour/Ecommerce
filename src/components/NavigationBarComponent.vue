@@ -30,10 +30,11 @@
     </ul>
 
     <div class="nav-icons">
-        <div class="input-icon">
-            <input type="text" placeholder="What are you looking for?" />
-            <i class="ri-search-line"></i>
-        </div>
+      <div class="search-container">
+        <input type="text" placeholder="What are you looking for?" />
+        <i class="ri-search-line"></i>
+      </div>
+
       <i class="ri-heart-line"></i>
       <i class="ri-shopping-cart-line"></i>
       <i class="ri-user-line"></i>
@@ -96,6 +97,7 @@
   display: flex;
   align-items: center;
   gap: 15px;
+  position: relative;
 }
 
 .nav-icons input {
@@ -104,6 +106,38 @@
   border-radius: 5px;
   outline: none;
   width: 200px;
+  height: 30px;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Adjusts space between icons */
+  position: relative; /* Ensures icons are aligned correctly */
+}
+
+.search-container {
+  position: relative;
+  flex-shrink: 0; /* Prevents shrinking of the search container */
+}
+
+.search-container input {
+  width: 200px; /* Adjust width as needed */
+  padding: 5px 35px 5px 10px; /* Leaves space for the icon */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  z-index: 1; /* Ensures it doesn’t overlap other elements */
+}
+
+.search-container i {
+  position: absolute;
+  top: 50%;
+  right: 10px; /* Aligns icon inside input */
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #aaa;
+  pointer-events: none; /* Prevents icon from blocking input functionality */
 }
 
 .nav-icons .ri-heart-line,
@@ -111,20 +145,6 @@
 .nav-icons .ri-user-line {
   font-size: 20px;
   cursor: pointer;
+  z-index: 2; /* Ensures these icons are on top of the search-container */
 }
-
-/* .nav-icons .input-icon {
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.nav-icons .input-icon i {
-    position: absolute;
-}
-
-.nav-icons .input-icon .input-field{
-    width: 100%;
-    padding: 10px;
-    text-align: center;
-} */
 </style>
