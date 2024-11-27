@@ -74,10 +74,15 @@
         <input type="text" placeholder="What are you looking for?" />
         <i class="ri-search-line"></i>
       </div>
-
-      <i class="ri-heart-line"></i>
-      <i class="ri-shopping-cart-line"></i>
-      <i class="ri-user-line"></i>
+      <button>
+        <i class="ri-heart-3-line"></i>
+      </button>
+      <button>
+        <i class="ri-shopping-cart-line"></i>
+      </button>
+      <button>
+        <i class="ri-user-line"></i>
+      </button>
     </div>
   </nav>
 </template>
@@ -99,14 +104,25 @@ export default {
 
 <style>
 .navbar {
+  position: sticky;
+  top: 2%; /* Make the navbar stick to the top */
+  /* left: 50%;
+  transform: translateX(-50%); Center the navbar horizontally */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
   background-color: #ffffff;
-  border: 1px #000000 solid;
   border-radius: 15px;
   font-family: "Poppins", sans-serif;
+  z-index: 10;
+
+  width: 100%; /* This ensures the navbar stretches across the full width */
+  max-width: 1200px; /* You can adjust this to your desired width */
+  margin-left: auto; /* Centers the navbar */
+  margin-right: auto; /* Centers the navbar */
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .logo img {
@@ -220,12 +236,64 @@ export default {
   pointer-events: none; /* Prevents icon from blocking input functionality */
 }
 
-.nav-icons .ri-heart-line,
+.nav-icons .ri-heart-3-line,
 .nav-icons .ri-shopping-cart-line,
 .nav-icons .ri-user-line {
   font-size: 20px;
   cursor: pointer;
   z-index: 2; /* Ensures these icons are on top of the search-container */
+}
+
+.nav-icons button {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  border: none;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  cursor: pointer;
+  overflow: hidden; /* Ensures the effect stays inside the button */
+  transition: color 0.3s ease;
+  border-radius: 100px;
+}
+
+.nav-icons button i {
+  z-index: 2; /* Keeps the icon above the background animation */
+  font-size: 20px;
+  color: #000;
+}
+
+.nav-icons button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: #fe5182; /* Bloom color */
+  border-radius: 50%; /* Creates a circular bloom */
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease; /* Smooth bloom effect */
+  z-index: 1;
+}
+
+.nav-icons button:hover::before {
+  width: 300%;
+  height: 300%;
+}
+
+.nav-icons button:hover {
+  /* background-color: #fe5182; */
+  color: white;
+  border-radius: 100px;
+}
+
+.nav-icons button:hover i {
+  color: white; /* Change the color to white or any other color you prefer */
+  transition: color 0.3s ease; /* Smooth transition effect */
 }
 
 /* Styling Navigation bar with animation */
