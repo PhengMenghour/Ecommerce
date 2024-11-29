@@ -1,6 +1,6 @@
-<template >
+<template lang="">
     <div>
-        Contact Page
+        Sign in
     </div>
 </template>
 <script>
@@ -8,6 +8,6 @@ export default {
     
 }
 </script>
-<style >
+<style lang="">
     
 </style>

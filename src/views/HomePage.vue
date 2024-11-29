@@ -8,13 +8,14 @@
   <div class="container-category-head">
     <h1>Browse by Category</h1>
     <div class="swipe-button">
-      <button><i class="ri-arrow-left-line"></i></button>
-      <button><i class="ri-arrow-right-line"></i></button>
+      <button @click="prevCategory" :disabled="currentIndex === 0"><i class="ri-arrow-left-line"></i></button>
+      <button @click="nextCategory" :disabled="currentIndex >= categories.length - visibleCount"><i class="ri-arrow-right-line"></i></button>
     </div>
   </div>
   <div class="category-group">
-    <CategoryComponent v-for="category in categories" :key="category.id" :image="category.image"
-      :title="category.title" />
+    <div class="category-wrapper" v-for="(category, index) in visibleCategories" :key="category.id">
+      <CategoryComponent :image="category.image" :title="category.title" />
+    </div>
   </div>
 </template>
 
@@ -28,8 +29,32 @@ export default {
     TagComponent,
   },
 
+
+
+  computed: {
+    visibleCategories() {
+      return this.categories.slice(this.currentIndex, this.currentIndex + this.visibleCount);
+    },
+  },
+
+  methods: {
+    nextCategory() {
+      if (this.currentIndex < this.categories.length - this.visibleCount) {
+        this.currentIndex++;
+      }
+    },
+    prevCategory() {
+      if (this.currentIndex > 0) {
+        this.currentIndex--;
+      }
+    },
+  },
+
   data() {
     return {
+      currentIndex: 0,
+      visibleCount: 5, // Number of categories to display
+
       categories: [
         {
           id: 1,
@@ -83,7 +108,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0px 300px 0px 300px;
+  margin: 0px 200px 0px 200px;
   font-family: "Poppins", sans-serif;
 }
 
@@ -102,14 +127,31 @@ export default {
   background-color: #f6f7fb;
 }
 
-.category-group {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.swipe-button button:hover {
+  background-color: #e1e6f1;
 }
 
-.group-tag{
+.category-group {
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  gap: 10px;
+  transition: transform 0.5s ease-in-out; /* Smooth sliding effect */
+  /* Add gap for better spacing */
+}
+
+.category-wrapper {
+  min-width: 180px;
+  flex: 0 0 auto;
+}
+
+.category-wrapper:hover {
+  opacity: 1;
+  /* Highlight the category on hover */
+}
+
+.group-tag {
   margin-top: 10px;
-  margin-left: 300px;
+  margin-left: 200px;
 }
 </style>

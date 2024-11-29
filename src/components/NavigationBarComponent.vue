@@ -6,22 +6,16 @@
 
     <ul class="nav-links">
       <li>
-        <a
-          class="main-links"
-          :class="{ active: activeLink === 'home' }"
-          @click.prevent="setActiveLink('home')"
-          href="#home"
-          >Home</a
-        >
+        <RouterLink class="main-links" :class="{ active: activeLink === 'home' }" :to="{ name: 'home' }"
+          @click="setActiveLink('home')">
+          Home
+        </RouterLink>
       </li>
       <li class="dropdown">
-        <a
-          class="main-links"
-          :class="{ active: activeLink === 'shop' }"
-          @click.prevent="setActiveLink('shop')"
-          href="#shop"
-          >Shop<i class="ri-arrow-down-s-line"></i
-        ></a>
+        <RouterLink class="main-links" :class="{ active: activeLink === 'shop' }" :to="{ name: 'shop' }"
+          @click="setActiveLink('shop')">
+          Shop <i class="ri-arrow-down-s-line"></i>
+        </RouterLink>
         <ul class="dropdown-menu">
           <li><a href="#phone">Phone</a></li>
           <li><a href="#computer">Computer</a></li>
@@ -33,13 +27,10 @@
         </ul>
       </li>
       <li class="dropdown">
-        <a
-          class="main-links"
-          :class="{ active: activeLink === 'pages' }"
-          @click.prevent="setActiveLink('pages')"
-          href="#pages"
-          >Pages<i class="ri-arrow-down-s-line"></i
-        ></a>
+        <RouterLink class="main-links" :class="{ active: activeLink === 'pages' }" :to="{ name: 'pages' }"
+          @click="setActiveLink('pages')">
+          Pages <i class="ri-arrow-down-s-line"></i>
+        </RouterLink>
         <ul class="dropdown-menu">
           <li><a href="#cart">Cart</a></li>
           <li><a href="#checkout">Checkout</a></li>
@@ -50,22 +41,16 @@
         </ul>
       </li>
       <li>
-        <a
-          class="main-links"
-          :class="{ active: activeLink === 'contact' }"
-          @click.prevent="setActiveLink('contact')"
-          href="#contact"
-          >Contact</a
-        >
+        <RouterLink class="main-links" :class="{ active: activeLink === 'contact' }" :to="{ name: 'contact' }"
+          @click="setActiveLink('contact')">
+          Contact
+        </RouterLink>
       </li>
       <li>
-        <a
-          class="main-links"
-          :class="{ active: activeLink === 'signIn' }"
-          @click.prevent="setActiveLink('signIn')"
-          href="#signIn"
-          >Sign In</a
-        >
+        <RouterLink class="main-links" :class="{ active: activeLink === 'signIn' }" :to="{ name: 'signIn' }"
+          @click="setActiveLink('signIn')">
+          Sign In
+        </RouterLink>
       </li>
     </ul>
 
@@ -102,10 +87,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .navbar {
   position: sticky;
-  top: 2%; /* Make the navbar stick to the top */
+  top: 2%;
+  /* Make the navbar stick to the top */
   /* left: 50%;
   transform: translateX(-50%); Center the navbar horizontally */
   display: flex;
@@ -117,10 +103,14 @@ export default {
   font-family: "Poppins", sans-serif;
   z-index: 10;
 
-  width: 100%; /* This ensures the navbar stretches across the full width */
-  max-width: 1200px; /* You can adjust this to your desired width */
-  margin-left: auto; /* Centers the navbar */
-  margin-right: auto; /* Centers the navbar */
+  width: 100%;
+  /* This ensures the navbar stretches across the full width */
+  max-width: 1200px;
+  /* You can adjust this to your desired width */
+  margin-left: auto;
+  /* Centers the navbar */
+  margin-right: auto;
+  /* Centers the navbar */
 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -150,26 +140,34 @@ export default {
 
 .nav-links .dropdown-menu {
   width: 10rem;
-  opacity: 0; /* Fully transparent */
-  visibility: hidden; /* Hidden by default */
+  opacity: 0;
+  /* Fully transparent */
+  visibility: hidden;
+  /* Hidden by default */
   position: absolute;
-  top: 150%; /* Start slightly below the dropdown */
+  top: 150%;
+  /* Start slightly below the dropdown */
   left: 0;
   background-color: #ffffff;
   border: 1px solid #dddddd;
   border-radius: 10px;
   list-style: none;
   padding: 10px;
-  z-index: 1000; /* Ensure it appears above other elements */
+  z-index: 1000;
+  /* Ensure it appears above other elements */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  transform: translateY(10px); /* Slide down by 10px initially */
+  transform: translateY(10px);
+  /* Slide down by 10px initially */
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 }
 
 .nav-links .dropdown:hover .dropdown-menu {
-  opacity: 1; /* Fully visible */
-  visibility: visible; /* Make it interactive */
-  transform: translateY(0); /* Slide into position */
+  opacity: 1;
+  /* Fully visible */
+  visibility: visible;
+  /* Make it interactive */
+  transform: translateY(0);
+  /* Slide into position */
 }
 
 .nav-links .dropdown:hover .dropdown-menu:not(:hover) {
@@ -208,32 +206,40 @@ export default {
 .nav-icons {
   display: flex;
   align-items: center;
-  gap: 15px; /* Adjusts space between icons */
-  position: relative; /* Ensures icons are aligned correctly */
+  gap: 15px;
+  /* Adjusts space between icons */
+  position: relative;
+  /* Ensures icons are aligned correctly */
 }
 
 .search-container {
   position: relative;
-  flex-shrink: 0; /* Prevents shrinking of the search container */
+  flex-shrink: 0;
+  /* Prevents shrinking of the search container */
 }
 
 .search-container input {
-  width: 200px; /* Adjust width as needed */
-  padding: 5px 35px 5px 10px; /* Leaves space for the icon */
+  width: 200px;
+  /* Adjust width as needed */
+  padding: 5px 35px 5px 10px;
+  /* Leaves space for the icon */
   border: 1px solid #ccc;
   border-radius: 5px;
   outline: none;
-  z-index: 1; /* Ensures it doesn’t overlap other elements */
+  z-index: 1;
+  /* Ensures it doesn’t overlap other elements */
 }
 
 .search-container i {
   position: absolute;
   top: 50%;
-  right: 10px; /* Aligns icon inside input */
+  right: 10px;
+  /* Aligns icon inside input */
   transform: translateY(-50%);
   font-size: 20px;
   color: #aaa;
-  pointer-events: none; /* Prevents icon from blocking input functionality */
+  pointer-events: none;
+  /* Prevents icon from blocking input functionality */
 }
 
 .nav-icons .ri-heart-3-line,
@@ -241,7 +247,8 @@ export default {
 .nav-icons .ri-user-line {
   font-size: 20px;
   cursor: pointer;
-  z-index: 2; /* Ensures these icons are on top of the search-container */
+  z-index: 2;
+  /* Ensures these icons are on top of the search-container */
 }
 
 .nav-icons button {
@@ -255,13 +262,15 @@ export default {
   align-items: center;
   z-index: 1;
   cursor: pointer;
-  overflow: hidden; /* Ensures the effect stays inside the button */
+  overflow: hidden;
+  /* Ensures the effect stays inside the button */
   transition: color 0.3s ease;
   border-radius: 100px;
 }
 
 .nav-icons button i {
-  z-index: 2; /* Keeps the icon above the background animation */
+  z-index: 2;
+  /* Keeps the icon above the background animation */
   font-size: 20px;
   color: #000;
 }
@@ -273,10 +282,13 @@ export default {
   left: 50%;
   width: 0;
   height: 0;
-  background: #fe5182; /* Bloom color */
-  border-radius: 50%; /* Creates a circular bloom */
+  background: #fe5182;
+  /* Bloom color */
+  border-radius: 50%;
+  /* Creates a circular bloom */
   transform: translate(-50%, -50%);
-  transition: width 0.5s ease, height 0.5s ease; /* Smooth bloom effect */
+  transition: width 0.5s ease, height 0.5s ease;
+  /* Smooth bloom effect */
   z-index: 1;
 }
 
@@ -292,8 +304,10 @@ export default {
 }
 
 .nav-icons button:hover i {
-  color: white; /* Change the color to white or any other color you prefer */
-  transition: color 0.3s ease; /* Smooth transition effect */
+  color: white;
+  /* Change the color to white or any other color you prefer */
+  transition: color 0.3s ease;
+  /* Smooth transition effect */
 }
 
 /* Styling Navigation bar with animation */
@@ -309,11 +323,15 @@ export default {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -5px; /* Position below the link */
-  height: 2px; /* Underline thickness */
+  bottom: -5px;
+  /* Position below the link */
+  height: 2px;
+  /* Underline thickness */
   width: 0;
-  background: #000000; /* Underline color */
-  transition: width 0.3s ease-in-out; /* Smooth underline animation */
+  background: #000000;
+  /* Underline color */
+  transition: width 0.3s ease-in-out;
+  /* Smooth underline animation */
 }
 
 /* On hover */
@@ -323,10 +341,12 @@ export default {
 
 /* For active link */
 .nav-links .main-links.active::after {
-  width: 100%; /* Keep the underline fully visible */
+  width: 100%;
+  /* Keep the underline fully visible */
 }
 
 .nav-links .main-links.active {
-  color: #000000; /* Optional: Change color for active link */
+  color: #000000;
+  /* Optional: Change color for active link */
 }
 </style>
