@@ -1,6 +1,6 @@
-<template >
+<template>
     <div>
-        Contact Page
+        Shop
     </div>
 </template>
 <script>
@@ -8,6 +8,6 @@ export default {
     
 }
 </script>
-<style >
+<style scoped> 
     
 </style>
