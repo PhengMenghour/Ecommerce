@@ -22,6 +22,7 @@
 <script>
 import CategoryComponent from "@/components/CategoryComponent.vue";
 import TagComponent from "@/components/TagComponent.vue";
+ 
 
 export default {
   components: {
