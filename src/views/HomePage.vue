@@ -28,20 +28,20 @@
       </div>
       <div class="countdown-time-container">
         <div class="countdown-time">
-          <p class="time">0</p>
-          <p class="date">Day</p>
+          <p class="time">{{ days }}</p>
+          <span class="date">Day</span>
         </div>
         <div class="countdown-time">
-          <p class="time">00</p>
-          <p class="date">Hrs</p>
+          <p class="time">{{ hours}}</p>
+          <span class="date">Hrs</span>
         </div>
         <div class="countdown-time">
-          <p class="time">00</p>
-          <p class="date">Min</p>
+          <p class="time">{{ minutes}}</p>
+          <Span class="date">Min</Span>
         </div>
         <div class="countdown-time">
-          <p class="time">00</p>
-          <p class="date">Sec</p>
+          <p class="time">{{ seconds}}</p>
+          <Span class="date">Sec</Span>
         </div>
       </div>
 
@@ -82,6 +82,8 @@ export default {
     visibleCategories() {
       return this.categories.slice(this.currentIndex, this.currentIndex + this.visibleCount);
     },
+
+
   },
 
   methods: {
@@ -95,6 +97,30 @@ export default {
         this.currentIndex--;
       }
     },
+
+    // Countdown
+    startCountdown(){
+      this.updateTime();
+      this.timer = setInterval(this.updateTime, 1000);
+    },
+
+    updateTime(){
+      const now = new Date().getTime();
+      const distance = this.targetDate - now;
+
+      if (distance < 0) {
+        clearInterval(this.timer);
+        this.days = this.hour = this.minutes = this.seconds = 0;
+        return;
+      }
+
+      this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    }
+
+
   },
 
   data() {
@@ -102,6 +128,7 @@ export default {
       currentIndex: 0,
       visibleCount: 5, // Number of categories to display
 
+      // Render categories 
       categories: [
         {
           id: 1,
@@ -139,8 +166,25 @@ export default {
           title: "Headphone",
         },
       ],
+
+      // For countdown time
+      targetDate: new Date("2024-12-31T23:59:59").getTime(),
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+      timer: null,
     };
   },
+
+  mounted(){
+    this.startCountdown();
+  },
+
+  beforeUnmount(){
+    clearInterval(this.timer);
+  }  
+
 };
 </script>
 
@@ -245,17 +289,19 @@ export default {
 .countdown-container .left-section .countdown-time-container .countdown-time p{
   margin-top: 10px;
   margin-bottom: 10px;
-  font-size: 1rem;
+  /* font-size: 1rem; */
 }
 
 .countdown-container .left-section .time {
   font-weight: 600;
+  font-size: 1.1rem;
 
 }
 
 .countdown-container .left-section .date{
   font-weight: 300;
   color: #747474;
+  font-size: 0.9rem;
 }
 
 .countdown-container button {
@@ -268,6 +314,11 @@ export default {
   font-weight: bold;
   border-radius: 10px;
   font-size: 1rem;
+}
+
+.countdown-container button:hover {
+  background-color: #103e95;
+  transition: ease-in-out 0.2s;
 }
 
 .countdown-container .right-section {
