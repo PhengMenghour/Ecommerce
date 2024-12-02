@@ -9,7 +9,8 @@
     <h1>Browse by Category</h1>
     <div class="swipe-button">
       <button @click="prevCategory" :disabled="currentIndex === 0"><i class="ri-arrow-left-line"></i></button>
-      <button @click="nextCategory" :disabled="currentIndex >= categories.length - visibleCount"><i class="ri-arrow-right-line"></i></button>
+      <button @click="nextCategory" :disabled="currentIndex >= categories.length - visibleCount"><i
+          class="ri-arrow-right-line"></i></button>
     </div>
   </div>
   <div class="category-group">
@@ -17,17 +18,62 @@
       <CategoryComponent :image="category.image" :title="category.title" />
     </div>
   </div>
+  <div class="countdown-container">
+    <div class="left-section">
+      <TagComponent />
+      <div class="text-container">
+        <h1>Enhance Your</h1>
+        <h1>Music</h1>
+        <h1>Experience</h1>
+      </div>
+      <div class="countdown-time-container">
+        <div class="countdown-time">
+          <p class="time">0</p>
+          <p class="date">Day</p>
+        </div>
+        <div class="countdown-time">
+          <p class="time">00</p>
+          <p class="date">Hrs</p>
+        </div>
+        <div class="countdown-time">
+          <p class="time">00</p>
+          <p class="date">Min</p>
+        </div>
+        <div class="countdown-time">
+          <p class="time">00</p>
+          <p class="date">Sec</p>
+        </div>
+      </div>
+
+      <button>Check it Out!</button>
+
+
+
+    </div>
+    <div class="right-section">
+      <img src="/src/assets/images/headphonePic.png" alt="">
+    </div>
+  </div>
+
+
+  <!-- For later use -->
+  <!-- <productCards/>
+  <Itemss/> -->
 </template>
 
 <script>
 import CategoryComponent from "@/components/CategoryComponent.vue";
+import Itemss from "@/components/Itemss.vue";
+import productCards from "@/components/productCard.vue";
 import TagComponent from "@/components/TagComponent.vue";
- 
+
 
 export default {
   components: {
     CategoryComponent,
     TagComponent,
+    productCards,
+    Itemss
   },
 
 
@@ -137,8 +183,7 @@ export default {
   overflow: hidden;
   justify-content: center;
   gap: 10px;
-  transition: transform 0.5s ease-in-out; /* Smooth sliding effect */
-  /* Add gap for better spacing */
+  transition: transform 0.5s ease-in-out;
 }
 
 .category-wrapper {
@@ -148,11 +193,94 @@ export default {
 
 .category-wrapper:hover {
   opacity: 1;
-  /* Highlight the category on hover */
 }
 
 .group-tag {
   margin-top: 10px;
   margin-left: 200px;
 }
+
+.countdown-container {
+  display: flex;
+  margin: 10% 2.5% 2.5% 2.5%;
+  background-color: #f6f7fb;
+  width: auto;
+  height: 650px;
+  border-radius: 10px;
+  padding: 10px
+}
+
+.countdown-container .left-section {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+}
+
+.countdown-container .left-section .text-container h1{
+  font-family: "Lato";
+  font-size: 4rem;
+  font-weight: 800;
+  margin: 5% 0 5% 0;
+}
+
+.countdown-container .left-section .countdown-time-container{
+  display: flex;
+  margin: 5% 0 5% 0;
+}
+
+.countdown-container .left-section .countdown-time-container .countdown-time{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 75px;
+  height: 75px;
+  border: 1px solid #d4d4d4;
+  border-radius: 100px;
+  margin: 10px 10px 10px 10px;
+  background-color: #ffffff;
+  font-family: "Poppins";
+}
+
+.countdown-container .left-section .countdown-time-container .countdown-time p{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.countdown-container .left-section .time {
+  font-weight: 600;
+
+}
+
+.countdown-container .left-section .date{
+  font-weight: 300;
+  color: #747474;
+}
+
+.countdown-container button {
+  background-color: #3577f0;
+  border: none;
+  width: 12.5rem;
+  height: 3.5rem;
+  color: #ffffff;
+  font-family: "Poppins";
+  font-weight: bold;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.countdown-container .right-section {
+  position: relative;
+}
+
+.countdown-container .right-section img {
+  position: absolute;
+  height: 550px;
+  width: 500px;
+  left: 15rem;
+  top: -75px;
+}
+
+
 </style>

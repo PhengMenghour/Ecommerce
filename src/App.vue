@@ -1,8 +1,6 @@
 <template>
   <DiscountComponent />
   <NavigationBarComponent />
-  <productCard/>
-  <Itemss/>
   <router-view></router-view>
 </template>
 
