@@ -1,6 +1,7 @@
 <template>
   <div class="container-main">
     <h1></h1>
+    <CarouselComponent/>
   </div>
   <div class="group-tag">
     <TagComponent />
@@ -29,19 +30,19 @@
       <div class="countdown-time-container">
         <div class="countdown-time">
           <p class="time">{{ days }}</p>
-          <span class="date">Day</span>
+          <p class="date">Day</p>
         </div>
         <div class="countdown-time">
           <p class="time">{{ hours}}</p>
-          <span class="date">Hrs</span>
+          <p class="date">Hrs</p>
         </div>
         <div class="countdown-time">
           <p class="time">{{ minutes}}</p>
-          <Span class="date">Min</Span>
+          <p class="date">Min</p>
         </div>
         <div class="countdown-time">
           <p class="time">{{ seconds}}</p>
-          <Span class="date">Sec</Span>
+          <p class="date">Sec</p>
         </div>
       </div>
 
@@ -62,6 +63,7 @@
 </template>
 
 <script>
+import CarouselComponent from "@/components/CarouselComponent.vue";
 import CategoryComponent from "@/components/CategoryComponent.vue";
 import Itemss from "@/components/Itemss.vue";
 import productCards from "@/components/productCard.vue";
@@ -73,7 +75,8 @@ export default {
     CategoryComponent,
     TagComponent,
     productCards,
-    Itemss
+    Itemss,
+    CarouselComponent
   },
 
 
