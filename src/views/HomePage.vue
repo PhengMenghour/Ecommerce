@@ -1,7 +1,10 @@
 <template>
   <div class="container-main">
+    <div class="background-container">
+      <img src="/src/assets/images/background.png" alt="">
+    </div>
     <h1></h1>
-    <CarouselComponent/>
+    <CarouselComponent />
   </div>
   <div class="group-tag">
     <TagComponent />
@@ -33,15 +36,15 @@
           <p class="date">Day</p>
         </div>
         <div class="countdown-time">
-          <p class="time">{{ hours}}</p>
+          <p class="time">{{ hours }}</p>
           <p class="date">Hrs</p>
         </div>
         <div class="countdown-time">
-          <p class="time">{{ minutes}}</p>
+          <p class="time">{{ minutes }}</p>
           <p class="date">Min</p>
         </div>
         <div class="countdown-time">
-          <p class="time">{{ seconds}}</p>
+          <p class="time">{{ seconds }}</p>
           <p class="date">Sec</p>
         </div>
       </div>
@@ -102,12 +105,12 @@ export default {
     },
 
     // Countdown
-    startCountdown(){
+    startCountdown() {
       this.updateTime();
       this.timer = setInterval(this.updateTime, 1000);
     },
 
-    updateTime(){
+    updateTime() {
       const now = new Date().getTime();
       const distance = this.targetDate - now;
 
@@ -180,13 +183,13 @@ export default {
     };
   },
 
-  mounted(){
+  mounted() {
     this.startCountdown();
   },
 
-  beforeUnmount(){
+  beforeUnmount() {
     clearInterval(this.timer);
-  }  
+  }
 
 };
 </script>
@@ -196,6 +199,23 @@ export default {
   background-color: #f9f3f0;
   height: 800px;
   margin-top: -90px;
+  position: relative;
+  z-index: 1; /* Lowered to allow background behind carousel */
+  /* overflow: hidden; */
+}
+
+.background-container {
+  position: absolute;
+  top: 168px;
+  left: 600px;
+  width: auto;
+  height: auto;
+  z-index: 0; /* Ensure it stays behind */
+}
+
+.background-container img {
+  width: 644.82px;
+  height: 631.67px;
 }
 
 .container-category-head {
@@ -263,19 +283,19 @@ export default {
   padding-left: 20px;
 }
 
-.countdown-container .left-section .text-container h1{
+.countdown-container .left-section .text-container h1 {
   font-family: "Lato";
   font-size: 4rem;
   font-weight: 800;
   margin: 5% 0 5% 0;
 }
 
-.countdown-container .left-section .countdown-time-container{
+.countdown-container .left-section .countdown-time-container {
   display: flex;
   margin: 5% 0 5% 0;
 }
 
-.countdown-container .left-section .countdown-time-container .countdown-time{
+.countdown-container .left-section .countdown-time-container .countdown-time {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -289,7 +309,7 @@ export default {
   font-family: "Poppins";
 }
 
-.countdown-container .left-section .countdown-time-container .countdown-time p{
+.countdown-container .left-section .countdown-time-container .countdown-time p {
   margin-top: 10px;
   margin-bottom: 10px;
   /* font-size: 1rem; */
@@ -301,7 +321,7 @@ export default {
 
 }
 
-.countdown-container .left-section .date{
+.countdown-container .left-section .date {
   font-weight: 300;
   color: #747474;
   font-size: 0.9rem;
@@ -335,6 +355,4 @@ export default {
   left: 15rem;
   top: -75px;
 }
-
-
 </style>
