@@ -100,10 +100,10 @@
 <script>
 import CarouselComponent from "@/components/CarouselComponent.vue";
 import CategoryComponent from "@/components/CategoryComponent.vue";
-import Itemss from "@/components/Itemss.vue";
-import productCards from "@/components/productCard.vue";
+import Itemss from "@/components/ItemComponent.vue";
+import productCards from "@/components/NewArrivalComponent.vue";
 import TagComponent from "@/components/TagComponent.vue";
-import ProductDiscount from "@/components/FeatureProduce.vue";
+import ProductDiscount from "@/components/FeatureProductComponent.vue";
 import FeedbackComponent from "@/components/FeedbackComponent.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
 

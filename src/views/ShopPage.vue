@@ -1,14 +1,17 @@
 <template>
     <div>
         <ProductCartiphone/>
+        <Card/>
     </div>
 </template>
 <script>
-import ProductCartiphone from '@/components/productCartiphone.vue';
+import Card from '@/components/CartItemComponent.vue';
+import ProductCartiphone from '@/components/ProductListComponent.vue';
 
 export default {
     components: {
-        ProductCartiphone
+        ProductCartiphone,
+        Card,
     }
 }
 </script>
