@@ -2,9 +2,7 @@
 <template>
   <DiscountComponent />
   <NavigationBarComponent />
-  <!-- <card /> -->
-  <!-- <FooterComponent /> -->
-  
+
   <router-view></router-view>
 </template>
 
@@ -18,6 +16,7 @@ import Card from "./components/Card.vue";
 
 
 
+import ProductCartiphone from "./components/productCartiphone.vue";
  
 
 export default {
@@ -28,7 +27,8 @@ export default {
     Itemss,
     FooterComponent,
     // Card
-  },
+    ProductCartiphone,
+  }
 };
 </script>
 

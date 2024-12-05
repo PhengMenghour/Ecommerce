@@ -107,6 +107,7 @@ import ProductDiscount from "@/components/FeatureProduce.vue";
 import FeedbackComponent from "@/components/FeedbackComponent.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
 
+
 export default {
   components: {
     CategoryComponent,
@@ -117,6 +118,7 @@ export default {
     ProductDiscount,
     FeedbackComponent,
     FooterComponent,
+
   },
 
   computed: {
