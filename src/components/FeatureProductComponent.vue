@@ -56,7 +56,7 @@ export default {
   border-radius: 4px;
   font-size: 12px;
   font-weight: bold;
-  z-index: 10; /* Ensures the label appears on top of the image */
+  z-index: 1; /* Ensures the label appears on top of the image */
 }
 .product-image {
   width: 100%;
