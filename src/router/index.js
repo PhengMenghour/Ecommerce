@@ -6,6 +6,7 @@ import Pages from '@/views/Pages.vue'
 import SignInPage from '@/views/SignInPage.vue'
 import ProductDetail from '@/views/ProductDetail.vue'
 
+
 const routes = [
   {
     path: '/',
