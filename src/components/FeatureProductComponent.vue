@@ -4,7 +4,10 @@
       <img :src="image" :alt="name" class="product-image" />
       <h3 class="product-name">{{ name }}</h3>
       <div class="rating">
-        <span class="stars">⭐⭐⭐⭐⭐</span>
+        <span class="stars"><i class="ri-star-fill"></i></span>
+        <span class="stars"><i class="ri-star-fill"></i></span>
+        <span class="stars"><i class="ri-star-fill"></i></span>
+        <span class="stars"><i class="ri-star-fill"></i></span>
         <span>({{ reviews }})</span>
       </div>
       <div class="price">
@@ -69,6 +72,8 @@ export default {
 .product-name {
   font-size: 16px;
   margin: 8px 0;
+  font-weight: 500;
+  color: #6f6f6f;
 }
 .rating {
   color: #f39c12;
@@ -79,7 +84,7 @@ export default {
 }
 .current-price {
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 600;
 }
 .original-price {
   font-size: 14px;

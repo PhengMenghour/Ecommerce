@@ -7,7 +7,7 @@
     <CarouselComponent />
   </div>
   <div class="group-tag">
-    <TagComponent />
+    <TagComponent tag="Categories"/>
   </div>
   <div class="container-category-head">
     <h1>Browse by Category</h1>
@@ -25,7 +25,7 @@
 
   <div class="countdown-container">
     <div class="left-section">
-      <TagComponent />
+      <TagComponent tag="Don't Miss!!!" iconClass="ri-customer-service-line"/>
       <div class="text-container">
         <h1>Enhance Your</h1>
         <h1>Music</h1>
@@ -64,7 +64,7 @@
 
 
   <div class="feature-product-header">
-    <TagComponent/>
+    <TagComponent tag="Our Products" iconClass="ri-shopping-bag-4-line"/>
     <h1>Explore our Products</h1>
     <div class="featured-products">
         <div class="products">
@@ -84,27 +84,34 @@
   </div>
 
   <div class="feedback-header">
-    <TagComponent/>
+    <TagComponent tag="Testimonials" iconClass="ri-discuss-line"/>
     <h1>Users Feedback</h1>
     <FeedbackComponent/>
   </div>
 
   <div class="newArrival-header">
     <div class="tag-group">
-      <TagComponent/>
+      <TagComponent tag="This Week" iconClass="ri-shopping-bag-4-line"/>
       <h1>New Arrivals</h1>
     </div>
     <NewArrivalComponent/>
   </div>
 
+  <hr>
+
   <div class="mostSold-header">
-    <div class="tag-group">
-      <TagComponent/>
+    <div class="tag-group-2">
+      <TagComponent tag="Most Sold" iconClass="ri-star-fill"/>
       <h1>Most Sold in SmartSphere</h1>
     </div>
     <ItemComponent/>
+  </div>
 
+  <hr>
 
+  <div class="banner-container">
+    <img src="/src/assets/images/banner1.png" alt="">
+    <img src="/src/assets/images/banner2.png" alt="">
   </div>
 
 
@@ -546,6 +553,32 @@ export default {
 .tag-group{
   padding: 0px 200px 0px 200px;
   font-family: "Poppins"
-  /* background-color: #103e95; */
+
+}
+
+.tag-group-2{
+  padding: 0px 200px 0px 200px;
+  font-family: "Poppins";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.banner-container {
+  margin: 3% 0 3% 0;
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+}
+
+.banner-container img {
+  width: 40%;
+}
+
+hr {
+  width: 90%;
+  border-top: 1px solid #dbdbdb;
 }
 </style>

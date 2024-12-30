@@ -4,7 +4,7 @@
             <!-- Left section -->
 
             <div class="carousel-text">
-                <TagComponent />
+                <TagComponent tag="Hot Deal In This Week" icon-class="ri-fire-fill"/>
                 <h2>{{ textContent[currentIndex] }}</h2>
 
                 <button class="btn-shopNow"><i class="ri-shopping-cart-line"></i>Shop Now</button>
