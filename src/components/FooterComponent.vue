@@ -47,9 +47,12 @@
           <h4>SHOP</h4>
           <ul>
             <li><a href="#">Phones</a></li>
-            <li><a href="#">TVs</a></li>
             <li><a href="#">Computer</a></li>
-            <li><a href="#">Audio</a></li>
+            <li><a href="#">Accessories</a></li>
+            <li><a href="#">Laptops</a></li>
+            <li><a href="#">Monitors</a></li>
+            <li><a href="#">Network</a></li>
+            <li><a href="#">Headphone</a></li>
           </ul>
         </div>
         <div class="footer-column">

@@ -37,7 +37,11 @@
           <li><a href="#account">Account</a></li>
           <li><a href="#signUp">Sign Up</a></li>
           <li><a href="#signIn">Sign In</a></li>
-          <li><a href="#privacy">Privacy and Policy</a></li>
+          <li>
+            <RouterLink :to="{name: 'privacyAndPolicy'}">
+              Privacy and Policy
+            </RouterLink>
+          </li>
         </ul>
       </li>
       <li>
