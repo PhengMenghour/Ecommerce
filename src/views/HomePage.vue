@@ -132,8 +132,7 @@ import TagComponent from "@/components/TagComponent.vue";
 import FeatureProductComponent from "@/components/FeatureProductComponent.vue";
 import FeedbackComponent from "@/components/FeedbackComponent.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
-
-
+import ProductCartiphone from '@/components/ProductComponent.vue';
 export default {
   components: {
     CategoryComponent,
@@ -144,6 +143,7 @@ export default {
     FeatureProductComponent,
     FeedbackComponent,
     FooterComponent,
+    ProductCartiphone,
 
   },
 

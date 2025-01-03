@@ -10,6 +10,7 @@
           @click="setActiveLink('home')">
           Home
         </RouterLink>
+
       </li>
       <li class="dropdown">
         <RouterLink class="main-links" :class="{ active: activeLink === 'shop' }" :to="{ name: 'shop' }"
@@ -26,6 +27,7 @@
           <li><a href="#headphones">Headphone</a></li>
         </ul>
       </li>
+      
       <li class="dropdown">
         <RouterLink class="main-links" :class="{ active: activeLink === 'pages' }" :to="{ name: 'pages' }"
           @click="setActiveLink('pages')">
