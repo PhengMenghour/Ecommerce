@@ -16,7 +16,7 @@ import Card from "./components/Card.vue";
 
 
 
-import ProductCartiphone from "./components/productCartiphone.vue";
+import ProductCartiphone from "./components/ProductComponent.vue";
  
 
 export default {
