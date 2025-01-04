@@ -7,7 +7,7 @@
           <span class="discount-badge">10% Off</span>
         </div>
         <div class="card-details">
-          <h3 class="product-name">PS5 Controller</h3>
+          <h3 class="product-name">PS5 Controller</h3>e
           <p class="product-price">
             <span class="original-price">$80</span> $60
           </p>
