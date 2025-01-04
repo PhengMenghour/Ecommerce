@@ -2,14 +2,8 @@
   <div class="product-container">
     <!-- Additional Images -->
     <div class="additional-images">
-      <img
-        v-for="(image, index) in additionalImages"
-        :key="index"
-        :src="image"
-        :alt="'Product Image ' + (index + 1)"
-        class="additional-image"
-        @click="selectedImage = image"
-      />
+      <img v-for="(image, index) in additionalImages" :key="index" :src="image" :alt="'Product Image ' + (index + 1)"
+        class="additional-image" @click="selectedImage = image" />
     </div>
 
     <!-- Product Image -->
@@ -43,26 +37,15 @@
         <!-- Colors -->
         <div class="colors">
           <span>Colors:</span>
-          <button
-            v-for="color in product.colors"
-            :key="color"
-            class="color-option"
-            :style="{ backgroundColor: color }"
-            @click="selectedColor = color"
-            :class="{ active: selectedColor === color }"
-          ></button>
+          <button v-for="color in product.colors" :key="color" class="color-option" :style="{ backgroundColor: color }"
+            @click="selectedColor = color" :class="{ active: selectedColor === color }"></button>
         </div>
 
         <!-- Sizes -->
         <div class="sizes">
           <span>Size:</span>
-          <button
-            v-for="size in product.sizes"
-            :key="size"
-            class="size-option"
-            @click="selectedSize = size"
-            :class="{ active: selectedSize === size }"
-          >
+          <button v-for="size in product.sizes" :key="size" class="size-option" @click="selectedSize = size"
+            :class="{ active: selectedSize === size }">
             {{ size }}
           </button>
         </div>
@@ -92,22 +75,22 @@
   <!-- Customer Review Section -->
   <div class="customer-reviews">
     <h3>Customer Reviews</h3>
-    <div
-      v-for="(review, index) in reviews"
-      :key="index"
-      class="review-card"
-    >
-      <div class="review-header">
-        <strong>{{ review.name }}</strong>
-        <span class="stars">⭐⭐⭐⭐⭐</span>
-      </div>
-      <p>{{ review.comment }}</p>
+    <div v-for="(comment, index) in comments" :key="index" class="comment-wrapper">
+      <CommentComponent :image-src="comment.imageSrc" :name="comment.name" :rating="comment.rating"
+        :comment="comment.comment" />
     </div>
   </div>
 </template>
 
 <script>
+import CommentComponent from '@/components/CommentComponent.vue';
+
+
 export default {
+  components: {
+    CommentComponent
+  },
+
   data() {
     return {
       product: {
@@ -129,28 +112,30 @@ export default {
       selectedColor: "#d8e3f3",
       selectedSize: "128GB",
       quantity: 1,
-      reviews: [
-  {
-    name: "Emily R.",
-    rating: "⭐⭐⭐⭐⭐",
-    comment: "Amazing phone! Great performance and the battery lasts forever.",
-    image: "./src/assets/images/user1.jpg", // Image for reviewer
-  },
-  {
-    name: "Michael T.",
-    rating: "⭐⭐⭐⭐",
-    comment: "The camera quality is outstanding. However, it is a bit expensive.",
-    image: "./src/assets/images/michael.jpg", // Image for reviewer
-  },
-  {
-    name: "Sophia K.",
-    rating: "⭐⭐⭐⭐⭐",
-    comment: "Best purchase ever! The display is stunning and smooth.",
-    image: "./src/assets/images/sophia.jpg", // Image for reviewer
-  },
-]
 
-
+      comments: [
+        {
+          imageSrc: 'https://via.placeholder.com/50',
+          name: 'Jeffrey',
+          rating: 5,
+          comment:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
+        },
+        {
+          imageSrc: 'https://via.placeholder.com/50',
+          name: 'Emily',
+          rating: 4,
+          comment:
+            'Donec bibendum orci quis magna ultrices porta. Morbi sagittis felis turpis, vitae molestie ligula viverra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
+        },
+        {
+          imageSrc: 'https://via.placeholder.com/50',
+          name: 'Michael',
+          rating: 3,
+          comment:
+            'Nullam at sem vel neque finibus sollicitudin et eget enim. Fusce ac venenatis quam, sed aliquet est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
+        },
+      ],
     };
   },
   methods: {
@@ -225,13 +210,16 @@ body {
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins";
 }
 
 /* Product image styling */
 .product-image {
   max-width: 350px;
-  background-color: #f0f0f0; /* Light gray background */
-  padding: 20px; /* Add padding for spacing */
+  background-color: #f0f0f0;
+  /* Light gray background */
+  padding: 20px;
+  /* Add padding for spacing */
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -240,7 +228,8 @@ body {
 }
 
 .product-image img {
-  max-width: 100%; /* Ensure the image scales properly */
+  max-width: 100%;
+  /* Ensure the image scales properly */
   border-radius: 8px;
 }
 
@@ -337,12 +326,13 @@ ul li {
   flex-direction: column;
   gap: 10px;
   width: 100px;
-  height:auto;
+  height: auto;
 }
 
 .additional-image {
   max-width: 100%;
-  background-color: #f0f0f0; /* Same light gray background */
+  background-color: #f0f0f0;
+  /* Same light gray background */
   border-radius: 4px;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -353,5 +343,9 @@ ul li {
 .additional-image:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(214, 213, 213, 0.1);
+}
+
+.comment-wrapper {
+  margin-bottom: 16px;
 }
 </style>

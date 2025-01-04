@@ -1,56 +1,5 @@
-<!-- <template>
-    <div>
-        <ProductCartiphone/>
-    </div>
-</template>
-<script>
-import Card from '@/components/CartItemComponent.vue';
-import CommentComponent from '@/components/CommentComponent.vue';
-import ProductCartiphone from '@/components/ProductListComponent.vue';
-
-export default {
-    components: {
-        ProductCartiphone,
-        Card,
-        CommentComponent
-    },
-
-    data() {
-        return {
-            comments: [
-                {
-                    imageSrc: 'https://via.placeholder.com/50',
-                    name: 'Jeffrey',
-                    rating: 5,
-                    comment:
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
-                },
-                {
-                    imageSrc: 'https://via.placeholder.com/50',
-                    name: 'Emily',
-                    rating: 4,
-                    comment:
-                        'Donec bibendum orci quis magna ultrices porta. Morbi sagittis felis turpis, vitae molestie ligula viverra.',
-                },
-                {
-                    imageSrc: 'https://via.placeholder.com/50',
-                    name: 'Michael',
-                    rating: 3,
-                    comment:
-                        'Nullam at sem vel neque finibus sollicitudin et eget enim. Fusce ac venenatis quam, sed aliquet est.',
-                },
-            ],
-        };
-    },
-}
-</script>
-<style scoped> 
-    
-</style> -->
-
-
 <template>
-  <div>
+  <div class="main-container">
 
     <!-- Page Heading -->
     <div class="page-heading">
@@ -69,10 +18,7 @@ export default {
               <i class="dropdown-icon" :class="{ open: category.isOpen }">▼</i>
             </div>
             <ul v-if="category.isOpen" class="subcategory-list">
-              <li
-                v-for="subcategory in category.subcategories"
-                :key="subcategory.id"
-              >
+              <li v-for="subcategory in category.subcategories" :key="subcategory.id">
                 <a href="#" @click.prevent="selectCategory(subcategory.name)">
                   {{ subcategory.name }}
                 </a>
@@ -106,11 +52,7 @@ export default {
           <div v-if="filteredProducts.length === 0" class="no-products">
             <p>No products found for this category.</p>
           </div>
-          <ProductComponent
-            v-for="product in filteredProducts"
-            :key="product.id"
-            :product="product"
-          />
+          <ProductComponent v-for="product in filteredProducts" :key="product.id" :product="product" />
         </div>
 
         <button v-if="filteredProducts.length > 0" class="load-more">
@@ -207,230 +149,231 @@ export default {
           ],
         },
       ],
+
       products: [
-      {
-        id: 8,
-        name: "iPhone 16 Pro Max",
-        category: "iPhone",
-        price: "$1499.99",
-        discountPrice: "$1249.99",
-        image: "/src/assets/images/iphone_16_promax.jpg",
-        discount: "10% OFF",
-      },
-      {
-        id: 9,
-        name: "Samsung Galaxy S24",
-        category: "Samsung",
-        price: "$1199.99",
-        discountPrice: "$999.99",
-        image: "/src/assets/images/galaxy_s24_ultra.jpg",
-        discount: "15% OFF",
-      },
-      {
-        id: 10,
-        name: "Dell Optiplex",
-        category: "Dell",
-        price: "$1599.99",
-        discountPrice: "$1399.99",
-        image: "/src/assets/images/dell_optiplex.jpg",
-        discount: "12% OFF",
-      },
+        {
+          id: 8,
+          name: "iPhone 16 Pro Max",
+          category: "iPhone",
+          price: "$1499.99",
+          discountPrice: "$1249.99",
+          image: "/src/assets/images/iphone_16_promax.jpg",
+          discount: "10% OFF",
+        },
+        {
+          id: 9,
+          name: "Samsung Galaxy S24",
+          category: "Samsung",
+          price: "$1199.99",
+          discountPrice: "$999.99",
+          image: "/src/assets/images/galaxy_s24_ultra.jpg",
+          discount: "15% OFF",
+        },
+        {
+          id: 10,
+          name: "Dell Optiplex",
+          category: "Dell",
+          price: "$1599.99",
+          discountPrice: "$1399.99",
+          image: "/src/assets/images/dell_optiplex.jpg",
+          discount: "12% OFF",
+        },
 
-      // New Products
-      // Phones
-      {
-        id: 11,
-        name: "Xiaomi Mi 14 Ultra",
-        category: "Xiaomi",
-        price: "$1099.99",
-        discountPrice: "$899.99",
-        image: "/src/assets/images/xiaomi_14ultra.jpg",
-        discount: "18% OFF",
-      },
-      {
-        id: 12,
-        name: "Oppo Find X6 Pro",
-        category: "Oppo",
-        price: "$999.99",
-        discountPrice: "$849.99",
-        image: "/src/assets/images/oppo_find_x6_pro.jpg",
-        discount: "15% OFF",
-      },
-      {
-        id: 13,
-        name: "Vivo X100 Pro",
-        category: "Vivo",
-        price: "$899.99",
-        discountPrice: "$799.99",
-        image: "/src/assets/images/vivo_x100pro.jpg",
-        discount: "11% OFF",
-      },
+        // New Products
+        // Phones
+        {
+          id: 11,
+          name: "Xiaomi Mi 14 Ultra",
+          category: "Xiaomi",
+          price: "$1099.99",
+          discountPrice: "$899.99",
+          image: "/src/assets/images/xiaomi_14ultra.jpg",
+          discount: "18% OFF",
+        },
+        {
+          id: 12,
+          name: "Oppo Find X6 Pro",
+          category: "Oppo",
+          price: "$999.99",
+          discountPrice: "$849.99",
+          image: "/src/assets/images/oppo_find_x6_pro.jpg",
+          discount: "15% OFF",
+        },
+        {
+          id: 13,
+          name: "Vivo X100 Pro",
+          category: "Vivo",
+          price: "$899.99",
+          discountPrice: "$799.99",
+          image: "/src/assets/images/vivo_x100pro.jpg",
+          discount: "11% OFF",
+        },
 
-      // Computers
-      {
-        id: 14,
-        name: "HP ProDesk 600 G3 SFF",
-        category: "HP",
-        price: "$799.99",
-        discountPrice: "$749.99",
-        image: "/src/assets/images/hp_prodesk_600_g3_sff.jpg",
-        discount: "6% OFF",
-      },
-      {
-        id: 15,
-        name: "Lenovo Legion Tower",
-        category: "Lenovo",
-        price: "$1199.99",
-        discountPrice: "$999.99",
-        image: "/src/assets/images/lenovo_legion_tower_7ig8w.jpg",
-        discount: "17% OFF",
-      },
-      {
-        id: 16,
-        name: "Asus ROG Strix GA35CA",
-        category: "Asus",
-        price: "$1499.99",
-        discountPrice: "$1299.99",
-        image: "/src/assets/images/asus_rog_strix.jpg",
-        discount: "13% OFF",
-      },
+        // Computers
+        {
+          id: 14,
+          name: "HP ProDesk 600 G3 SFF",
+          category: "HP",
+          price: "$799.99",
+          discountPrice: "$749.99",
+          image: "/src/assets/images/hp_prodesk_600_g3_sff.jpg",
+          discount: "6% OFF",
+        },
+        {
+          id: 15,
+          name: "Lenovo Legion Tower",
+          category: "Lenovo",
+          price: "$1199.99",
+          discountPrice: "$999.99",
+          image: "/src/assets/images/lenovo_legion_tower_7ig8w.jpg",
+          discount: "17% OFF",
+        },
+        {
+          id: 16,
+          name: "Asus ROG Strix GA35CA",
+          category: "Asus",
+          price: "$1499.99",
+          discountPrice: "$1299.99",
+          image: "/src/assets/images/asus_rog_strix.jpg",
+          discount: "13% OFF",
+        },
 
-      // Accessories
-      {
-        id: 17,
-        name: "Sony WH-1000XM5",
-        category: "PowerBanks",
-        price: "$99.99",
-        discountPrice: "$89.99",
-        image: "/src/assets/images/anker_ank_powerbank.jpg",
-        discount: "10% OFF",
-      },
-      {
-        id: 18,
-        name: "Anker Fast Charger",
-        category: "Chargers",
-        price: "$49.99",
-        discountPrice: "$39.99",
-        image: "/src/assets/images/anker_fast_charger.jpg",
-        discount: "20% OFF",
-      },
-      {
-        id: 19,
-        name: "PS5 Controller",
-        category: "Controllers",
-        price: "$99.99",
-        discountPrice: "$89.99",
-        image: "/src/assets/images/ps5.png",
-        discount: "10% OFF",
-      },
+        // Accessories
+        {
+          id: 17,
+          name: "Sony WH-1000XM5",
+          category: "PowerBanks",
+          price: "$99.99",
+          discountPrice: "$89.99",
+          image: "/src/assets/images/anker_ank_powerbank.jpg",
+          discount: "10% OFF",
+        },
+        {
+          id: 18,
+          name: "Anker Fast Charger",
+          category: "Chargers",
+          price: "$49.99",
+          discountPrice: "$39.99",
+          image: "/src/assets/images/anker_fast_charger.jpg",
+          discount: "20% OFF",
+        },
+        {
+          id: 19,
+          name: "PS5 Controller",
+          category: "Controllers",
+          price: "$99.99",
+          discountPrice: "$89.99",
+          image: "/src/assets/images/ps5.png",
+          discount: "10% OFF",
+        },
 
-      // Laptops
-      {
-        id: 20,
-        name: "MacBook Pro M1",
-        category: "Apple",
-        price: "$1999.99",
-        discountPrice: "$1799.99",
-        image: "/src/assets/images/macbook_pro_m1.png",
-        discount: "10% OFF",
-      },
-      {
-        id: 21,
-        name: "Microsoft Surface Laptop 5",
-        category: "Microsoft",
-        price: "$1399.99",
-        discountPrice: "$1249.99",
-        image: "/src/assets/images/microsoft_surface_laptop_5.jpg",
-        discount: "11% OFF",
-      },
-      {
-        id: 22,
-        name: "Acer Swift 3 OLED",
-        category: "Acer",
-        price: "$999.99",
-        discountPrice: "$899.99",
-        image: "/src/assets/images/acer_swift_3_oled.jpg",
-        discount: "10% OFF",
-      },
+        // Laptops
+        {
+          id: 20,
+          name: "MacBook Pro M1",
+          category: "Apple",
+          price: "$1999.99",
+          discountPrice: "$1799.99",
+          image: "/src/assets/images/macbook_pro_m1.png",
+          discount: "10% OFF",
+        },
+        {
+          id: 21,
+          name: "Microsoft Surface Laptop 5",
+          category: "Microsoft",
+          price: "$1399.99",
+          discountPrice: "$1249.99",
+          image: "/src/assets/images/microsoft_surface_laptop_5.jpg",
+          discount: "11% OFF",
+        },
+        {
+          id: 22,
+          name: "Acer Swift 3 OLED",
+          category: "Acer",
+          price: "$999.99",
+          discountPrice: "$899.99",
+          image: "/src/assets/images/acer_swift_3_oled.jpg",
+          discount: "10% OFF",
+        },
 
-      // Monitors
-      {
-        id: 23,
-        name: "LG 22MK600M",
-        category: "LG-Monitors",
-        price: "$799.99",
-        discountPrice: "$699.99",
-        image: "/src/assets/images/lg_monitor.jpg",
-        discount: "13% OFF",
-      },
-      {
-        id: 24,
-        name: "Samsung 34 Odyssey G5 Ultra",
-        category: "Samsung-Monitors",
-        price: "$1499.99",
-        discountPrice: "$1349.99",
-        image: "/src/assets/images/samsung_odyssey.jpg",
-        discount: "10% OFF",
-      },
-      {
-        id: 25,
-        name: "Dell Sync 2024",
-        category: "Dell-Monitors",
-        price: "$1199.99",
-        discountPrice: "$1099.99",
-        image: "/src/assets/images/dell_sync_2024.jpg",
-        discount: "8% OFF",
-      },
+        // Monitors
+        {
+          id: 23,
+          name: "LG 22MK600M",
+          category: "LG-Monitors",
+          price: "$799.99",
+          discountPrice: "$699.99",
+          image: "/src/assets/images/lg_monitor.jpg",
+          discount: "13% OFF",
+        },
+        {
+          id: 24,
+          name: "Samsung 34 Odyssey G5 Ultra",
+          category: "Samsung-Monitors",
+          price: "$1499.99",
+          discountPrice: "$1349.99",
+          image: "/src/assets/images/samsung_odyssey.jpg",
+          discount: "10% OFF",
+        },
+        {
+          id: 25,
+          name: "Dell Sync 2024",
+          category: "Dell-Monitors",
+          price: "$1199.99",
+          discountPrice: "$1099.99",
+          image: "/src/assets/images/dell_sync_2024.jpg",
+          discount: "8% OFF",
+        },
 
-      // Networking
-      {
-        id: 26,
-        name: "Netgear Nighthawk AX12",
-        category: "Routers",
-        price: "$599.99",
-        discountPrice: "$549.99",
-        image: "/src/assets/images/netgear_nighthawk_ax12.jpg",
-        discount: "8% OFF",
-      },
-      {
-        id: 27,
-        name: "Cisco Catalyst 9200L",
-        category: "Switches",
-        price: "$999.99",
-        discountPrice: "$899.99",
-        image: "/src/assets/images/cisco_catalyst_9200l.jpg",
-        discount: "10% OFF",
-      },
+        // Networking
+        {
+          id: 26,
+          name: "Netgear Nighthawk AX12",
+          category: "Routers",
+          price: "$599.99",
+          discountPrice: "$549.99",
+          image: "/src/assets/images/netgear_nighthawk_ax12.jpg",
+          discount: "8% OFF",
+        },
+        {
+          id: 27,
+          name: "Cisco Catalyst 9200L",
+          category: "Switches",
+          price: "$999.99",
+          discountPrice: "$899.99",
+          image: "/src/assets/images/cisco_catalyst_9200l.jpg",
+          discount: "10% OFF",
+        },
 
-      // Headphones
-      {
-        id: 28,
-        name: "Sony WF-1000XM5",
-        category: "Sony",
-        price: "$299.99",
-        discountPrice: "$269.99",
-        image: "/src/assets/images/sony_1000xm5.jpg",
-        discount: "10% OFF",
-      },
-      {
-        id:29,
-        name: "Bose QuietComfort 45",
-        category: "Bose",
-        price: "$329.99",
-        discountPrice: "$299.99",
-        image: "/src/assets/images/bose_quietcomfort_45.jpg",
-        discount: "9% OFF",
-      },
-      {
-        id: 30,
-        name: "JBL Tune 760NC",
-        category: "JBL",
-        price: "$199.99",
-        discountPrice: "$169.99",
-        image: "/src/assets/images/jbl_tune_760nc.jpg",
-        discount: "15% OFF",
-      },
-        
+        // Headphones
+        {
+          id: 28,
+          name: "Sony WF-1000XM5",
+          category: "Sony",
+          price: "$299.99",
+          discountPrice: "$269.99",
+          image: "/src/assets/images/sony_1000xm5.jpg",
+          discount: "10% OFF",
+        },
+        {
+          id: 29,
+          name: "Bose QuietComfort 45",
+          category: "Bose",
+          price: "$329.99",
+          discountPrice: "$299.99",
+          image: "/src/assets/images/bose_quietcomfort_45.jpg",
+          discount: "9% OFF",
+        },
+        {
+          id: 30,
+          name: "JBL Tune 760NC",
+          category: "JBL",
+          price: "$199.99",
+          discountPrice: "$169.99",
+          image: "/src/assets/images/jbl_tune_760nc.jpg",
+          discount: "15% OFF",
+        },
+
         // Additional products...
       ],
     };
@@ -474,8 +417,13 @@ export default {
 
 <style scoped>
 /* Main Container */
+.main-container{
+  font-family: "Poppins";
+}
+
 .shop-container {
-  display: flex; /* Use flexbox to align categories and products side by side */
+  display: flex;
+  /* Use flexbox to align categories and products side by side */
 }
 
 /* Sidebar Styles */
@@ -485,7 +433,8 @@ export default {
   padding-right: 10px;
   margin-left: 20px;
 }
-.subcategories:hover{
+
+.subcategories:hover {
   color: red;
 }
 
@@ -513,9 +462,11 @@ export default {
   margin-bottom: 10px;
   margin-left: 20px;
 }
-.category-header:hover{
+
+.category-header:hover {
   color: red;
 }
+
 .dropdown-icon {
   transition: transform 0.3s ease;
 }
@@ -549,8 +500,10 @@ export default {
 
 /* Products Section */
 .products-section {
-  flex: 1; /* Allow products section to take remaining space */
-  padding: 20px; /* Add some padding */
+  flex: 1;
+  /* Allow products section to take remaining space */
+  padding: 20px;
+  /* Add some padding */
 }
 
 .products-header {
@@ -562,7 +515,8 @@ export default {
 /* Sort by dropdown positioning */
 .sort-by-container {
   position: absolute;
-  top: 120px; /* Adjust this value based on your design */
+  top: 120px;
+  /* Adjust this value based on your design */
   right: 20px;
 }
 
@@ -600,4 +554,3 @@ export default {
   background-color: #0056b3;
 }
 </style>
- 

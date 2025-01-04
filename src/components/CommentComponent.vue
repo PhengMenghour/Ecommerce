@@ -16,22 +16,10 @@
   <script>
   export default {
     props: {
-      imageSrc: {
-        type: String,
-        required: true,
-      },
-      name: {
-        type: String,
-        required: true,
-      },
-      rating: {
-        type: Number,
-        required: true,
-      },
-      comment: {
-        type: String,
-        required: true,
-      },
+      imageSrc: String,
+      name: String,
+      rating: Number,
+      comment: String
     },
   };
   </script>
@@ -44,10 +32,10 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 16px;
-    max-width: 600px;
+    /* max-width: 600px; */
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     gap: 10px;
-    
+    font-family: "Poppins";
   }
   
   .profile {
@@ -55,6 +43,7 @@
     align-items: center;
     margin-bottom: 12px;
     flex: 1;
+
   }
   
   .profile-img {
@@ -72,7 +61,7 @@
   
   .name {
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 600;
     margin: 0;
     color: #333;
   }
@@ -92,7 +81,7 @@
     color: #555;
     line-height: 1.5;
     margin: 0;
-    flex: 2;
+    flex: 4;
   }
   </style>
   

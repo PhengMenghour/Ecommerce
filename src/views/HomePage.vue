@@ -79,7 +79,7 @@
             :reviews="product.reviews"
           />
         </div>
-      <button class="view-all-button">View All Products</button>
+      <button class="view-all-button" @click="$router.push('/shop')">View All Products</button>
     </div>
   </div>
 

@@ -1,5 +1,5 @@
 <template>
-    <dev class="product-card">
+    <div class="product-card" @click="$router.push('/productDetail')">
       <div class="discount-label" v-if="discount > 0">{{ discount }}% Off</div>
       <img :src="image" :alt="name" class="product-image" />
       <h3 class="product-name">{{ name }}</h3>
@@ -14,7 +14,7 @@
         <span class="current-price">${{ price }}</span>
         <span class="original-price" v-if="discount > 0">${{ originalPrice }}</span>
       </div>
-    </dev>
+    </div>
 </template>
 
 <script>
