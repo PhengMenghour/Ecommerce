@@ -29,7 +29,7 @@
       </li>
 
       <li class="dropdown">
-        <RouterLink class="main-links" :class="{ active: activeLink === 'pages' }" :to="{ name: 'pages' }"
+        <RouterLink class="main-links" :class="{ active: activeLink === 'pages' }" :to="{ name: 'home' }"
           @click="setActiveLink('pages')">
           Pages <i class="ri-arrow-down-s-line"></i>
         </RouterLink>
