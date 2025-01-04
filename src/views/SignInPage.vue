@@ -1,13 +1,21 @@
-<template lang="">
+<template>
     <div>
-        Sign in
+      
+      <SignIn />
+      
     </div>
-</template>
-<script>
-export default {
+  </template>
+  
+  <script>
+  import SignIn from "@/components/SignIn.vue";
+
+  
+  export default {
+    name: "SignInPage",
+    components: {
+      SignIn,
     
-}
-</script>
-<style lang="">
-    
-</style>
+    },
+  };
+  </script>
+  
