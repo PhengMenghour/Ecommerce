@@ -4,6 +4,11 @@
   <NavigationBarComponent />
 
   <router-view></router-view>
+  <div id="app">
+    <!-- <router-view /> -->
+    <!-- <CartPage/>  -->
+    <CheckoutPage/>
+  </div>
 </template>
 
 <script>
@@ -20,6 +25,7 @@ import ProductCartiphone from "./components/ProductComponent.vue";
  
 
 export default {
+  name: "App",
   components: {
     NavigationBarComponent,
     DiscountComponent,
@@ -34,3 +40,9 @@ export default {
 
 
 
+
+#app {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+</style>
