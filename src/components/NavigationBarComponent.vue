@@ -27,7 +27,7 @@
           <li><a href="#headphones">Headphone</a></li>
         </ul>
       </li>
-      
+
       <li class="dropdown">
         <RouterLink class="main-links" :class="{ active: activeLink === 'pages' }" :to="{ name: 'pages' }"
           @click="setActiveLink('pages')">
@@ -37,10 +37,14 @@
           <li><a href="#cart">Cart</a></li>
           <li><a href="#checkout">Checkout</a></li>
           <li><a href="#account">Account</a></li>
-          <li><a href="#signUp">Sign Up</a></li>
-          <li><a href="#signIn">Sign In</a></li>
           <li>
-            <RouterLink :to="{name: 'privacyAndPolicy'}">
+            <RouterLink to="/signUp">Sign Up</RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/signIn">Sign In</RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/pages/privacyAndPolicy">
               Privacy and Policy
             </RouterLink>
           </li>
