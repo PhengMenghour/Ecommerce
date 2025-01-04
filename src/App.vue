@@ -1,28 +1,28 @@
 <template>
-  <DiscountComponent />
-  <NavigationBarComponent />
-
-  <productCartiphone/>
-  <Itemss/>
-  <router-view></router-view>
+  <div id="app">
+    <!-- <router-view /> -->
+    <!-- <CartPage/>  -->
+    <CheckoutPage/>
+  </div>
 </template>
 
 <script>
-import DiscountComponent from "./components/DiscountComponent.vue";
-import NavigationBarComponent from "./components/NavigationBarComponent.vue";
-import productCard from "./components/productCard.vue";
-import Itemss from "./components/Itemss.vue";
-import ProductCartiphone from "./components/productCartiphone.vue";
- 
+import CartPage from './views/CartPage.vue';
+import CheckoutPage from './views/CheckoutPage.vue';
 
 export default {
+  name: "App",
   components: {
-    NavigationBarComponent,
-    DiscountComponent,
-    productCard,
-    Itemss,
-    ProductCartiphone,
+    CheckoutPage,
+CartPage,
   }
 };
 </script>
-<style scoped></style>
+
+<style>
+
+#app {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+</style>
