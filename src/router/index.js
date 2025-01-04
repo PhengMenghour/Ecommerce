@@ -5,6 +5,8 @@ import ShopPage from '@/views/ShopPage.vue'
 import Pages from '@/views/Pages.vue'
 import SignInPage from '@/views/SignInPage.vue'
 import PrivacyAndPolicyPage from '@/views/PrivacyAndPolicyPage.vue'
+import SignIn from '@/components/SignIn.vue'
+import SignUp from '@/components/SignUp.vue'
 
 const routes = [
   {
@@ -36,6 +38,16 @@ const routes = [
     path: '/pages/privacyAndPolicy',
     name: 'privacyAndPolicy',
     component: PrivacyAndPolicyPage
+  },
+  {
+    path: '/signin',
+    name: 'SignIn',
+    component: SignIn
+  },
+  {
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUp
   }
 ]
 

@@ -6,7 +6,7 @@
       <div class="right-section">
         <div class="header">
           <span>Not a member? </span>
-          <button class="sign-in-btn">Sign Up Now</button>
+          <button @click="goToSignUp" class="sign-in-btn">Sign Up Now</button>
         </div>
         <h1>Sign in to SmartSphere</h1>
         <p>Enter your detail below</p><br><br>
@@ -34,7 +34,7 @@
         
           <div class="buttom">
             <button class="create-account-btn" type="submit">Sign in</button>
-            <span>Forget Password?</span>
+            <span><a href="">Forget Password?</a></span>
           </div>
         </div>
     </div>
@@ -44,6 +44,7 @@
   
 
   export default {
+    name: "SignIn",
     data() {
       return {
         username: "",
@@ -59,6 +60,9 @@
           password: this.password,
         });
       },
+      goToSignUp() {
+        this.$router.push({ name: 'SignUp' }) // or path: '/signup'
+      }
     },
   };
   </script>
@@ -119,6 +123,9 @@
     cursor: pointer;
     margin-left: 10px;
     padding: 0%;
+  }
+  .sign-in-btn:hover{
+    background-color: #b82c66;
   }
   h1 {
     font-size: 36px;
@@ -211,6 +218,9 @@
     margin-right: 25px;
     
     
+  }
+  .buttom span a{
+    text-decoration: none;
   }
   </style>
   

@@ -6,7 +6,7 @@
       <div class="right-section">
         <div class="header">
           <span>Already a member? </span>
-          <button class="sign-in-btn">Sign in</button>
+          <button @click="goToSignIn" class="sign-in-btn">Sign in</button>
         </div>
         <h1>I'm New Here</h1>
         <p>Enter your detail below</p>
@@ -37,6 +37,7 @@
   
   <script>
   export default {
+    name:"SignUp",
     data() {
       return {
         username: "",
@@ -52,6 +53,9 @@
           password: this.password,
         });
       },
+      goToSignIn() {
+        this.$router.push({ name: 'SignIn' }) // or path: '/signIn'
+      }
     },
   };
   </script>
