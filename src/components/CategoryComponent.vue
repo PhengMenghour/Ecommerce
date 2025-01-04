@@ -13,7 +13,7 @@ export default {
         title: String,
     }
 }
-</script>
+</script>z
 <style scoped>
     .container-category{
         margin: 10px 25px 10px 25px;
