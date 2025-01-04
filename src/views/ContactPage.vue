@@ -96,6 +96,7 @@ export default {
     align-items: center;
     background-color: #f8f8f8;
     padding: 0 10% 0 10%;
+    font-family: "Poppins";
 }
 
 .breadcrumb {

@@ -34,8 +34,10 @@
           Pages <i class="ri-arrow-down-s-line"></i>
         </RouterLink>
         <ul class="dropdown-menu">
-          <li><a href="#cart">Cart</a></li>
-          <li><a href="#checkout">Checkout</a></li>
+          <li>
+            <RouterLink to="/pages/cart">Cart</RouterLink>
+          </li>
+          <li><RouterLink to="/pages/checkout">Checkout</RouterLink></li>
           <li><a href="#account">Account</a></li>
           <li>
             <RouterLink to="/signUp">Sign Up</RouterLink>

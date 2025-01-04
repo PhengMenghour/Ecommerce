@@ -3,6 +3,10 @@ import HomePage from '@/views/HomePage.vue'
 import ContactPage from '@/views/ContactPage.vue'
 import ShopPage from '@/views/ShopPage.vue'
 import SignInPage from '@/views/SignInPage.vue'
+import PrivacyAndPolicyPage from '@/views/PrivacyAndPolicyPage.vue'
+import CartPage from '@/views/CartPage.vue'
+import CheckoutPage from '@/views/CheckoutPage.vue'
+import SignUpPage from '@/views/SignUpPage.vue'
 
 const routes = [
   {
@@ -24,6 +28,26 @@ const routes = [
     path: '/signIn',
     name: 'signIn',
     component: SignInPage,
+  },
+  {
+    path: '/signUp',
+    name: 'signUp',
+    component: SignUpPage,
+  },
+  {
+    path: '/pages/privacyAndPolicy',
+    name: 'privacyAndPolicy',
+    component: PrivacyAndPolicyPage,
+  },
+  {
+    path: '/pages/cart',
+    name: 'cart',
+    component: CartPage,
+  },
+  {
+    path: '/pages/checkout',
+    name: 'checkout',
+    component: CheckoutPage,
   }
 ]
 

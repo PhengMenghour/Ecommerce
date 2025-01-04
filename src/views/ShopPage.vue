@@ -1,5 +1,18 @@
 <template>
   <div class="main-container">
+    <div class="breadcrumb-container">
+      <div class="text-container">
+        <nav class="breadcrumb">
+          <span><a href="/">Home</a></span>
+          <span> | </span>
+          <span>Shop</span>
+        </nav>
+        <h1>Privacy and Policy</h1>
+      </div>
+      <div class="image-container">
+        <img src="/src/assets/images/homepod.png" alt="">
+      </div>
+    </div>
 
     <!-- Page Heading -->
     <div class="page-heading">
@@ -33,20 +46,24 @@
 
       <!-- Products Section -->
       <section class="products-section">
-        <div class="products-header">
-          <p>Showing {{ filteredProducts.length }} products</p>
+        <div class="top-container">
+          <div class="products-header">
+            <p>Showing {{ filteredProducts.length }} products</p>
+          </div>
+  
+          <!-- Sort by dropdown -->
+          <div class="sort-by-container">
+            <select v-model="sortOption" @change="sortProducts">
+              <option value="latest">Sort by Latest</option>
+              <option value="popularity">Sort by Popularity</option>
+              <option value="rating">Sort by Rating</option>
+              <option value="price_low">Price: Low to High</option>
+              <option value="price_high">Price: High to Low</option>
+            </select>
+          </div>
+
         </div>
 
-        <!-- Sort by dropdown -->
-        <div class="sort-by-container">
-          <select v-model="sortOption" @change="sortProducts">
-            <option value="latest">Sort by Latest</option>
-            <option value="popularity">Sort by Popularity</option>
-            <option value="rating">Sort by Rating</option>
-            <option value="price_low">Price: Low to High</option>
-            <option value="price_high">Price: High to Low</option>
-          </select>
-        </div>
 
         <div class="products-grid">
           <div v-if="filteredProducts.length === 0" class="no-products">
@@ -416,8 +433,46 @@ export default {
 </script>
 
 <style scoped>
+.breadcrumb-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 0 10% 0 10%;
+}
+
+.breadcrumb {
+  font-size: 22px;
+}
+
+.text-container h1 {
+  font-family: "Poppins";
+  font-weight: 600;
+}
+
+.text {
+  font-family: "Poppins";
+}
+
+.text h3 {
+  font-weight: 500;
+}
+
+.image-container {
+  display: flex;
+  justify-content: end;
+}
+
+.image-container img {
+  width: 50%;
+}
+
+.page-heading{
+  margin-left: 40px;
+}
+
 /* Main Container */
-.main-container{
+.main-container {
   font-family: "Poppins";
 }
 
@@ -513,11 +568,16 @@ export default {
 }
 
 /* Sort by dropdown positioning */
-.sort-by-container {
+/* .sort-by-container {
   position: absolute;
   top: 120px;
-  /* Adjust this value based on your design */
   right: 20px;
+} */
+
+.top-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .sort-by-container select {
