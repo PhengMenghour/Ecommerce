@@ -64,8 +64,8 @@ export default {
 <style scoped>
 .signup-page {
   display: flex;
-  width: 1440px;
-  height: 786px;
+  width: 100%;
+  height: 100%;
   font-family: "Poppins", sans-serif;
 }
 
