@@ -196,8 +196,7 @@ export default {
           discount: "12% OFF",
         },
 
-        // New Products
-        // Phones
+
         {
           id: 11,
           name: "Xiaomi Mi 14 Ultra",
