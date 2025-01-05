@@ -31,7 +31,7 @@
         <input type="email" placeholder="Email Address" />
       </div>
       <div class="form-group1">
-        <input type="checkbox" id="create-account" />
+        <input type="checkbox"/>
         <label for="create-account">Create an account</label>
       </div>
     </form>
@@ -43,6 +43,10 @@ export default {};
 </script>
 
 <style scoped>
+.billing-form{
+  font-family: "Poppins";
+}
+
 .billing-form h3 {
   margin-bottom: 20px;
 }
@@ -55,8 +59,8 @@ export default {};
 }
 .form-group1{
   display: flex;
-  justify-content: start;
-  width: 70%;
+  /* justify-content: start; */
+  /* width: 70%; */
   align-items: center;
   
   padding-left: 10px;

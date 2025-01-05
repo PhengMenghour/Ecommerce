@@ -83,6 +83,7 @@ export default {
   margin: auto;
   font-family: Arial, sans-serif;
   color: #333;
+  font-family: "Poppins";
 }
 
 .order-summary h3 {

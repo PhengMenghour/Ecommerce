@@ -5,19 +5,38 @@
       <button class="clear-cart">Clear Shopping Cart</button>
     </header>
 
+    <div class="column-container">
+      <div class="column-product">
+        <h3>Product</h3>
+
+      </div>
+      <div class="column-price">
+        <h3>Price</h3>
+
+      </div>
+      <div class="column-quantity">
+        <h3>Quantity</h3>
+
+      </div>
+      <div class="column-quantity">
+        <h3>Subtotal</h3>
+
+      </div>
+    </div>
+
     <section class="cart-items">
-      <CartItem
-        v-for="(item, index) in cartItems"
-        :key="index"
-        :product="item"
-        @remove-item="removeItem(index)"
-        @update-quantity="updateQuantity(index, $event)"
-      />
+      <CartItem v-for="(item, index) in cartItems" :key="index" :product="item" @remove-item="removeItem(index)"
+        @update-quantity="(data) => updateQuantity(data.id, data.quantity)" />
     </section>
 
     <div class="coupon-section">
-      <input v-model="couponCode" type="text" placeholder="Enter Coupon Code" />
-      <button @click="applyCoupon">Apply</button>
+      <div class="coupon-left-side">
+        <input v-model="couponCode" type="text" placeholder="Enter Coupon Code" />
+        <button @click="applyCoupon">Apply</button>
+      </div>
+      <div class="coupon-right-side">
+        <button>Update Cart</button>
+      </div>
     </div>
 
     <OrderSummary :subtotal="subtotal" :tax="tax" :total="total" />
@@ -25,38 +44,44 @@
     <footer class="features-section">
       <div class="feature">
         <!-- <img src="/assets/secure-icon.png" alt="Secure" /> -->
+        <i class="fas fa-lock"></i>
         <p>Fast and Secure</p>
       </div>
       <div class="feature">
         <!-- <img src="/assets/money-back-icon.png" alt="Money Back" /> -->
+        <i class="fas fa-money-bill"></i>
         <p>Money Back Guarantee</p>
       </div>
       <div class="feature">
         <!-- <img src="/assets/return-icon.png" alt="Return Policy" /> -->
+        <i class="fas fa-clock"></i>
         <p>24 Hours Return Policy</p>
       </div>
       <div class="feature">
         <!-- <img src="/assets/support-icon.png" alt="Support" /> -->
+        <i class="fas fa-headset"></i>
         <p>Pro Quality Support</p>
       </div>
     </footer>
   </div>
+  <FooterComponent/>
 </template>
 
 <script>
 import CartItem from '@/components/AddCard/CartItem.vue';
 import OrderSummary from '@/components/AddCard/OrderSummary.vue';
+import FooterComponent from '@/components/FooterComponent.vue';
 
 
 
 export default {
-  components: { CartItem, OrderSummary },
+  components: { CartItem, OrderSummary, FooterComponent },
   data() {
     return {
       cartItems: [
-        { name: "Bose QuietComfort Ultra Noise", price: 619, quantity: 1 },
-        { name: "DualSense Wireless Controller", price: 49.99, quantity: 2 },
-        { name: "Xiaomi 14 Ultra", price: 899.99, quantity: 1 },
+        { id: 0, name: "Bose QuietComfort Ultra Noise", price: 619, quantity: 1, image: "/src/assets/images/bose_quietcomfort_45.jpg" },
+        { id: 1, name: "DualSense Wireless Controller", price: 49.99, quantity: 2, image: "/src/assets/images/ps5.png" },
+        { id: 2, name: "Xiaomi 14 Ultra", price: 899.99, quantity: 1, image: "/src/assets/images/xiaomi_14ultra.jpg" },
       ],
       couponCode: "",
     };
@@ -99,33 +124,127 @@ export default {
   font-family: Arial, sans-serif;
   margin: 20px;
 }
+
 .cart-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
+.cart-header button{
+  height: 60px;
+  width: 200px;
+  border: 2px solid #b7b7b7;
+  border-radius: 10px;
+  background-color: transparent;
+  font-size: large;
+}
+
+.cart-header button:hover{
+  background-color: #3577f0;
+  color: #ffffff;
+}
+
+.column-container{
+  display: flex;
+  align-items: center;
+}
+
+.column-product{
+  display: flex;
+  justify-content: center;
+  flex: 2.5
+}
+
+.column-price{
+  flex: 1;
+}
+
+.column-quantity{
+  flex: 1;
+}
+
+.column-quantity{
+  flex: 1;
+}
+
+
 .cart-items {
   border: 1px solid #ddd;
   padding: 20px;
   margin-top: 10px;
 }
+
 .coupon-section {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   margin-top: 20px;
 }
+
 .coupon-section input {
-  flex: 1;
+  /* flex: 1; */
   padding: 10px;
   border: 1px solid #ddd;
+  width: 300px;
+  height: 60px;
+  margin-right: 50px;
+  font-size: larger;
 }
+
+.couple-left-side{
+  display: flex;
+  gap: 20px;
+}
+
+.coupon-left-side button{
+  height: 60px;
+  width: 100px;
+  border: 2px solid #b7b7b7;
+  border-radius: 10px;
+  background-color: transparent;
+  font-size: large;
+}
+
+.coupon-left-side button:hover{
+  background-color: #3577f0;
+  color: #ffffff;
+}
+
+.coupon-right-side{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.coupon-right-side button{
+  height: 60px;
+  width: 150px;
+  border: 2px solid #b7b7b7;
+  border-radius: 10px;
+  background-color: transparent;
+  font-size: large;
+}
+
+.coupon-right-side button:hover{
+  background-color: #3577f0;
+  color: #ffffff;
+}
+
 .features-section {
   display: flex;
   justify-content: space-around;
   margin-top: 30px;
 }
+
 .feature img {
   width: 50px;
   height: 50px;
+}
+
+.feature{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 22px;
 }
 </style>

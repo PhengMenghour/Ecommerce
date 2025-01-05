@@ -19,6 +19,7 @@
         </template>
       </Suspense>
     </div>
+    <FooterComponent/>
   </main>
 </template>
 
@@ -26,6 +27,7 @@
 import { defineAsyncComponent } from 'vue';
 import OrderSummary from '@/components/Checkout/OrderSummary.vue';
 import BillingForm from '@/components/Checkout/BillingForm.vue';
+import FooterComponent from '@/components/FooterComponent.vue';
 
 const FeaturesSection = defineAsyncComponent(() => import('@/components/Checkout/FeaturesSection.vue'));
 
@@ -34,6 +36,7 @@ export default {
     BillingForm,
     OrderSummary,
     FeaturesSection,
+    FooterComponent,
   },
 };
 </script>
