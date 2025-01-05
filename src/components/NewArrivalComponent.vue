@@ -12,7 +12,7 @@
         </p>
       </div>
       <div class="card-actions">
-        <button class="view-item">
+        <button class="view-item" @click="$router.push('/productDetail')">
           <i class="ri-eye-line"></i>
         </button>
         <button class="add-to-cart">Add to Cart</button>

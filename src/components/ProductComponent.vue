@@ -13,7 +13,7 @@
           {{ product.price }}
         </p>
       </div>
-      <div class="card-actions">
+      <!-- <div class="card-actions">
         <i class="ri-square-line icon-container">
           <i class="ri-eye-line eye-icon"></i>
         </i>
@@ -22,6 +22,15 @@
           <i class="ri-square-line icon-container">
             <i class="ri-heart-line"></i>
           </i>
+        </button>
+      </div> -->
+      <div class="card-actions">
+        <button class="view-item" @click="$router.push('/productDetail')">
+          <i class="ri-eye-line"></i>
+        </button>
+        <button class="add-to-cart">Add to Cart</button>
+        <button class="wishlist">
+          <i class="ri-heart-3-line"></i>
         </button>
       </div>
     </div>
@@ -38,20 +47,25 @@ export default {
 </script>
 
 <style scoped>
-
 .product-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; /* Adds space between the cards */
-  justify-content: center; /* Center items horizontally */
-  align-items: stretch; /* Ensure all items stretch to the same height */
-  margin: 0 auto; /* Center the container itself horizontally */
-  padding: 20px; /* Optional: Adds space inside the container */
+  gap: 20px;
+  /* Adds space between the cards */
+  justify-content: center;
+  /* Center items horizontally */
+  align-items: stretch;
+  /* Ensure all items stretch to the same height */
+  margin: 0 auto;
+  /* Center the container itself horizontally */
+  padding: 20px;
+  /* Optional: Adds space inside the container */
 }
 
 .product-card {
   width: 250px;
-  height: 400px; /* Set a fixed height for the card */
+  height: 400px;
+  /* Set a fixed height for the card */
   border: 2px solid #d1d5db;
   border-radius: 8px;
   padding: 16px;
@@ -68,14 +82,16 @@ export default {
 
 .card-image img {
   width: 100%;
-  height: 250px; /* Set a fixed height */
-  object-fit: cover; /* Ensures the image covers the area without distortion */
+  height: 250px;
+  /* Set a fixed height */
+  object-fit: cover;
+  /* Ensures the image covers the area without distortion */
   border-radius: 8px;
 }
 
 .card-details {
   margin-top: 12px;
-  height:60px;
+  height: 60px;
 }
 
 .product-name {
@@ -83,9 +99,12 @@ export default {
   font-weight: bold;
   color: #374151;
   margin-bottom: 8px;
-  overflow: hidden; /* Hide overflow */
-  text-overflow: ellipsis; /* Add ellipsis for overflow text */
-  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden;
+  /* Hide overflow */
+  text-overflow: ellipsis;
+  /* Add ellipsis for overflow text */
+  white-space: nowrap;
+  /* Prevent text from wrapping */
 }
 
 .product-price {
@@ -115,15 +134,17 @@ export default {
   background: #dc2626;
 }
 
-.wishlist {
+.wishlist, .view-item{
   background: none;
-  border: none;
+  border: 1px solid #d4d4d4;
   color: #374151;
   cursor: pointer;
   font-size: 18px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
-.wishlist:hover {
+.wishlist:hover, .view-item:hover {
   color: #ef4444;
 }
 

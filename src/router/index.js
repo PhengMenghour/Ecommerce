@@ -7,6 +7,7 @@ import PrivacyAndPolicyPage from '@/views/PrivacyAndPolicyPage.vue'
 import CartPage from '@/views/CartPage.vue'
 import CheckoutPage from '@/views/CheckoutPage.vue'
 import SignUpPage from '@/views/SignUpPage.vue'
+import ProductDetail from '@/views/ProductDetail.vue'
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
     path: '/pages/checkout',
     name: 'checkout',
     component: CheckoutPage,
+  },
+  {
+    path: '/productDetail',
+    name: 'productDetail',
+    component: ProductDetail
   }
 ]
 

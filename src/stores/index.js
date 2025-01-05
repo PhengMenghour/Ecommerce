@@ -1,4 +1,4 @@
-import { createStore } from "vuex";
+import { createStore } from "pinia";
 
 const store = createStore({
   state() {
