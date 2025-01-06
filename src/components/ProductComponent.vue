@@ -10,26 +10,18 @@
         <h3 class="product-name">{{ product.name }}</h3>
         <p class="product-price">
           <!-- Display only the original price -->
-          {{ product.price }}
+          ${{ product.price }}
         </p>
       </div>
-      <!-- <div class="card-actions">
-        <i class="ri-square-line icon-container">
-          <i class="ri-eye-line eye-icon"></i>
-        </i>
-        <button class="add-to-cart">Add to Cart</button>
-        <button class="wishlist">
-          <i class="ri-square-line icon-container">
-            <i class="ri-heart-line"></i>
-          </i>
-        </button>
-      </div> -->
+
       <div class="card-actions">
-        <button class="view-item" @click="$router.push('/productDetail')">
+        <button class="view-item" @click="viewProductDetail(product.id)">
           <i class="ri-eye-line"></i>
         </button>
-        <button class="add-to-cart">Add to Cart</button>
-        <button class="wishlist">
+        <button class="add-to-cart" @click="addToCart(product)">
+          Add to Cart
+        </button>
+        <button class="wishlist" @click="addToWishlist(product)">
           <i class="ri-heart-3-line"></i>
         </button>
       </div>
@@ -38,10 +30,27 @@
 </template>
 
 <script>
+import { useProductsStore } from '../stores/Product';
+
 export default {
-  name: "ProductComponent",
+  name: 'ProductComponent',
   props: {
     product: Object, // Accept a 'product' object as a prop
+  },
+  methods: {
+    viewProductDetail(id) {
+      // Navigate to product detail page
+      this.$router.push(`/productDetail/${id}`);
+    },
+    addToCart(product) {
+      const store = useProductsStore();
+      store.updateProduct(product.id, { quantity: product.quantity + 1 }); // Increase quantity
+      console.log(`${product.name} added to cart!`);
+    },
+    addToWishlist(product) {
+      console.log(`${product.name} added to wishlist!`);
+      // Implement wishlist functionality here (optional)
+    },
   },
 };
 </script>
@@ -78,7 +87,6 @@ export default {
 .card-image {
   position: relative;
 }
-
 
 .card-image img {
   width: 100%;
@@ -134,7 +142,8 @@ export default {
   background: #dc2626;
 }
 
-.wishlist, .view-item{
+.wishlist,
+.view-item {
   background: none;
   border: 1px solid #d4d4d4;
   color: #374151;
@@ -144,29 +153,8 @@ export default {
   border-radius: 5px;
 }
 
-.wishlist:hover, .view-item:hover {
+.wishlist:hover,
+.view-item:hover {
   color: #ef4444;
-}
-
-.icon-container {
-  position: relative;
-  display: inline-block;
-  font-size: 30px;
-  color: gray;
-  padding: 8px;
-}
-
-.icon-container:hover {
-  background: #f3f4f6;
-}
-
-.eye-icon,
-.ri-heart-line {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 16px;
-  color: black;
 }
 </style>

@@ -2,20 +2,20 @@
   <div class="product-container">
     <!-- Additional Images -->
     <div class="additional-images">
-      <img v-for="(image, index) in additionalImages" :key="index" :src="image" :alt="'Product Image ' + (index + 1)"
-        class="additional-image" @click="selectedImage = image" />
+      <img v-for="(image, index) in product.additionalImages" :key="index" :src="image" :alt="'Product Image ' + (index + 1)"
+        class="additional-image" @click="product.selectedImage = image" />
     </div>
 
     <!-- Product Image -->
     <div class="product-image">
-      <img :src="selectedImage" :alt="product.name" />
+      <img :src="product.selectedImage" :alt="product.name" />
     </div>
 
     <!-- Product Details -->
     <div class="product-details">
       <!-- Product Rating -->
       <div class="product-rating">
-        ⭐⭐⭐⭐⭐ ({{ product.reviews }} Customer reviews)
+        ⭐⭐⭐⭐⭐ ({{ product.review }} Customer reviews)
       </div>
 
       <!-- Product Title and Price -->
@@ -38,14 +38,14 @@
         <div class="colors">
           <span>Colors:</span>
           <button v-for="color in product.colors" :key="color" class="color-option" :style="{ backgroundColor: color }"
-            @click="selectedColor = color" :class="{ active: selectedColor === color }"></button>
+            @click="product.selectedColor = color" :class="{ active: product.selectedColor === color }"></button>
         </div>
 
         <!-- Sizes -->
         <div class="sizes">
           <span>Size:</span>
-          <button v-for="size in product.sizes" :key="size" class="size-option" @click="selectedSize = size"
-            :class="{ active: selectedSize === size }">
+          <button v-for="size in product.sizes" :key="size" class="size-option" @click="product.selectedSize = size"
+            :class="{ active: product.selectedSize === size }">
             {{ size }}
           </button>
         </div>
@@ -56,7 +56,7 @@
         <button @click="updateQuantity(-1)">
           <i class="ri-subtract-line"></i>
         </button>
-        <span>{{ quantity }}</span>
+        <span>{{ product.quantity }}</span>
         <button @click="updateQuantity(1)">
           <i class="ri-add-large-fill"></i>
         </button>
@@ -84,6 +84,8 @@
 
 <script>
 import CommentComponent from '@/components/CommentComponent.vue';
+import { useProductsStore } from '@/stores/Product';
+import { mapState } from 'pinia';
 
 
 export default {
@@ -91,61 +93,82 @@ export default {
     CommentComponent
   },
 
+  setup() {
+    const productsStore = useProductsStore();
+
+    return {
+      productsStore,
+    };
+  },
+
   data() {
     return {
-      product: {
-        name: "iPhone 13 Pro Max",
-        price: 1249.99,
-        reviews: 10,
-        description:
-          "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
-        image: "./src/assets/images/iphone-13-pro-max.jpg",
-        colors: ["#d8e3f3", "#f3ece1", "#d4d4d4", "#333333"],
-        sizes: ["128GB", "256GB", "512GB"],
-      },
-      additionalImages: [
-        "./src/assets/images/iphone-side1.jpg",
-        "./src/assets/images/iphone-side2.jpg",
-        "./src/assets/images/iphone16.png",
-      ],
-      selectedImage: "./src/assets/images/iphone-13-pro-max.jpg",
-      selectedColor: "#d8e3f3",
-      selectedSize: "128GB",
-      quantity: 1,
+      // product: {
+      //   name: "iPhone 13 Pro Max",
+      //   price: 1249.99,
+      //   reviews: 10,
+      //   description:
+      //     "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+      //   image: "./src/assets/images/iphone-13-pro-max.jpg",
+      //   colors: ["#d8e3f3", "#f3ece1", "#d4d4d4", "#333333"],
+      //   sizes: ["128GB", "256GB", "512GB"],
+      // },
+      // additionalImages: [
+      //   "./src/assets/images/iphone-side1.jpg",
+      //   "./src/assets/images/iphone-side2.jpg",
+      //   "./src/assets/images/iphone16.png",
+      // ],
+      // selectedImage: "./src/assets/images/iphone-13-pro-max.jpg",
+      // selectedColor: "#d8e3f3",
+      // selectedSize: "128GB",
+      // quantity: 1,
 
-      comments: [
-        {
-          imageSrc: 'https://via.placeholder.com/50',
-          name: 'Jeffrey',
-          rating: 5,
-          comment:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
-        },
-        {
-          imageSrc: 'https://via.placeholder.com/50',
-          name: 'Emily',
-          rating: 4,
-          comment:
-            'Donec bibendum orci quis magna ultrices porta. Morbi sagittis felis turpis, vitae molestie ligula viverra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
-        },
-        {
-          imageSrc: 'https://via.placeholder.com/50',
-          name: 'Michael',
-          rating: 3,
-          comment:
-            'Nullam at sem vel neque finibus sollicitudin et eget enim. Fusce ac venenatis quam, sed aliquet est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
-        },
-      ],
+      // comments: [
+      //   {
+      //     imageSrc: 'https://via.placeholder.com/50',
+      //     name: 'Jeffrey',
+      //     rating: 5,
+      //     comment:
+      //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
+      //   },
+      //   {
+      //     imageSrc: 'https://via.placeholder.com/50',
+      //     name: 'Emily',
+      //     rating: 4,
+      //     comment:
+      //       'Donec bibendum orci quis magna ultrices porta. Morbi sagittis felis turpis, vitae molestie ligula viverra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
+      //   },
+      //   {
+      //     imageSrc: 'https://via.placeholder.com/50',
+      //     name: 'Michael',
+      //     rating: 3,
+      //     comment:
+      //       'Nullam at sem vel neque finibus sollicitudin et eget enim. Fusce ac venenatis quam, sed aliquet est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
+      //   },
+      // ],
     };
   },
   methods: {
     updateQuantity(amount) {
-      this.quantity = Math.max(1, this.quantity + amount);
+      this.product.quantity = Math.max(0, this.product.quantity + amount);
     },
     addToCart() {
       alert(`Added ${this.quantity} ${this.product.name}(s) to the cart!`);
     },
   },
+  computed: {
+    ...mapState(useProductsStore, {
+      products: "products",
+      comments: "comments",
+    }),
+
+
+    product() {
+      const product = this.products.find((p) => p.id === parseInt(this.$route.params.productId))
+      
+      return product;
+    }
+  }
 };
 </script>
 
