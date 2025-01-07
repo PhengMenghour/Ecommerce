@@ -7,17 +7,8 @@ export const useCartStore = defineStore("cart", {
 
 
   actions: {
-    // updateQuantity(index, quantity) {
-    //   if (this.cartItems[index]) {
-    //     this.cartItems[index].quantity = quantity;
-    //   }
-    // },
-    // removeItem(index) {
-    //   this.cartItems.splice(index, 1);
-    // },
-
     addToCart(product){
-      const existingProduct = this.cartItems.find(item => item.id.id === product.id);
+      const existingProduct = this.cartItems.find(item => item.id === product.id);
       if (existingProduct) {
         existingProduct.quantity += 1;
       } else {

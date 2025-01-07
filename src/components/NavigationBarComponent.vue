@@ -37,7 +37,9 @@
           <li>
             <RouterLink to="/pages/cart">Cart</RouterLink>
           </li>
-          <li><RouterLink to="/pages/checkout">Checkout</RouterLink></li>
+          <li>
+            <RouterLink to="/pages/checkout">Checkout</RouterLink>
+          </li>
           <li><a href="#account">Account</a></li>
           <li>
             <RouterLink to="/signUp">Sign Up</RouterLink>
@@ -74,26 +76,71 @@
       <button>
         <i class="ri-heart-3-line"></i>
       </button>
-      <button>
+      <button @click="toggleCartSidebar">
         <i class="ri-shopping-cart-line"></i>
       </button>
       <button>
         <i class="ri-user-line"></i>
       </button>
     </div>
+
+    <!-- Sidebar -->
+    <div :class="{ 'cart-sidebar': true, open: isCartOpen }">
+      <div class="cart-header">
+        <h2>Cart Review</h2>
+        <button @click="toggleCartSidebar">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+      <div class="cart-content">
+        <!-- Cart items go here -->
+        <CartItemComponent v-for="(item, index) in cartItems" :key="index" :item="item" />
+      </div>
+      <div class="button-container">
+        <button class="button-left" @click="handleNavigation('/pages/cart')">View Cart</button>
+        <button class="button-right" @click="handleNavigation('/pages/checkout')">Checkout</button>
+      </div>
+    </div>
+
+    <!-- Overlay -->
+    <div v-if="isCartOpen" class="overlay" @click="toggleCartSidebar"></div>
   </nav>
 </template>
 
 <script>
+import { useCartStore } from '@/stores/Cart';
+import CartItemComponent from './CartItemComponent.vue';
+
 export default {
+  components: {
+    CartItemComponent
+  },
+
   data() {
     return {
       activeLink: "home", // Default active link
+      isCartOpen: false, // Sidebar visibility state
     };
   },
+
+  computed: {
+    cartItems() {
+      const cartStore = useCartStore();
+      return cartStore.cartItems
+    },
+  },
+
   methods: {
     setActiveLink(link) {
       this.activeLink = link; // Update active link
+    },
+    toggleCartSidebar() {
+      this.isCartOpen = !this.isCartOpen; // Toggle sidebar visibility
+    },
+
+    handleNavigation(route) {
+      this.$router.push(route); // Navigate to the specified route
+      this.toggleCartSidebar(); // Close the sidebar
     },
   },
 };
@@ -360,5 +407,109 @@ export default {
 .nav-links .main-links.active {
   color: #000000;
   /* Optional: Change color for active link */
+}
+
+/* Sidebar styling */
+.cart-sidebar {
+  font-family: "Poppins";
+  position: fixed;
+  top: 0;
+  right: -100%;
+  /* Hidden by default */
+  width: 40%;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease-in-out;
+  z-index: 1001;
+  /* Above the overlay */
+  overflow-y: auto;
+  /* Add vertical scrolling */
+  padding-bottom: 20px;
+  /* Optional: Add some space at the bottom */
+}
+
+.cart-sidebar.open {
+  right: 0;
+  /* Slide in */
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+  height: 75px;
+}
+
+.cart-header h2 {
+  margin: 0;
+  font-size: 1.6em;
+}
+
+.cart-header button {
+  background: #f6f7fb;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+}
+
+.cart-header button:hover {
+  color: #fff;
+  border: 2px solid;
+  background-color: #3577f0;
+  transition: ease-in 0.3s;
+}
+
+.cart-content {
+  padding: 15px;
+}
+
+/* Overlay styling */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent black */
+  z-index: 1000;
+  /* Below the sidebar */
+  transition: opacity 0.3s ease;
+}
+
+.button-container {
+  font-family: "Poppins";
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 50px;
+}
+
+.button-container button {
+  height: 75px;
+  width: 200px;
+  border: none;
+  font-size: 24px;
+  color: white;
+  border-radius: 10px;
+}
+
+.button-container button:hover {
+  transition: ease-in-out 0.2s;
+  scale: 1.1;
+}
+
+.button-container .button-left {
+  background-color: #3577f0;
+}
+
+.button-container .button-right {
+  background-color: #fe5182;
 }
 </style>

@@ -91,8 +91,6 @@ export default {
         return cartStore.cartItems
       },
 
-
-
     subtotal() {
       return this.cartItems.reduce(
         (total, item) => total + item.price * item.quantity,
