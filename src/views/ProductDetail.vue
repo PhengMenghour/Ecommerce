@@ -84,6 +84,7 @@
 
 <script>
 import CommentComponent from '@/components/CommentComponent.vue';
+import { useCartStore } from '@/stores/Cart';
 import { useProductsStore } from '@/stores/Product';
 import { mapState } from 'pinia';
 
@@ -149,13 +150,20 @@ export default {
     };
   },
   methods: {
-    updateQuantity(amount) {
-      this.product.quantity = Math.max(0, this.product.quantity + amount);
-    },
-    addToCart() {
-      alert(`Added ${this.quantity} ${this.product.name}(s) to the cart!`);
-    },
+  updateQuantity(amount) {
+    this.product.quantity = Math.max(0, this.product.quantity + amount);
   },
+  addToCart() {
+    const cartStore = useCartStore();
+    cartStore.addToCart({
+      ...this.product, // Pass the current product
+      selectedColor: this.product.selectedColor, // Include selected options
+      selectedSize: this.product.selectedSize,
+      quantity: this.product.quantity,
+    });
+  },
+},
+
   computed: {
     ...mapState(useProductsStore, {
       products: "products",

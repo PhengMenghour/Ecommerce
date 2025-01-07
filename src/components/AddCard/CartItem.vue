@@ -1,49 +1,70 @@
 <template>
   <div class="container">
     <div class="button-container">
-      <button @click="$emit('remove-item')">
+      <button @click="removeFromCart">
         <i class="ri-close-line"></i>
       </button>
     </div>
 
     <div class="image-container">
       <div class="image-side">
-        <img :src="product.image" :alt="product.name" />
+        <img :src="item.image" :alt="item.name" />
       </div>
-      <div class="text-side">{{ product.name }}</div>
+      <div class="text-side">{{ item.name }}</div>
     </div>
 
-    <div class="price-container">{{ product.price.toFixed(2) }} USD</div>
+    <div class="price-container">{{ item.price }} USD</div>
 
     <div class="quantity-container">
-      <button @click="updateQuantity(product.quantity - 1)" :disabled="product.quantity <= 1">
+      <button @click="updateQuantity(item.quantity - 1)" :disabled="item.quantity <= 1">
         <i class="ri-subtract-line"></i>
       </button>
-      <span>{{ product.quantity }}</span>
-      <button @click="updateQuantity(product.quantity + 1)">
+      <span>{{ item.quantity }}</span>
+      <button @click="updateQuantity(item.quantity + 1)">
         <i class="ri-add-line"></i>
       </button>
     </div>
 
     <div class="subtotal-container">
-      {{ (product.price * product.quantity).toFixed(2) }} USD
+      {{ (item.price * item.quantity).toFixed(2) }} USD
     </div>
   </div>
 </template>
 
 <script>
+import { useCartStore } from '@/stores/Cart';
+
 export default {
   props: {
-    product: {
-      type: Object,
-      required: true,
+    item: Object,
+  },
+
+  computed: {
+    // Fixing cartItems computation to properly use store
+    cartItems() {
+      const cartStore = useCartStore();
+      return cartStore.cartItems;
     },
   },
+
   methods: {
+    // Method to remove item from cart
+    removeFromCart() {
+      const cartStore = useCartStore();
+      cartStore.removeFromCart(this.item.id); // Correctly use item.id
+    },
+
+    // Method to clear the entire cart
+    clearCart() {
+      const cartStore = useCartStore();
+      cartStore.clearCart(); // Call clearCart correctly as a function
+    },
+
+    // Method to update quantity in the store
     updateQuantity(newQuantity) {
-      console.log("update quantity")
-      const validQuantity = Math.max(1, newQuantity);
-      this.$emit("update-quantity", { id: this.product.id, quantity: validQuantity });
+      const validQuantity = Math.max(1, newQuantity); // Ensure the quantity is at least 1
+      const cartStore = useCartStore();
+      cartStore.updateQuantity(this.item.id, validQuantity); // Update quantity in the store
     },
   },
 };

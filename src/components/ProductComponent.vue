@@ -18,7 +18,7 @@
         <button class="view-item" @click="viewProductDetail(product.id)">
           <i class="ri-eye-line"></i>
         </button>
-        <button class="add-to-cart" @click="addToCart(product)">
+        <button class="add-to-cart" @click="addToCart">
           Add to Cart
         </button>
         <button class="wishlist" @click="addToWishlist(product)">
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { useCartStore } from '@/stores/Cart';
 import { useProductsStore } from '../stores/Product';
 
 export default {
@@ -37,16 +38,25 @@ export default {
   props: {
     product: Object, // Accept a 'product' object as a prop
   },
+
+
+
   methods: {
+    addToCart() {
+    const cartStore = useCartStore();
+    cartStore.addToCart({
+      ...this.product, // Pass the current product
+      selectedColor: this.product.selectedColor, // Include selected options
+      selectedSize: this.product.selectedSize,
+      quantity: this.product.quantity,
+    });
+  },
+
     viewProductDetail(id) {
       // Navigate to product detail page
       this.$router.push(`/productDetail/${id}`);
     },
-    addToCart(product) {
-      const store = useProductsStore();
-      store.updateProduct(product.id, { quantity: product.quantity + 1 }); // Increase quantity
-      console.log(`${product.name} added to cart!`);
-    },
+
     addToWishlist(product) {
       console.log(`${product.name} added to wishlist!`);
       // Implement wishlist functionality here (optional)

@@ -742,10 +742,6 @@ export const useProductsStore = defineStore('products', {
             },
         ],
 
-        cartItem: [],
-
-
-
     }),
     getters: {
         getProductById: (state) => (id) => {

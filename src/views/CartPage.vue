@@ -25,8 +25,8 @@
     </div>
 
     <section class="cart-items">
-      <CartItem v-for="(item, index) in cartItems" :key="index" :product="item" @remove-item="removeItem(index)"
-        @update-quantity="(data) => updateQuantity(data.id, data.quantity)" />
+      <CartItem v-for="(item, index) in cartItems" :key="index" :item="item" />
+
     </section>
 
     <div class="coupon-section">
@@ -71,22 +71,28 @@
 import CartItem from '@/components/AddCard/CartItem.vue';
 import OrderSummary from '@/components/AddCard/OrderSummary.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
+import { useCartStore } from '@/stores/Cart';
 
 
 
 export default {
   components: { CartItem, OrderSummary, FooterComponent },
+
+
+
   data() {
     return {
-      cartItems: [
-        { id: 0, name: "Bose QuietComfort Ultra Noise", price: 619, quantity: 1, image: "/src/assets/images/bose_quietcomfort_45.jpg" },
-        { id: 1, name: "DualSense Wireless Controller", price: 49.99, quantity: 2, image: "/src/assets/images/ps5.png" },
-        { id: 2, name: "Xiaomi 14 Ultra", price: 899.99, quantity: 1, image: "/src/assets/images/xiaomi_14ultra.jpg" },
-      ],
       couponCode: "",
     };
   },
   computed: {
+    cartItems() {
+        const cartStore = useCartStore()
+        return cartStore.cartItems
+      },
+
+
+
     subtotal() {
       return this.cartItems.reduce(
         (total, item) => total + item.price * item.quantity,
@@ -101,20 +107,25 @@ export default {
     },
   },
   methods: {
-    removeItem(index) {
-      this.cartItems.splice(index, 1);
-    },
-    updateQuantity(index, quantity) {
-      this.cartItems[index].quantity = quantity;
-    },
-    applyCoupon() {
-      // Example logic for applying a coupon
-      if (this.couponCode === "DISCOUNT10") {
-        alert("10% discount applied!");
-      } else {
-        alert("Invalid coupon code.");
-      }
-    },
+
+
+
+
+
+    // removeItem(index) {
+    //   this.cartItems.splice(index, 1);
+    // },
+    // updateQuantity(index, quantity) {
+    //   this.cartItems[index].quantity = quantity;
+    // },
+    // applyCoupon() {
+    //   // Example logic for applying a coupon
+    //   if (this.couponCode === "DISCOUNT10") {
+    //     alert("10% discount applied!");
+    //   } else {
+    //     alert("Invalid coupon code.");
+    //   }
+    // },
   },
 };
 </script>
