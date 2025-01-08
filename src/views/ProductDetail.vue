@@ -92,11 +92,7 @@
   <!-- Customer Review Section -->
   <div class="customer-reviews">
     <h3>Customer Reviews</h3>
-    <div
-      v-for="(review, index) in reviews"
-      :key="index"
-      class="review-card"
-    >
+    <div v-for="(review, index) in reviews" :key="index" class="review-card">
       <div class="review-header">
         <strong>{{ review.name }}</strong>
         <span class="stars">⭐⭐⭐⭐⭐</span>
@@ -130,27 +126,27 @@ export default {
       selectedSize: "128GB",
       quantity: 1,
       reviews: [
-  {
-    name: "Emily R.",
-    rating: "⭐⭐⭐⭐⭐",
-    comment: "Amazing phone! Great performance and the battery lasts forever.",
-    image: "./src/assets/images/user1.jpg", // Image for reviewer
-  },
-  {
-    name: "Michael T.",
-    rating: "⭐⭐⭐⭐",
-    comment: "The camera quality is outstanding. However, it is a bit expensive.",
-    image: "./src/assets/images/michael.jpg", // Image for reviewer
-  },
-  {
-    name: "Sophia K.",
-    rating: "⭐⭐⭐⭐⭐",
-    comment: "Best purchase ever! The display is stunning and smooth.",
-    image: "./src/assets/images/sophia.jpg", // Image for reviewer
-  },
-]
-
-
+        {
+          name: "Emily R.",
+          rating: "⭐⭐⭐⭐⭐",
+          comment:
+            "Amazing phone! Great performance and the battery lasts forever.",
+          image: "./src/assets/images/user1.jpg", // Image for reviewer
+        },
+        {
+          name: "Michael T.",
+          rating: "⭐⭐⭐⭐",
+          comment:
+            "The camera quality is outstanding. However, it is a bit expensive.",
+          image: "./src/assets/images/michael.jpg", // Image for reviewer
+        },
+        {
+          name: "Sophia K.",
+          rating: "⭐⭐⭐⭐⭐",
+          comment: "Best purchase ever! The display is stunning and smooth.",
+          image: "./src/assets/images/sophia.jpg", // Image for reviewer
+        },
+      ],
     };
   },
   methods: {
@@ -337,7 +333,7 @@ ul li {
   flex-direction: column;
   gap: 10px;
   width: 100px;
-  height:auto;
+  height: auto;
 }
 
 .additional-image {

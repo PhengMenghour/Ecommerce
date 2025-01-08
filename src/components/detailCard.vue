@@ -1,9 +1,3 @@
-<template>
-helllo
-</template>
-<script>
-
-</script>
-<style>
-
-</style>
+<template>helllo</template>
+<script></script>
+<style></style>
