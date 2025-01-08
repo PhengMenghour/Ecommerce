@@ -2,10 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '@/views/HomePage.vue'
 import ContactPage from '@/views/ContactPage.vue'
 import ShopPage from '@/views/ShopPage.vue'
-import Pages from '@/views/Pages.vue'
 import SignInPage from '@/views/SignInPage.vue'
+import PrivacyAndPolicyPage from '@/views/PrivacyAndPolicyPage.vue'
+import CartPage from '@/views/CartPage.vue'
+import CheckoutPage from '@/views/CheckoutPage.vue'
+import SignUpPage from '@/views/SignUpPage.vue'
 import ProductDetail from '@/views/ProductDetail.vue'
-
 
 const routes = [
   {
@@ -24,19 +26,34 @@ const routes = [
     component: ShopPage,
   },
   {
-    path: '/pages',
-    name: 'pages',
-    component: Pages,
-  },
-  {
     path: '/signIn',
     name: 'signIn',
     component: SignInPage,
   },
   {
-    path: '/productDetail',
+    path: '/signUp',
+    name: 'signUp',
+    component: SignUpPage,
+  },
+  {
+    path: '/pages/privacyAndPolicy',
+    name: 'privacyAndPolicy',
+    component: PrivacyAndPolicyPage,
+  },
+  {
+    path: '/pages/cart',
+    name: 'cart',
+    component: CartPage,
+  },
+  {
+    path: '/pages/checkout',
+    name: 'checkout',
+    component: CheckoutPage,
+  },
+  {
+    path: '/productDetail/:productId',
     name: 'productDetail',
-    component: ProductDetail,
+    component: ProductDetail
   }
 ]
 
@@ -46,4 +63,3 @@ const router = createRouter({
 })
 
 export default router
-

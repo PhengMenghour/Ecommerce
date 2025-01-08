@@ -1,349 +1,11 @@
-<!-- <template>
-    <footer class="footer">
-      <div class="newsletter">
-        <div>
-          <img src="/src/assets/images/ftEvelop.png" alt="Newsletter Image">
-        </div>
-        <div class="newsletter-left">
-          <h3>Fear Of Missing Out?</h3>
-          <p>Get the latest deals, updates & more</p>
-        </div>
-        <div class="newsletter-right">
-          <input type="email" placeholder="Your email address" v-model="email" />
-          <button @click="subscribe">Subscribe</button>
-        </div>
-      </div>
-  
-      <div class="footer-links">
-        <div class="footer-section">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Affiliates</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h4>Shop</h4>
-          <ul>
-            <li><a href="#">Phones</a></li>
-            <li><a href="#">TVs</a></li>
-            <li><a href="#">Computer</a></li>
-            <li><a href="#">Audio</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h4>Help</h4>
-          <ul>
-            <li><a href="#">Customer Service</a></li>
-            <li><a href="#">My Account</a></li>
-            <li><a href="#">Find a Store</a></li>
-            <li><a href="#">Legal & Privacy</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h4>My Account</h4>
-          <ul>
-            <li><a href="#">My Profile</a></li>
-            <li><a href="#">My Order History</a></li>
-            <li><a href="#">My Wish List</a></li>
-            <li><a href="#">Order Tracking</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h4>Contact Info</h4>
-          <ul>
-            <li>+855 12 345 678</li>
-            <li>Mon to Sun: 10AM to 6PM</li>
-            <li><a href="mailto:smartsphere@support.com">smartsphere@support.com</a></li>
-            <li>Phnom Penh, Cambodia</li>
-          </ul>
-        </div>
-      </div>
-  
-      <div class="footer-bottom">
-        <div>
-          <p>&copy; 2024 SmartSphere. All rights reserved</p>
-          <p><a href="#">Privacy</a> | <a href="#">Terms & Conditions</a> | <a href="#">Cookie</a></p>
-        </div>
-        <div class="footer-social">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-tiktok"></i></a>
-        </div>
-      </div>
-    </footer>
-  </template>
-  
-  <script >
-  export default {
-    data() {
-      return {
-        email: "",
-       
-      };
-    },
-    methods: {
-      subscribe() {
-        if (this.email) {
-          alert(`Subscribed with email: ${this.email}`);
-          this.email = "";
-        } else {
-          alert("Please enter a valid email address.");
-        }
-      },
-    },
-  };
-  </script>
-  
-  <style scoped>
-  .footer {
-    background-color: white;
-    padding:  20px;
-    font-family: Arial, sans-serif;
-    width: 100vw;
-    height: 461px;
-    position: absolute;
-    bottom: 0px;
-  }
-  
-  .newsletter {
-    display: flex;
-    justify-content:center;
-    align-items:space be;
-    padding: 20px 0;
-    background-color: #E5C5BA;
-  }
-  
-  .newsletter-left h3 {
-    margin: 0;
-    font-size: 18px;
-    color: #000;
-  }
-  
-  .newsletter-right input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .newsletter-right button {
-    padding: 10px 15px;
-    margin-left: 10px;
-    border: none;
-    background-color: #f5426c;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .footer-links {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .footer-section {
-    flex: 1;
-    margin: 0 10px;
-  }
-  
-  .footer-section h4 {
-    font-size: 16px;
-    color: #000;
-  }
-  
-  .footer-section ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer-section li {
-    margin: 5px 0;
-  }
-  
-  .footer-section a {
-    text-decoration: none;
-    color: #000;
-  }
-  
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    border-top: 1px solid #ccc;
-    padding-top: 10px;
-    background-color: white;
-  }
-  
-  .footer-social a {
-    margin: 0 5px;
-    color: #000;
-    text-decoration: none;
-  }
-  </style>
-   -->
-
-
-
-<!--    
-   <template>
-    <div class="subscription-section">
-      <div class="subscription-content">
-        <div class="subscription-text">
-          <img src="@/assets/images/ftEvelop.png" alt="Subscribe" class="icon" />
-          <div>
-            <h2>Fear Of Missing Out?</h2>
-            <p>Get the latest deals, updates & more</p>
-          </div>
-        </div>
-        <form class="subscription-form" @submit.prevent="subscribe">
-          <input
-            type="email"
-            v-model="email"
-            placeholder="Your email address"
-            required
-          />
-          <button type="submit">Subscribe ➤</button>
-        </form>
-        <div class="social-icons">
-          <p>Follow us</p>
-          <div class="icons">
-            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        email: "",
-      };
-    },
-    methods: {
-      subscribe() {
-        alert(`Subscribed with: ${this.email}`);
-      },
-    },
-  };
-  </script>
-  
-  <style scoped>
-  /* Container Styling */
-  .subscription-section {
-    background-color: #efd5d1; /* Background color */
-    padding: 20px 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-  }
-  
-  .subscription-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
-  }
-  
-  /* Text Section */
-  .subscription-text {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .subscription-text .icon {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .subscription-text h2 {
-    margin: 0;
-    font-size: 18px;
-    color: #000;
-  }
-  
-  .subscription-text p {
-    margin: 0;
-    color: #555;
-    font-size: 14px;
-  }
-  
-  /* Form Styling */
-  .subscription-form {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .subscription-form input {
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 300px;
-  }
-  
-  .subscription-form button {
-    padding: 10px 20px;
-    font-size: 14px;
-    color: white;
-    background-color: #f45d5a;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .subscription-form button:hover {
-    background-color: #e04b4a;
-  }
-  
-  /* Social Media Section */
-  .social-icons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .social-icons p {
-    margin: 0;
-    font-size: 14px;
-    color: #000;
-  }
-  
-  .social-icons .icons a {
-    color: #000;
-    font-size: 18px;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  
-  .social-icons .icons a:hover {
-    color: #f45d5a;
-  }
-  </style> -->
-
-
-
   <template>
     <footer class="footer-section">
       <!-- Top Section -->
       <div class="subscription-section">
         <div class="subscription-content">
           <div class="subscription-text">
-            <img src="@/assets/images/ftEvelop.png" alt="Subscribe" class="icon" />
+            <i class="ri-mail-send-line"></i>
+            <!-- <img src="@/assets/images/ftEvelop.png" alt="Subscribe" class="icon" /> -->
             <div>
               <h2>Fear Of Missing Out?</h2>
               <p>Get the latest deals, updates & more</p>
@@ -385,9 +47,12 @@
           <h4>SHOP</h4>
           <ul>
             <li><a href="#">Phones</a></li>
-            <li><a href="#">TVs</a></li>
             <li><a href="#">Computer</a></li>
-            <li><a href="#">Audio</a></li>
+            <li><a href="#">Accessories</a></li>
+            <li><a href="#">Laptops</a></li>
+            <li><a href="#">Monitors</a></li>
+            <li><a href="#">Network</a></li>
+            <li><a href="#">Headphone</a></li>
           </ul>
         </div>
         <div class="footer-column">
@@ -492,6 +157,10 @@
     color: #555;
     font-size: 14px;
   }
+
+  .subscription-text i {
+    font-size: 40px;
+  }
   
   .subscription-form {
     display: flex;
@@ -529,13 +198,18 @@
     font-size: 18px;
     color: #000;
   }
+
+  .icons {
+    display: flex;
+    gap: 10px;
+  }
   
   /* Footer Links */
   .footer-links {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     padding: 20px 40px;
-    background-color: #fff;
+    background-color: #f9f9f9;
   }
   
   .footer-column h4 {

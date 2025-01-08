@@ -7,7 +7,7 @@
     <CarouselComponent />
   </div>
   <div class="group-tag">
-    <TagComponent />
+    <TagComponent tag="Categories"/>
   </div>
   <div class="container-category-head">
     <h1>Browse by Category</h1>
@@ -25,7 +25,7 @@
 
   <div class="countdown-container">
     <div class="left-section">
-      <TagComponent />
+      <TagComponent tag="Don't Miss!!!" iconClass="ri-customer-service-line"/>
       <div class="text-container">
         <h1>Enhance Your</h1>
         <h1>Music</h1>
@@ -64,10 +64,11 @@
 
 
   <div class="feature-product-header">
-    <h1>Featured Products</h1>
+    <TagComponent tag="Our Products" iconClass="ri-shopping-bag-4-line"/>
+    <h1>Explore our Products</h1>
     <div class="featured-products">
         <div class="products">
-          <ProductDiscount
+          <FeatureProductComponent
             v-for="product in products"
             :key="product.id"
             :name="product.name"
@@ -78,21 +79,46 @@
             :reviews="product.reviews"
           />
         </div>
-      <button class="view-all-button">View All Products</button>
+      <button class="view-all-button" @click="$router.push('/shop')">View All Products</button>
     </div>
   </div>
 
   <div class="feedback-header">
+    <TagComponent tag="Testimonials" iconClass="ri-discuss-line"/>
     <h1>Users Feedback</h1>
     <FeedbackComponent/>
+  </div>
+
+  <div class="newArrival-header">
+    <div class="tag-group">
+      <TagComponent tag="This Week" iconClass="ri-shopping-bag-4-line"/>
+      <h1>New Arrivals</h1>
+    </div>
+    <NewArrivalComponent/>
+  </div>
+
+  <hr>
+
+  <div class="mostSold-header">
+    <div class="tag-group-2">
+      <TagComponent tag="Most Sold" iconClass="ri-star-fill"/>
+      <h1>Most Sold in SmartSphere</h1>
+    </div>
+    <ItemComponent/>
+  </div>
+
+  <hr>
+
+  <div class="banner-container">
+    <img src="/src/assets/images/banner1.png" alt="">
+    <img src="/src/assets/images/banner2.png" alt="">
   </div>
 
 
 
 
   <!-- For later use -->
-  <productCards/>
-  <Itemss/>
+  <!-- <NewArrivalComponent/> -->
   <FooterComponent/>
 
 </template>
@@ -100,24 +126,24 @@
 <script>
 import CarouselComponent from "@/components/CarouselComponent.vue";
 import CategoryComponent from "@/components/CategoryComponent.vue";
-import Itemss from "@/components/Itemss.vue";
-import productCards from "@/components/productCard.vue";
+import ItemComponent from "@/components/ItemComponent.vue";
+import NewArrivalComponent from "@/components/NewArrivalComponent.vue";
 import TagComponent from "@/components/TagComponent.vue";
-import ProductDiscount from "@/components/FeatureProduce.vue";
+import FeatureProductComponent from "@/components/FeatureProductComponent.vue";
 import FeedbackComponent from "@/components/FeedbackComponent.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
-
-
+import ProductCartiphone from '@/components/ProductComponent.vue';
 export default {
   components: {
     CategoryComponent,
     TagComponent,
-    productCards,
-    Itemss,
+    NewArrivalComponent,
+    ItemComponent,
     CarouselComponent,
-    ProductDiscount,
+    FeatureProductComponent,
     FeedbackComponent,
     FooterComponent,
+    ProductCartiphone,
 
   },
 
@@ -510,167 +536,49 @@ export default {
   transition: transform .1s;
 }
 
-.feedback-header {
-  margin: 0px 200px 0px 200px;
+.feedback-header{
+  background-color: #f9f3f0;
+  width: auto;
+  height: 650px;
+  padding: 0px 200px 0px 200px;
+  /* margin: 0px 200px 0px 200px; */
   font-family: "Poppins", sans-serif;
+
+}
+
+/* .newArrival-header{
+
+} */
+
+.tag-group{
+  padding: 0px 200px 0px 200px;
+  font-family: "Poppins"
+
+}
+
+.tag-group-2{
+  padding: 0px 200px 0px 200px;
+  font-family: "Poppins";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.banner-container {
+  margin: 3% 0 3% 0;
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+}
+
+.banner-container img {
+  width: 40%;
+}
+
+hr {
+  width: 90%;
+  border-top: 1px solid #dbdbdb;
 }
 </style>
-
-<!-- <template>
-  <div class="container-main">
-    <h1></h1>
-  </div>
-  <div class="group-tag">
-    <TagComponent />
-  </div>
-  <div class="container-category-head">
-    <h1>Browse by Category</h1>
-    <div class="swipe-button">
-      <button @click="prevCategory" :disabled="currentIndex === 0"><i class="ri-arrow-left-line"></i></button>
-      <button @click="nextCategory" :disabled="currentIndex >= categories.length - visibleCount"><i class="ri-arrow-right-line"></i></button>
-    </div>
-  </div>
-  <div class="category-group">
-    <div class="category-wrapper" v-for="(category, index) in visibleCategories" :key="category.id">
-      <CategoryComponent :image="category.image" :title="category.title" />
-    </div>
-  </div>
-</template>
-
-<script>
-import CategoryComponent from "@/components/CategoryComponent.vue";
-import TagComponent from "@/components/TagComponent.vue";
- 
-
-export default {
-  components: {
-    CategoryComponent,
-    TagComponent,
-  },
-
-
-
-  computed: {
-    visibleCategories() {
-      return this.categories.slice(this.currentIndex, this.currentIndex + this.visibleCount);
-    },
-  },
-
-  methods: {
-    nextCategory() {
-      if (this.currentIndex < this.categories.length - this.visibleCount) {
-        this.currentIndex++;
-      }
-    },
-    prevCategory() {
-      if (this.currentIndex > 0) {
-        this.currentIndex--;
-      }
-    },
-  },
-
-  data() {
-    return {
-      currentIndex: 0,
-      visibleCount: 5, // Number of categories to display
-
-      categories: [
-        {
-          id: 1,
-          image: "./src/assets/images/phones.png",
-          title: "Phones",
-        },
-        {
-          id: 2,
-          image: "/src/assets/images/computers.png",
-          title: "Computers",
-        },
-        {
-          id: 3,
-          image: "/src/assets/images/accessories.png",
-          title: "Accessories",
-        },
-        {
-          id: 4,
-          image: "/src/assets/images/laptops.png",
-          title: "Laptops",
-        },
-        {
-          id: 5,
-          image: "/src/assets/images/monitors.png",
-          title: "Monitors",
-        },
-        {
-          id: 6,
-          image: "/src/assets/images/networking.png",
-          title: "Network",
-        },
-        {
-          id: 7,
-          image: "/src/assets/images/headphones.png",
-          title: "Headphone",
-        },
-      ],
-    };
-  },
-};
-</script>
-
-<style>
-.container-main {
-  background-color: #f9f3f0;
-  height: 800px;
-  margin-top: -90px;
-}
-
-.container-category-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0px 200px 0px 200px;
-  font-family: "Poppins", sans-serif;
-}
-
-.swipe-button {
-  display: flex;
-  gap: 10px;
-  border-radius: 10px;
-}
-
-.swipe-button button {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  border: 1px solid #e3e3e3;
-  color: #8b8b8b;
-  background-color: #f6f7fb;
-}
-
-.swipe-button button:hover {
-  background-color: #e1e6f1;
-}
-
-.category-group {
-  display: flex;
-  overflow: hidden;
-  justify-content: center;
-  gap: 10px;
-  transition: transform 0.5s ease-in-out; /* Smooth sliding effect */
-  /* Add gap for better spacing */
-}
-
-.category-wrapper {
-  min-width: 180px;
-  flex: 0 0 auto;
-}
-
-.category-wrapper:hover {
-  opacity: 1;
-  /* Highlight the category on hover */
-}
-
-.group-tag {
-  margin-top: 10px;
-  margin-left: 200px;
-}
-</style> -->

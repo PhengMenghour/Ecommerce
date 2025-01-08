@@ -1,28 +1,34 @@
 <template>
     <div class="tag-container">
-        <div class="container-icon" >
-            <i class="ri-price-tag-3-line"></i>
+        <div class="container-icon">
+            <i :class="iconClass"></i>
         </div>
         <div class="container-title">
-            <h1>Categories</h1>
+            <h1>{{ tag }}</h1>
         </div>
-
     </div>
 </template>
+
 <script>
 export default {
-
+    props: {
+        tag: String,
+        iconClass: {
+            type: String,
+            default: "ri-price-tag-3-line" // Set a default icon class
+        }
+    }
 }
 </script>
+
 <style scoped>
 .tag-container {
     display: flex;
     align-items: center;
     gap: 10px;
-
 }
 
-.container-icon{
+.container-icon {
     width: 30px;
     height: 30px;
     background-color: #FF497C;
@@ -34,7 +40,7 @@ export default {
 
 .tag-container i {
     color: white;
-    font-size: 20px
+    font-size: 20px;
 }
 
 .tag-container .container-title h1 {
