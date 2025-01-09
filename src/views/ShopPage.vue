@@ -69,7 +69,10 @@
           <div v-if="filteredProducts.length === 0" class="no-products">
             <p>No products found for this category.</p>
           </div>
-          <ProductComponent :product="product" v-for="product in products" :key="product.id" />
+          <!-- <ProductComponent :product="product" v-for="product in products" :key="product.id" /> -->
+          <ProductComponent :product="product" v-for="product in filteredProducts" :key="product.id" />
+
+          
 
         </div>
 
@@ -179,231 +182,231 @@ export default {
         },
       ],
 
-      // products: [
-      //   {
-      //     id: 8,
-      //     name: "iPhone 16 Pro Max",
-      //     category: "iPhone",
-      //     price: "$1499.99",
-      //     discountPrice: "$1249.99",
-      //     image: "/src/assets/images/iphone_16_promax.jpg",
-      //     discount: "10% OFF",
-      //   },
-      //   {
-      //     id: 9,
-      //     name: "Samsung Galaxy S24",
-      //     category: "Samsung",
-      //     price: "$1199.99",
-      //     discountPrice: "$999.99",
-      //     image: "/src/assets/images/galaxy_s24_ultra.jpg",
-      //     discount: "15% OFF",
-      //   },
-      //   {
-      //     id: 10,
-      //     name: "Dell Optiplex",
-      //     category: "Dell",
-      //     price: "$1599.99",
-      //     discountPrice: "$1399.99",
-      //     image: "/src/assets/images/dell_optiplex.jpg",
-      //     discount: "12% OFF",
-      //   },
+      products: [
+        {
+          id: 8,
+          name: "iPhone 16 Pro Max",
+          category: "iPhone",
+          price: "$1499.99",
+          discountPrice: "$1249.99",
+          image: "/src/assets/images/iphone_16_promax.jpg",
+          discount: "10% OFF",
+        },
+        {
+          id: 9,
+          name: "Samsung Galaxy S24",
+          category: "Samsung",
+          price: "$1199.99",
+          discountPrice: "$999.99",
+          image: "/src/assets/images/galaxy_s24_ultra.jpg",
+          discount: "15% OFF",
+        },
+        {
+          id: 10,
+          name: "Dell Optiplex",
+          category: "Dell",
+          price: "$1599.99",
+          discountPrice: "$1399.99",
+          image: "/src/assets/images/dell_optiplex.jpg",
+          discount: "12% OFF",
+        },
 
 
-      //   {
-      //     id: 11,
-      //     name: "Xiaomi Mi 14 Ultra",
-      //     category: "Xiaomi",
-      //     price: "$1099.99",
-      //     discountPrice: "$899.99",
-      //     image: "/src/assets/images/xiaomi_14ultra.jpg",
-      //     discount: "18% OFF",
-      //   },
-      //   {
-      //     id: 12,
-      //     name: "Oppo Find X6 Pro",
-      //     category: "Oppo",
-      //     price: "$999.99",
-      //     discountPrice: "$849.99",
-      //     image: "/src/assets/images/oppo_find_x6_pro.jpg",
-      //     discount: "15% OFF",
-      //   },
-      //   {
-      //     id: 13,
-      //     name: "Vivo X100 Pro",
-      //     category: "Vivo",
-      //     price: "$899.99",
-      //     discountPrice: "$799.99",
-      //     image: "/src/assets/images/vivo_x100pro.jpg",
-      //     discount: "11% OFF",
-      //   },
+        {
+          id: 11,
+          name: "Xiaomi Mi 14 Ultra",
+          category: "Xiaomi",
+          price: "$1099.99",
+          discountPrice: "$899.99",
+          image: "/src/assets/images/xiaomi_14ultra.jpg",
+          discount: "18% OFF",
+        },
+        {
+          id: 12,
+          name: "Oppo Find X6 Pro",
+          category: "Oppo",
+          price: "$999.99",
+          discountPrice: "$849.99",
+          image: "/src/assets/images/oppo_find_x6_pro.jpg",
+          discount: "15% OFF",
+        },
+        {
+          id: 13,
+          name: "Vivo X100 Pro",
+          category: "Vivo",
+          price: "$899.99",
+          discountPrice: "$799.99",
+          image: "/src/assets/images/vivo_x100pro.jpg",
+          discount: "11% OFF",
+        },
 
-      //   // Computers
-      //   {
-      //     id: 14,
-      //     name: "HP ProDesk 600 G3 SFF",
-      //     category: "HP",
-      //     price: "$799.99",
-      //     discountPrice: "$749.99",
-      //     image: "/src/assets/images/hp_prodesk_600_g3_sff.jpg",
-      //     discount: "6% OFF",
-      //   },
-      //   {
-      //     id: 15,
-      //     name: "Lenovo Legion Tower",
-      //     category: "Lenovo",
-      //     price: "$1199.99",
-      //     discountPrice: "$999.99",
-      //     image: "/src/assets/images/lenovo_legion_tower_7ig8w.jpg",
-      //     discount: "17% OFF",
-      //   },
-      //   {
-      //     id: 16,
-      //     name: "Asus ROG Strix GA35CA",
-      //     category: "Asus",
-      //     price: "$1499.99",
-      //     discountPrice: "$1299.99",
-      //     image: "/src/assets/images/asus_rog_strix.jpg",
-      //     discount: "13% OFF",
-      //   },
+        // Computers
+        {
+          id: 14,
+          name: "HP ProDesk 600 G3 SFF",
+          category: "HP",
+          price: "$799.99",
+          discountPrice: "$749.99",
+          image: "/src/assets/images/hp_prodesk_600_g3_sff.jpg",
+          discount: "6% OFF",
+        },
+        {
+          id: 15,
+          name: "Lenovo Legion Tower",
+          category: "Lenovo",
+          price: "$1199.99",
+          discountPrice: "$999.99",
+          image: "/src/assets/images/lenovo_legion_tower_7ig8w.jpg",
+          discount: "17% OFF",
+        },
+        {
+          id: 16,
+          name: "Asus ROG Strix GA35CA",
+          category: "Asus",
+          price: "$1499.99",
+          discountPrice: "$1299.99",
+          image: "/src/assets/images/asus_rog_strix.jpg",
+          discount: "13% OFF",
+        },
 
-      //   // Accessories
-      //   {
-      //     id: 17,
-      //     name: "Sony WH-1000XM5",
-      //     category: "PowerBanks",
-      //     price: "$99.99",
-      //     discountPrice: "$89.99",
-      //     image: "/src/assets/images/anker_ank_powerbank.jpg",
-      //     discount: "10% OFF",
-      //   },
-      //   {
-      //     id: 18,
-      //     name: "Anker Fast Charger",
-      //     category: "Chargers",
-      //     price: "$49.99",
-      //     discountPrice: "$39.99",
-      //     image: "/src/assets/images/anker_fast_charger.jpg",
-      //     discount: "20% OFF",
-      //   },
-      //   {
-      //     id: 19,
-      //     name: "PS5 Controller",
-      //     category: "Controllers",
-      //     price: "$99.99",
-      //     discountPrice: "$89.99",
-      //     image: "/src/assets/images/ps5.png",
-      //     discount: "10% OFF",
-      //   },
+        // Accessories
+        {
+          id: 17,
+          name: "Sony WH-1000XM5",
+          category: "PowerBanks",
+          price: "$99.99",
+          discountPrice: "$89.99",
+          image: "/src/assets/images/anker_ank_powerbank.jpg",
+          discount: "10% OFF",
+        },
+        {
+          id: 18,
+          name: "Anker Fast Charger",
+          category: "Chargers",
+          price: "$49.99",
+          discountPrice: "$39.99",
+          image: "/src/assets/images/anker_fast_charger.jpg",
+          discount: "20% OFF",
+        },
+        {
+          id: 19,
+          name: "PS5 Controller",
+          category: "Controllers",
+          price: "$99.99",
+          discountPrice: "$89.99",
+          image: "/src/assets/images/ps5.png",
+          discount: "10% OFF",
+        },
 
-      //   // Laptops
-      //   {
-      //     id: 20,
-      //     name: "MacBook Pro M1",
-      //     category: "Apple",
-      //     price: "$1999.99",
-      //     discountPrice: "$1799.99",
-      //     image: "/src/assets/images/macbook_pro_m1.png",
-      //     discount: "10% OFF",
-      //   },
-      //   {
-      //     id: 21,
-      //     name: "Microsoft Surface Laptop 5",
-      //     category: "Microsoft",
-      //     price: "$1399.99",
-      //     discountPrice: "$1249.99",
-      //     image: "/src/assets/images/microsoft_surface_laptop_5.jpg",
-      //     discount: "11% OFF",
-      //   },
-      //   {
-      //     id: 22,
-      //     name: "Acer Swift 3 OLED",
-      //     category: "Acer",
-      //     price: "$999.99",
-      //     discountPrice: "$899.99",
-      //     image: "/src/assets/images/acer_swift_3_oled.jpg",
-      //     discount: "10% OFF",
-      //   },
+        // Laptops
+        {
+          id: 20,
+          name: "MacBook Pro M1",
+          category: "Apple",
+          price: "$1999.99",
+          discountPrice: "$1799.99",
+          image: "/src/assets/images/macbook_pro_m1.png",
+          discount: "10% OFF",
+        },
+        {
+          id: 21,
+          name: "Microsoft Surface Laptop 5",
+          category: "Microsoft",
+          price: "$1399.99",
+          discountPrice: "$1249.99",
+          image: "/src/assets/images/microsoft_surface_laptop_5.jpg",
+          discount: "11% OFF",
+        },
+        {
+          id: 22,
+          name: "Acer Swift 3 OLED",
+          category: "Acer",
+          price: "$999.99",
+          discountPrice: "$899.99",
+          image: "/src/assets/images/acer_swift_3_oled.jpg",
+          discount: "10% OFF",
+        },
 
-      //   // Monitors
-      //   {
-      //     id: 23,
-      //     name: "LG 22MK600M",
-      //     category: "LG-Monitors",
-      //     price: "$799.99",
-      //     discountPrice: "$699.99",
-      //     image: "/src/assets/images/lg_monitor.jpg",
-      //     discount: "13% OFF",
-      //   },
-      //   {
-      //     id: 24,
-      //     name: "Samsung 34 Odyssey G5 Ultra",
-      //     category: "Samsung-Monitors",
-      //     price: "$1499.99",
-      //     discountPrice: "$1349.99",
-      //     image: "/src/assets/images/samsung_odyssey.jpg",
-      //     discount: "10% OFF",
-      //   },
-      //   {
-      //     id: 25,
-      //     name: "Dell Sync 2024",
-      //     category: "Dell-Monitors",
-      //     price: "$1199.99",
-      //     discountPrice: "$1099.99",
-      //     image: "/src/assets/images/dell_sync_2024.jpg",
-      //     discount: "8% OFF",
-      //   },
+        // Monitors
+        {
+          id: 23,
+          name: "LG 22MK600M",
+          category: "LG-Monitors",
+          price: "$799.99",
+          discountPrice: "$699.99",
+          image: "/src/assets/images/lg_monitor.jpg",
+          discount: "13% OFF",
+        },
+        {
+          id: 24,
+          name: "Samsung 34 Odyssey G5 Ultra",
+          category: "Samsung-Monitors",
+          price: "$1499.99",
+          discountPrice: "$1349.99",
+          image: "/src/assets/images/samsung_odyssey.jpg",
+          discount: "10% OFF",
+        },
+        {
+          id: 25,
+          name: "Dell Sync 2024",
+          category: "Dell-Monitors",
+          price: "$1199.99",
+          discountPrice: "$1099.99",
+          image: "/src/assets/images/dell_sync_2024.jpg",
+          discount: "8% OFF",
+        },
 
-      //   // Networking
-      //   {
-      //     id: 26,
-      //     name: "Netgear Nighthawk AX12",
-      //     category: "Routers",
-      //     price: "$599.99",
-      //     discountPrice: "$549.99",
-      //     image: "/src/assets/images/netgear_nighthawk_ax12.jpg",
-      //     discount: "8% OFF",
-      //   },
-      //   {
-      //     id: 27,
-      //     name: "Cisco Catalyst 9200L",
-      //     category: "Switches",
-      //     price: "$999.99",
-      //     discountPrice: "$899.99",
-      //     image: "/src/assets/images/cisco_catalyst_9200l.jpg",
-      //     discount: "10% OFF",
-      //   },
+        // Networking
+        {
+          id: 26,
+          name: "Netgear Nighthawk AX12",
+          category: "Routers",
+          price: "$599.99",
+          discountPrice: "$549.99",
+          image: "/src/assets/images/netgear_nighthawk_ax12.jpg",
+          discount: "8% OFF",
+        },
+        {
+          id: 27,
+          name: "Cisco Catalyst 9200L",
+          category: "Switches",
+          price: "$999.99",
+          discountPrice: "$899.99",
+          image: "/src/assets/images/cisco_catalyst_9200l.jpg",
+          discount: "10% OFF",
+        },
 
-      //   // Headphones
-      //   {
-      //     id: 28,
-      //     name: "Sony WF-1000XM5",
-      //     category: "Sony",
-      //     price: "$299.99",
-      //     discountPrice: "$269.99",
-      //     image: "/src/assets/images/sony_1000xm5.jpg",
-      //     discount: "10% OFF",
-      //   },
-      //   {
-      //     id: 29,
-      //     name: "Bose QuietComfort 45",
-      //     category: "Bose",
-      //     price: "$329.99",
-      //     discountPrice: "$299.99",
-      //     image: "/src/assets/images/bose_quietcomfort_45.jpg",
-      //     discount: "9% OFF",
-      //   },
-      //   {
-      //     id: 30,
-      //     name: "JBL Tune 760NC",
-      //     category: "JBL",
-      //     price: "$199.99",
-      //     discountPrice: "$169.99",
-      //     image: "/src/assets/images/jbl_tune_760nc.jpg",
-      //     discount: "15% OFF",
-      //   },
+        // Headphones
+        {
+          id: 28,
+          name: "Sony WF-1000XM5",
+          category: "Sony",
+          price: "$299.99",
+          discountPrice: "$269.99",
+          image: "/src/assets/images/sony_1000xm5.jpg",
+          discount: "10% OFF",
+        },
+        {
+          id: 29,
+          name: "Bose QuietComfort 45",
+          category: "Bose",
+          price: "$329.99",
+          discountPrice: "$299.99",
+          image: "/src/assets/images/bose_quietcomfort_45.jpg",
+          discount: "9% OFF",
+        },
+        {
+          id: 30,
+          name: "JBL Tune 760NC",
+          category: "JBL",
+          price: "$199.99",
+          discountPrice: "$169.99",
+          image: "/src/assets/images/jbl_tune_760nc.jpg",
+          discount: "15% OFF",
+        },
 
-      //   // Additional products...
-      // ],
+        // Additional products...
+      ],
     };
   },
   computed: {
@@ -416,6 +419,7 @@ export default {
       );
     },
   },
+
   methods: {
     toggleCategory(categoryId) {
       const category = this.categories.find((cat) => cat.id === categoryId);
@@ -424,6 +428,7 @@ export default {
     selectCategory(categoryName) {
       this.selectedCategory = categoryName; // Set active category
     },
+    
     clearCategory() {
       this.selectedCategory = null; // Clear category filter
     },
