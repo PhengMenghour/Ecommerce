@@ -10,7 +10,7 @@
       </div>
       <h1>Sign in to SmartSphere</h1>
       <p>Enter your detail below</p><br><br>
-      <form @submit.prevent="createAccount">
+      <form @submit.prevent="handleSignIn">
         <div class="input-group">
           <fieldset>
             <legend>Email</legend>
@@ -23,19 +23,19 @@
             <input id="password" type="password" placeholder="*********" v-model="password" />
           </fieldset>
         </div>
-
-      </form>
-
-      <div class="buttom">
+        <div class="buttom">
         <button class="create-account-btn" type="submit">Sign in</button>
         <span><a href="">Forget Password?</a></span>
       </div>
+
+      </form>
     </div>
   </div>
 </template>
 
 <script>
 
+import Swal from 'sweetalert2';
 
 export default {
   name: "SignIn",
@@ -44,8 +44,10 @@ export default {
       username: "",
       email: "",
       password: "",
+      message: "",
     };
   },
+  
   methods: {
     createAccount() {
       console.log("Account Created:", {
@@ -56,7 +58,44 @@ export default {
     },
     goToSignUp() {
       this.$router.push('/signUp') // or path: '/signup'
-    }
+    },
+
+    handleSignIn() {
+      
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        const user = users.find(
+          (user) =>
+            user.email === this.email && user.password === this.password
+        );
+  
+        if (user) {
+          // Replace alert with console.log
+          Swal.fire({
+            icon: "success",
+            title: "Sign-In Successful!",
+            text: "Welcome back!",
+            timer: 1000, // Automatically closes after 3 seconds
+            showConfirmButton: false,
+          });
+          
+            this.$router.push("/");
+          // Redirect after 3 seconds
+
+          // Simulate navigation to a dashboard
+          
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Sign-In Fail!",
+            text: "Invalid email or password. Please try again.",
+            timer: 3000, // Automatically closes after 3 seconds
+            showConfirmButton: false,
+          });
+          
+        }
+      
+    },
+    
   },
 };
 </script>
