@@ -8,7 +8,8 @@ import CartPage from '@/views/CartPage.vue'
 import CheckoutPage from '@/views/CheckoutPage.vue'
 import SignUpPage from '@/views/SignUpPage.vue'
 import ProductDetail from '@/views/ProductDetail.vue'
-
+import AccountPage from '@/views/AccountPage.vue'
+import AccountDetail from '@/views/AccountDetail.vue'
 const routes = [
   {
     path: '/',
@@ -54,7 +55,18 @@ const routes = [
     path: '/productDetail/:productId',
     name: 'productDetail',
     component: ProductDetail
+  },
+  {
+    path: '/pages/accountPage',
+    name: 'accountPage',
+    component: AccountPage,
+  },
+  {
+    path: '/pages/account-details-page',
+    name: 'account-details-page',
+    component: AccountDetail,
   }
+  
 ]
 
 const router = createRouter({

@@ -40,7 +40,9 @@
           <li>
             <RouterLink to="/pages/checkout">Checkout</RouterLink>
           </li>
-          <li><a href="#account">Account</a></li>
+          <li>
+            <RouterLink to="/pages/accountPage">Account</RouterLink>
+          </li>
           <li>
             <RouterLink to="/signUp">Sign Up</RouterLink>
           </li>
@@ -110,6 +112,7 @@
 <script>
 import { useCartStore } from '@/stores/Cart';
 import CartItemComponent from './CartItemComponent.vue';
+import { RouterLink } from 'vue-router';
 
 export default {
   components: {
