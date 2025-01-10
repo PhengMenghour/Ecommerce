@@ -1,6 +1,6 @@
 <template>
   <div class="product-container">
-    <div v-for="product in products" :key="product.id" class="product-card">
+    <div v-for="product in products.slice(15,19)" :key="product.id" class="product-card">
       <div class="card-image">
         <img :src="product.image" :alt="product.name" />
         <span class="discount-badge" v-if="product.discount">{{ product.discount }} Off</span>
@@ -12,10 +12,10 @@
         </p>
       </div>
       <div class="card-actions">
-        <button class="view-item" @click="$router.push('/productDetail')">
+        <button class="view-item" @click="viewProductDetail(product.id)">
           <i class="ri-eye-line"></i>
         </button>
-        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-cart" @click="addToCart(product)">Add to Cart</button>
         <button class="wishlist">
           <i class="ri-heart-3-line"></i>
         </button>
@@ -25,45 +25,37 @@
 </template>
 
 <script>
+import { useCartStore } from '@/stores/Cart';
+import { useProductsStore } from '@/stores/Product';
+
 export default {
   name: "ProductCards",
-  data() {
-    return {
-      products: [
-        {
-          id: 1,
-          name: "PS5 Controller",
-          image: "/src/assets/images/ps5.png",
-          price: 60,
-          originalPrice: 80,
-          discount: "",
-        },
-        {
-          id: 2,
-          name: "PS5 Controller",
-          image: "/src/assets/images/ps5.png",
-          price: 60,
-          originalPrice: 80,
-          discount: "10%",
-        },
-        {
-          id: 3,
-          name: "PS5 Controller",
-          image: "/src/assets/images/ps5.png",
-          price: 60,
-          originalPrice: 80,
-          discount: "10%",
-        },
-        {
-          id: 4,
-          name: "PS5 Controller",
-          image: "/src/assets/images/ps5.png",
-          price: 60,
-          originalPrice: 80,
-          discount: "10%",
-        },
-      ],
+
+  setup() {
+    const productsStore = useProductsStore();
+    const products = productsStore.products;
+
+    const addToCart = (product) => {
+      const cartStore = useCartStore();
+      cartStore.addToCart({
+        ...product, // Pass the current product
+        selectedColor: product.selectedColor, // Include selected options
+        selectedSize: product.selectedSize,
+        quantity: product.quantity,
+      });
     };
+
+    return {
+      products,
+      addToCart,  // Return addToCart function to template
+    };
+  },
+
+  methods: {
+    viewProductDetail(id) {
+      // Navigate to product detail page
+      this.$router.push(`/productDetail/${id}`);
+    },
   },
 };
 </script>
@@ -83,6 +75,7 @@ export default {
 
 .product-card {
   width: 250px;
+  height: 100%;
   border: 2px solid #d1d5db;
   border-radius: 8px;
   padding: 16px;
@@ -98,7 +91,8 @@ export default {
 
 .card-image img {
   width: 100%;
-  height: auto;
+  height: 250px; /* Set a fixed height for consistency */
+  object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
   border-radius: 8px;
 }
 

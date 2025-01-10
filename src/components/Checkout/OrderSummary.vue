@@ -89,7 +89,7 @@ export default {
       const cartTotal = this.cartItems.reduce((sum, item) => {
         return sum + (item.price * item.quantity);
       }, 0);
-      const shippingCost = 50; // You can modify this based on the selected shipping method
+      const shippingCost = 0; // You can modify this based on the selected shipping method
       return cartTotal + shippingCost;
     },
   },

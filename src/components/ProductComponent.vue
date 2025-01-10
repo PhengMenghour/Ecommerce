@@ -43,14 +43,14 @@ export default {
 
   methods: {
     addToCart() {
-    const cartStore = useCartStore();
-    cartStore.addToCart({
-      ...this.product, // Pass the current product
-      selectedColor: this.product.selectedColor, // Include selected options
-      selectedSize: this.product.selectedSize,
-      quantity: this.product.quantity,
-    });
-  },
+      const cartStore = useCartStore();
+      cartStore.addToCart({
+        ...this.product, // Pass the current product
+        selectedColor: this.product.selectedColor, // Include selected options
+        selectedSize: this.product.selectedSize,
+        quantity: this.product.quantity,
+      });
+    },
 
     viewProductDetail(id) {
       // Navigate to product detail page

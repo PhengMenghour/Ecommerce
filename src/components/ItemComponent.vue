@@ -1,6 +1,6 @@
 <template>
   <div class="item-list">
-    <div class="item" v-for="item in items" :key="item.id">
+    <div class="item" v-for="item in products.slice(10,16)" :key="item.id">
       <div class="item-image">
         <img :src="item.image" :alt="item.name" />
       </div>
@@ -19,10 +19,10 @@
         <p class="item-price">${{ item.price }}</p>
       </div>
       <div class="item-actions">
-        <button @click="addToCart(item.id)" class="add-to-cart">
+        <button @click="addToCart(item)" class="add-to-cart">
           <i class="ri-shopping-cart-line"></i>
         </button>
-        <button @click="addToWishlist(item.id)" class="add-to-wishlist">
+        <button class="add-to-wishlist">
           <i class="ri-heart-line"></i>
         </button>
       </div>
@@ -31,66 +31,35 @@
 </template>
 
 <script>
+import { useCartStore } from '@/stores/Cart';
+import { useProductsStore } from '@/stores/Product';
+
 export default {
   name: "Item",
-  data() {
+  setup() {
+    const productsStore = useProductsStore();
+    const products = productsStore.products; // Access the list of products from store
+
+    const addToCart = (item) => {
+      const cartStore = useCartStore();
+      cartStore.addToCart({
+        ...item, // Pass the current item
+        selectedColor: item.selectedColor, // Include selected options
+        selectedSize: item.selectedSize,
+        quantity: item.quantity,
+      });
+    };
+
+    // const addToWishlist = (id) => {
+    //   const wishlistStore = useWishlistStore();
+    //   wishlistStore.addToWishlist(id); // Add item to wishlist
+    // };
+
     return {
-      items: [
-        {
-          id: 1,
-          name: "Playstation 5",
-          price: 499.99,
-          reviews: 100,
-          image: "/src/assets/images/playstation.png", // Replace with actual image URL
-        },
-        // Add more items if necessary
-        {
-          id: 2,
-          name: "Playstation 5",
-          price: 499.99,
-          reviews: 100,
-          image: "/src/assets/images/playstation.png",
-        },
-        {
-          id: 3,
-          name: "Playstation 5",
-          price: 499.99,
-          reviews: 100,
-          image: "/src/assets/images/playstation.png",
-        },
-        {
-          id: 4,
-          name: "Playstation 5",
-          price: 499.99,
-          reviews: 100,
-          image: "/src/assets/images/playstation.png",
-        },
-        {
-          id: 5,
-          name: "Playstation 5",
-          price: 499.99,
-          reviews: 100,
-          image: "/src/assets/images/playstation.png",
-        },
-        {
-          id: 6,
-          name: "Playstation 5",
-          price: 499.99,
-          reviews: 100,
-          image: "/src/assets/images/playstation.png",
-        },
-      ],
+      products,
+      addToCart,
     };
   },
-  methods: {
-    addToCart(id) {
-      console.log(`Item ${id} added to cart.`);
-    },
-    addToWishlist(id) {
-      console.log(`Item ${id} added to wishlist.`);
-    },
-  },
-
 };
 </script>
 

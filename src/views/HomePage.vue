@@ -68,16 +68,7 @@
     <h1>Explore our Products</h1>
     <div class="featured-products">
         <div class="products">
-          <FeatureProductComponent
-            v-for="product in products"
-            :key="product.id"
-            :name="product.name"
-            :image="product.image"
-            :price="product.price"
-            :originalPrice="product.originalPrice"
-            :discount="product.discount"
-            :reviews="product.reviews"
-          />
+          <FeatureProductComponent/>
         </div>
       <button class="view-all-button" @click="$router.push('/shop')">View All Products</button>
     </div>
@@ -187,7 +178,8 @@ export default {
       this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    }
+    },
+
 
 
   },
@@ -237,93 +229,14 @@ export default {
       ],
 
       // For countdown time
-      targetDate: new Date("2024-12-31T23:59:59").getTime(),
+      targetDate: new Date("2025-01-14T23:59:59").getTime(),
       days: 0,
       hours: 0,
       minutes: 0,
       seconds: 0,
       timer: null,
-      
-      products: [
-        {
-          id: 1,
-          name: "IPhone 16 Pro Max",
-          image: "./src/assets/images/iphone_16_pro_max.jpg",
-          price: 1249.99,
-          originalPrice: 1499.99,
-          discount: 10,
-          reviews: 103,
-        },
-
-        {
-          id: 2,
-          name: "Galaxy S24 Ultra",
-          image: "./src/assets/images/galaxy_s24_ultra.jpg",
-          price: 1299.99,
-          originalPrice: 0,
-          discount: 0,
-          reviews: 99,
-        },
-
-        {
-          id: 3,
-          name: "Xiaomi 14 Ultra",
-          image: "./src/assets/images/xiaomi_14ultra.jpg",
-          price: 699.99,
-          originalPrice: 0,
-          discount: 0,
-          reviews: 99,
-        },
-
-        {
-          id: 4,
-          name: "Vivo X100 Pro",
-          image: "./src/assets/images/vivo_x100pr0.jpg",
-          price: 499.99,
-          originalPrice: 549.99,
-          discount: 10,
-          reviews: 103,
-        },
-      ],
-
-      products: [
-        {
-          id: 1,
-          name: "IPhone 16 Pro Max",
-          image: "./src/assets/images/iphone_16_promax.jpg",
-          price: 1249.99,
-          originalPrice: 1499.99,
-          discount: 10,
-          reviews: 103,
-        },
-        {
-          id: 2,
-          name: "Galaxy S24 Ultra",
-          image: "./src/assets/images/galaxy_s24_ultra.jpg",
-          price: 1299.99,
-          originalPrice: 0,
-          discount: 0,
-          reviews: 99,
-        },
-        {
-          id: 3,
-          name: "Xiaomi 14 Ultra",
-          image: "./src/assets/images/xiaomi_14ultra.jpg",
-          price: 699.99,
-          originalPrice: 0,
-          discount: 0,
-          reviews: 99,
-        },
-        {
-          id: 4,
-          name: "Vivo X100 Pro",
-          image: "./src/assets/images/vivo_x100pro.jpg",
-          price: 499.99,
-          originalPrice: 549.99,
-          discount: 10,
-          reviews: 103,
-        },
-      ],
+    
+    
     };
   },
 

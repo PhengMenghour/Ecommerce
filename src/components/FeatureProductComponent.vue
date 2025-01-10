@@ -1,41 +1,61 @@
 <template>
-    <div class="product-card" @click="$router.push('/productDetail')">
-      <div class="discount-label" v-if="discount > 0">{{ discount }}% Off</div>
-      <img :src="image" :alt="name" class="product-image" />
-      <h3 class="product-name">{{ name }}</h3>
+  <div class="product-container">
+    <div 
+      v-for="product in products.slice(4, 8)" 
+      :key="product.id" 
+      class="product-card" 
+      @click="viewProductDetail(product.id)"
+    >
+      <div class="discount-label" v-if="product.discount > 0">{{ product.discount }}% Off</div>
+      <img :src="product.image" :alt="product.name" class="product-image" />
+      <h3 class="product-name">{{ product.name }}</h3>
       <div class="rating">
-        <span class="stars"><i class="ri-star-fill"></i></span>
-        <span class="stars"><i class="ri-star-fill"></i></span>
-        <span class="stars"><i class="ri-star-fill"></i></span>
-        <span class="stars"><i class="ri-star-fill"></i></span>
-        <span>({{ reviews }})</span>
+        <span class="stars" v-for="i in 5" :key="i">
+          <i class="ri-star-fill"></i>
+        </span>
+        <span>({{ product.reviews }})</span>
       </div>
       <div class="price">
-        <span class="current-price">${{ price }}</span>
-        <span class="original-price" v-if="discount > 0">${{ originalPrice }}</span>
+        <span class="current-price">${{ product.price }}</span>
+        <span class="original-price" v-if="product.discount > 0">${{ product.originalPrice }}</span>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
+import { useProductsStore } from '@/stores/Product';
+
 export default {
   name: "ProductDiscount",
-  props: {
-    name: { type: String, required: true },
-    image: { type: String, required: true },
-    price: { type: Number, required: true },
-    originalPrice: { type: Number, required: false },
-    discount: { type: Number, required: false, default: 0 },
-    reviews: { type: Number, required: false, default: 0 },
+
+  setup() {
+    const productsStore = useProductsStore();
+    const products = productsStore.products; // Assuming `products` is an array in the store
+
+    return {
+      products,
+    };
   },
+
+  methods: {
+    viewProductDetail(id) {
+      // Navigate to product detail page
+      this.$router.push(`/productDetail/${id}`);
+    },
+  }
 };
-
-
 </script>
 
 <style scoped>
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
 .product-card {
-  position: relative; /* To position the discount label */
+  position: relative;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 16px;
@@ -43,23 +63,23 @@ export default {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 10px;
 }
-.product-card:hover{
+.product-card:hover {
   transform: scale(1.05);
-  transition: transform .2s;
-  background-color:#e5dddd;
+  transition: transform 0.2s;
+  background-color: #e5dddd;
 }
 
 .discount-label {
   position: absolute;
-  top: 10px; /* Adjust the position from the top */
-  right: 10px; /* Adjust the position from the right */
-  background-color: #007bff; /* Blue background for the discount tag */
+  top: 10px;
+  right: 10px;
+  background-color: #007bff;
   color: white;
   padding: 6px 12px;
   border-radius: 4px;
   font-size: 12px;
   font-weight: bold;
-  z-index: 1; /* Ensures the label appears on top of the image */
+  z-index: 1;
 }
 .product-image {
   width: 100%;
@@ -67,7 +87,6 @@ export default {
   margin: 0 auto;
   border: none;
   position: relative;
-  
 }
 .product-name {
   font-size: 16px;
