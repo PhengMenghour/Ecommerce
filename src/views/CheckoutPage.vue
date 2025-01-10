@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <div class="main-container">
     <div class="checkout-container">
       <div class="checkout-form">
         <BillingForm aria-labelledby="billing-form" />
@@ -20,7 +20,7 @@
       </Suspense>
     </div>
     <FooterComponent/>
-  </main>
+  </div>
 </template>
 
 <script>
@@ -42,24 +42,20 @@ export default {
 </script>
 
 <style scoped>
+.main-container{
+  padding: 20px;
+}
+
 .checkout-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  padding: 40px;
+  display: flex;
 }
 
 .checkout-form{
-  background: var(--card-bg, #ffffff); /* Example of a CSS variable */
-  padding: 20px;
-  /* border-radius: var(--border-radius, 8px);
-  box-shadow: var(--box-shadow, 0 2px 4px rgba(0, 0, 0, 0.1)); */
+  flex: 1;
+
 }
 .checkout-summary {
-  background: var(--card-bg, #f9f3f0); /* Example of a CSS variable */
-  padding: 20px;
-  border-radius: var(--border-radius, 8px);
-  box-shadow: var(--box-shadow, 0 2px 4px rgba(0, 0, 0, 0.1));
+  flex: 1;
 }
 
 .features-section-container {

@@ -167,7 +167,7 @@ export default {
     resize: none;
     font-family: "Poppins";
 
-    /* Disable resizing */
+
 
 }
 

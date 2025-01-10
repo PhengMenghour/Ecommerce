@@ -2,17 +2,9 @@
   <div class="order-summary">
     <h3>Your Order</h3>
     <div class="order-items">
-      <div class="order-item">
-        <span>Bose Quietcomfort Ultra Noise</span>
-        <span>$619.00</span>
-      </div>
-      <div class="order-item">
-        <span>DualSense Wireless Controller</span>
-        <span>$49.99</span>
-      </div>
-      <div class="order-item">
-        <span>Xiaomi 14 Ultra</span>
-        <span>$699.99</span>
+      <div v-for="item in cartItems" :key="item.id" class="order-item">
+        <span>{{ item.name }}</span>
+        <span>${{ (item.price * item.quantity).toFixed(2) }}</span>
       </div>
       <div class="order-item">
         <span>Shipping Method</span>
@@ -35,7 +27,7 @@
     </div>
     <div class="order-total">
       <strong>Total:</strong>
-      <strong>$1468.97</strong>
+      <strong>${{ total.toFixed(2) }}</strong>
     </div>
     <div class="payment-options">
       <h4>Payment Methods</h4>
@@ -67,9 +59,23 @@
 </template>
 
 <script>
+import { useCartStore } from "@/stores/Cart";
+
 export default {
-  data() {
-    return {};
+  computed: {
+    // Get cart items from the store
+    cartItems() {
+      const cartStore = useCartStore()
+      return cartStore.cartItems
+    },
+    // Calculate the total price from cart items and shipping
+    total() {
+      const cartTotal = this.cartItems.reduce((sum, item) => {
+        return sum + (item.price * item.quantity);
+      }, 0);
+      const shippingCost = 50; // You can modify this based on the selected shipping method
+      return cartTotal + shippingCost;
+    },
   },
 };
 </script>
@@ -80,7 +86,7 @@ export default {
   padding: 20px;
   border-radius: 10px;
   max-width: 400px;
-  margin: auto;
+  margin: 20px;
   font-family: Arial, sans-serif;
   color: #333;
   font-family: "Poppins";
@@ -88,12 +94,14 @@ export default {
 
 .order-summary h3 {
   margin-bottom: 20px;
-  text-align: center;
+  text-align: start;
   font-size: 1.5em;
+  font-weight: 600;
 }
 
 .order-items {
   margin-bottom: 20px;
+  background-color: ;
 }
 
 .order-item {
