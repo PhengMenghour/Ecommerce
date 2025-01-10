@@ -10,14 +10,14 @@
     </div>
     
     <div class="features-section-container">
-      <Suspense>
+      <!-- <Suspense>
         <template #default>
           <FeaturesSection aria-labelledby="features-section" />
         </template>
         <template #fallback>
           <div class="loading-spinner">Loading...</div>
         </template>
-      </Suspense>
+      </Suspense> -->
     </div>
     <FooterComponent/>
   </div>
@@ -55,6 +55,8 @@ export default {
 
 }
 .checkout-summary {
+  display: flex;
+  justify-content: center;
   flex: 1;
 }
 

@@ -1,34 +1,47 @@
 <template>
   <div class="order-summary">
     <h3>Your Order</h3>
+
     <div class="order-items">
-      <div v-for="item in cartItems" :key="item.id" class="order-item">
-        <span>{{ item.name }}</span>
-        <span>${{ (item.price * item.quantity).toFixed(2) }}</span>
+      <div class="info-container">
+        <div class="header-container">
+          <p>Product</p>
+          <p>Subtotal</p>
+        </div>
+        <hr>
+        <div v-for="item in cartItems" :key="item.id" class="order-item">
+          <span>{{ item.name }}</span>
+          <span>${{ (item.price * item.quantity).toFixed(2) }}</span>
+        </div>
+        <hr>
+        <div class="order-item">
+          <!-- <span>Shipping Method</span>
+          <span>$50.00</span> -->
+        </div>
+        <div class="shipping-method">
+          <label>
+            <input type="radio" name="shipping" checked />
+            Free Shipping
+          </label>
+          
+          <label>
+            <input type="radio" name="shipping" />
+            Local
+          </label>
+          <label>
+            <input type="radio" name="shipping" />
+            Flat rate
+          </label>
+        </div>
+        <div class="order-total">
+          <strong>Total:</strong>
+          <strong>${{ total.toFixed(2) }}</strong>
+        </div>
+
       </div>
-      <div class="order-item">
-        <span>Shipping Method</span>
-        <span>$50.00</span>
+
       </div>
-    </div>
-    <div class="shipping-method">
-      <label>
-        <input type="radio" name="shipping" checked />
-        Free Shipping
-      </label>
-      <label>
-        <input type="radio" name="shipping" />
-        Local
-      </label>
-      <label>
-        <input type="radio" name="shipping" />
-        Flat rate
-      </label>
-    </div>
-    <div class="order-total">
-      <strong>Total:</strong>
-      <strong>${{ total.toFixed(2) }}</strong>
-    </div>
+
     <div class="payment-options">
       <h4>Payment Methods</h4>
       <label>
@@ -38,6 +51,7 @@
           Make your payment directly into our bank account.
         </p>
       </label>
+      <hr>
       <label>
         <input type="radio" name="payment" />
         Cash on Delivery
@@ -45,6 +59,7 @@
           Pay with cash upon delivery.
         </p>
       </label>
+      <hr>
       <label>
         <input type="radio" name="payment" checked />
         PayPal
@@ -53,6 +68,7 @@
           PayPal account.
         </p>
       </label>
+      <hr>
     </div>
     <button class="checkout-button">Process to Checkout</button>
   </div>
@@ -85,7 +101,8 @@ export default {
   background-color: #f9f5f0;
   padding: 20px;
   border-radius: 10px;
-  max-width: 400px;
+  width: 100%;
+  /* max-width: 100%; */
   margin: 20px;
   font-family: Arial, sans-serif;
   color: #333;
@@ -101,7 +118,20 @@ export default {
 
 .order-items {
   margin-bottom: 20px;
-  background-color: ;
+  font-size: 18px;
+  /* background-color: ; */
+}
+
+.info-container{
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.header-container{
+  display: flex;
+  justify-content: space-between;
+  font-size: 22px;
 }
 
 .order-item {
@@ -135,6 +165,7 @@ export default {
 .payment-options h4 {
   margin-bottom: 10px;
   font-size: 1.2em;
+  font-weight: 600;
 }
 
 .payment-options label {
