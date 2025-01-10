@@ -10,7 +10,7 @@
       </div>
       <h1>I'm New Here</h1>
       <p>Enter your detail below</p>
-      <form @submit.prevent="createAccount">
+      <form @submit.prevent="handleSignUp">
         <div class="input-group">
           <fieldset>
             <legend>User name</legend>
@@ -36,6 +36,9 @@
 </template>
 
 <script>
+
+
+import Swal from 'sweetalert2';
 export default {
   name: "SignUp",
   data() {
@@ -55,7 +58,46 @@ export default {
     },
     goToSignIn() {
       this.$router.push('/signIn') // or path: '/signIn'
-    }
+    },
+
+    handleSignUp() {
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+        const userExists = users.some((user) => user.email === this.email);
+  
+        if (userExists) {
+          
+          Swal.fire({
+            icon: "info",
+            title: "",
+            text: "Email already registered. Please use a different email!",
+            timer: 3000, // Automatically closes after 3 seconds
+            showConfirmButton: false,
+          });
+          
+
+
+        } else {
+          users.push({
+            username: this.username,
+            email: this.email,
+            password: this.password,
+          });
+          localStorage.setItem("users", JSON.stringify(users));
+          
+
+          Swal.fire({
+            icon: "success",
+            title: "Sign Up Successful!",
+            text: "Sign Up successful! You can now sign in.",
+            timer: 1000, // Automatically closes after 3 seconds
+            showConfirmButton: false,
+          });
+          
+            this.$router.push("/signin");
+        }
+    },
+
+
   },
 };
 </script>
