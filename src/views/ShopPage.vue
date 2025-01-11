@@ -10,7 +10,7 @@
         <h1>Privacy and Policy</h1>
       </div>
       <div class="image-container">
-        <img src="/src/assets/images/homepod.png" alt="">
+        <img src="@/assets/images/homepod.png" alt="">
       </div>
     </div>
 
