@@ -27,6 +27,12 @@ const routes = [
     component: ShopPage,
   },
   {
+    path: '/shop/:mainCategory',
+    name: 'shopCategory',
+    component: ShopPage, // Reuse ShopPage to handle filtering
+    props: true, // Pass route params as props
+  },
+  {
     path: '/signIn',
     name: 'signIn',
     component: SignInPage,

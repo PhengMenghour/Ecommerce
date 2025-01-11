@@ -18,13 +18,13 @@
           Shop <i class="ri-arrow-down-s-line"></i>
         </RouterLink>
         <ul class="dropdown-menu">
-          <li><a href="#phone">Phone</a></li>
-          <li><a href="#computer">Computer</a></li>
-          <li><a href="#accessories">Accessories</a></li>
-          <li><a href="#laptops">Laptops</a></li>
-          <li><a href="#monitors">Monitors</a></li>
-          <li><a href="#networking">Network</a></li>
-          <li><a href="#headphones">Headphone</a></li>
+          <li><RouterLink to="/shop/phones">Phones</RouterLink></li>
+          <li><RouterLink to="/shop/computers">Computers</RouterLink></li>
+          <li><RouterLink to="/shop/accessories">Accessories</RouterLink></li>
+          <li><RouterLink to="/shop/laptops">Laptops</RouterLink></li>
+          <li><RouterLink to="/shop/monitors">Monitors</RouterLink></li>
+          <li><RouterLink to="/shop/networking">Networking</RouterLink></li>
+          <li><RouterLink to="/shop/headphones">Headphones</RouterLink></li>
         </ul>
       </li>
 
@@ -81,7 +81,7 @@
       <button @click="toggleCartSidebar">
         <i class="ri-shopping-cart-line"></i>
       </button>
-      <button>
+      <button @click="$router.push('/pages/accountPage')">
         <i class="ri-user-line"></i>
       </button>
     </div>

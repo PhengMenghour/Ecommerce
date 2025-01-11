@@ -18,10 +18,14 @@
     </div>
   </div>
   <div class="category-group">
-    <div class="category-wrapper" v-for="(category, index) in visibleCategories" :key="category.id">
-      <CategoryComponent :image="category.image" :title="category.title" />
-    </div>
+  <div class="category-wrapper" v-for="(category, index) in visibleCategories" :key="category.id">
+    <CategoryComponent
+      :image="category.image"
+      :title="category.title"
+      :routePath="`/shop/${category.title.replace(/\s+/g, '-').toLowerCase()}`"
+    />
   </div>
+</div>
 
   <div class="countdown-container">
     <div class="left-section">
@@ -50,7 +54,7 @@
         </div>
       </div>
 
-      <button>Check it Out!</button>
+      <button @click="$router.push('/shop')">Check it Out!</button>
 
 
 

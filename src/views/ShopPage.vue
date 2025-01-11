@@ -7,10 +7,10 @@
           <span> | </span>
           <span>Shop</span>
         </nav>
-        <h1>Privacy and Policy</h1>
+        <h1>{{ selectedMainCategory ? selectedMainCategory : 'Explore All Products' }}</h1>
       </div>
       <div class="image-container">
-        <img src="@/assets/images/homepod.png" alt="">
+        <img src="@/assets/images/homepod.png" alt="" />
       </div>
     </div>
 
@@ -28,7 +28,7 @@
           <li v-for="category in categories" :key="category.id">
             <div class="category-header" @click="toggleCategory(category.id)">
               <span>{{ category.name }}</span>
-              <i class="dropdown-icon" :class="{ open: category.isOpen }">▼</i>
+              <i class="dropdown-icon" :class="{ open: category.isOpen }"><i class="ri-arrow-down-s-line"></i></i>
             </div>
             <ul v-if="category.isOpen" class="subcategory-list">
               <li v-for="subcategory in category.subcategories" :key="subcategory.id">
@@ -39,7 +39,7 @@
             </ul>
           </li>
         </ul>
-        <button v-if="selectedCategory" class="clear-btn" @click="clearCategory">
+        <button v-if="selectedCategory || selectedMainCategory" class="clear-btn" @click="clearCategory">
           Clear Filter
         </button>
       </aside>
@@ -61,19 +61,14 @@
               <option value="price_high">Price: High to Low</option>
             </select>
           </div>
-
         </div>
-
 
         <div class="products-grid">
           <div v-if="filteredProducts.length === 0" class="no-products">
             <p>No products found for this category.</p>
           </div>
-          <!-- <ProductComponent :product="product" v-for="product in products" :key="product.id" /> -->
+
           <ProductComponent :product="product" v-for="product in filteredProducts" :key="product.id" />
-
-          
-
         </div>
 
         <button v-if="filteredProducts.length > 0" class="load-more">
@@ -85,27 +80,25 @@
 </template>
 
 <script>
-import NavigationBarComponent from "@/components/NavigationBarComponent.vue";
-import ProductComponent from "@/components/ProductComponent.vue";
 import { useProductsStore } from "@/stores/Product";
+import ProductComponent from "@/components/ProductComponent.vue";
+
 export default {
   components: {
-    NavigationBarComponent,
     ProductComponent,
   },
 
-  setup() {
-    const productsStore = useProductsStore();
-    const products = productsStore.products;
-
-    return {
-      products,
-    };
+  props: {
+    mainCategory: {
+      type: String,
+      default: null,
+    },
   },
 
   data() {
     return {
       selectedCategory: null,
+      selectedMainCategory: this.mainCategory || null, // Use the route parameter if available
       sortOption: "latest",
       categories: [
         {
@@ -180,43 +173,59 @@ export default {
             { id: 30, name: "JBL", link: "jbl" },
           ],
         },
+        // Add other categories here...
       ],
     };
   },
+
   computed: {
     filteredProducts() {
-      if (!this.selectedCategory) {
-        return this.products; // Show all products if no category is selected
-      }
-      return this.products.filter(
-        (product) => product.category === this.selectedCategory
-      );
+      return this.products.filter((product) => {
+        const matchesMainCategory = this.selectedMainCategory
+          ? product.mainCategory.toLowerCase() === this.selectedMainCategory.toLowerCase()
+          : true;
+        const matchesSubcategory = this.selectedCategory
+          ? product.category.toLowerCase() === this.selectedCategory.toLowerCase()
+          : true;
+        return matchesMainCategory && matchesSubcategory;
+      });
+    },
+
+    products() {
+      const productsStore = useProductsStore();
+      return productsStore.products;
+    },
+  },
+
+  watch: {
+    mainCategory(newCategory) {
+      this.selectedMainCategory = newCategory || null;
     },
   },
 
   methods: {
     toggleCategory(categoryId) {
       const category = this.categories.find((cat) => cat.id === categoryId);
-      category.isOpen = !category.isOpen; // Toggle the dropdown
+      category.isOpen = !category.isOpen;
+      this.selectedMainCategory = category.isOpen ? category.name : null;
+      this.selectedCategory = null;
     },
+
     selectCategory(categoryName) {
-      this.selectedCategory = categoryName; // Set active category
+      this.selectedCategory = categoryName;
     },
-    
+
     clearCategory() {
-      this.selectedCategory = null; // Clear category filter
+      this.selectedCategory = null;
+      this.selectedMainCategory = null;
     },
+
     sortProducts() {
       if (this.sortOption === "price_low") {
-        this.products.sort(
-          (a, b) => parseFloat(a.discountPrice) - parseFloat(b.discountPrice)
-        );
+        this.products.sort((a, b) => parseFloat(a.discountPrice) - parseFloat(b.discountPrice));
       } else if (this.sortOption === "price_high") {
-        this.products.sort(
-          (a, b) => parseFloat(b.discountPrice) - parseFloat(a.discountPrice)
-        );
+        this.products.sort((a, b) => parseFloat(b.discountPrice) - parseFloat(a.discountPrice));
       }
-      // Add other sorting logic if needed
     },
   },
 };
@@ -240,14 +249,6 @@ export default {
   font-weight: 600;
 }
 
-.text {
-  font-family: "Poppins";
-}
-
-.text h3 {
-  font-weight: 500;
-}
-
 .image-container {
   display: flex;
   justify-content: end;
@@ -268,7 +269,6 @@ export default {
 
 .shop-container {
   display: flex;
-  /* Use flexbox to align categories and products side by side */
 }
 
 /* Sidebar Styles */
@@ -277,10 +277,6 @@ export default {
   border-right: 1px solid #e3e3e3;
   padding-right: 10px;
   margin-left: 20px;
-}
-
-.subcategories:hover {
-  color: red;
 }
 
 .categories h3 {
@@ -346,9 +342,7 @@ export default {
 /* Products Section */
 .products-section {
   flex: 1;
-  /* Allow products section to take remaining space */
   padding: 20px;
-  /* Add some padding */
 }
 
 .products-header {
@@ -356,13 +350,6 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-
-/* Sort by dropdown positioning */
-/* .sort-by-container {
-  position: absolute;
-  top: 120px;
-  right: 20px;
-} */
 
 .top-container {
   display: flex;

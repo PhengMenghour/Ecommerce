@@ -23,7 +23,7 @@
         
       </div>
       <hr>
-      <button class="checkout-btn">Proceed to Checkout</button>
+      <button @click="$router.push('/pages/checkout')" class="checkout-btn">Proceed to Checkout</button>
     </div>
   </div>
 </template>
@@ -73,6 +73,8 @@ export default {
 }
 
 .checkout-btn {
+  font-family: "Poppins";
+  font-weight: 500;
   background: blue;
   height: 50px;
   color: white;

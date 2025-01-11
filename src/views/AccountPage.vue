@@ -4,9 +4,11 @@
       <nav class="breadcrumb">
         <span><router-link to="/">Home</router-link></span>
         <span> | </span>
-        <span><router-link to="/shop">Shop</router-link></span>
+        <span><router-link to="/">Pages</router-link></span>
+        <span> | </span>
+        <span>Shop</span>
       </nav>
-      <h1>Privacy and Policy</h1>
+      <h1>Account</h1>
     </div>
     <div class="image-container">
       <img src="@/assets/images/homepod.png" alt="Homepod Image" />
@@ -22,7 +24,7 @@
           class="profile-img"
         />
         <h2>Hello Annie</h2>
-        <p style="margin-left: 90px">eTrade Member Since Sep 2020</p>
+        <p style="margin-left: 90px">SmartSphere Member Since Sep 2020</p>
       </div>
       <div class="menu-section">
         <ul class="menu-list">
@@ -175,6 +177,7 @@ export default {
 
 <style scoped>
 .breadcrumb-container {
+  font-family: "Poppins";
   display: flex;
   justify-content: space-between;
   align-items: center;

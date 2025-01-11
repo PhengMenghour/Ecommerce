@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>Summer Sale For All Electronic Devices And Free Delivery - OFF 10%!</h1>
-    <button class="shop-now">Shop Now</button>
+    <button class="shop-now" @click="$router.push('/shop')">Shop Now</button>
   </div>
 </template>
 
