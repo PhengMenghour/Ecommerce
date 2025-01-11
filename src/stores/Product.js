@@ -612,7 +612,7 @@ export const useProductsStore = defineStore('products', {
                 quantity: 0,
             },
             {
-                id: 19,
+                id: 20,
                 name: "Cisco Catalyst 9200L",
                 price: 899,
                 mainCategory: "Networking",
@@ -644,7 +644,7 @@ export const useProductsStore = defineStore('products', {
                 quantity: 0,
             },
             {
-                id: 20,
+                id: 21,
                 name: "Sony WF-1000XM5",
                 price: 899,
                 mainCategory: "Headphones",
@@ -676,7 +676,7 @@ export const useProductsStore = defineStore('products', {
                 quantity: 0,
             },
             {
-                id: 21,
+                id: 22,
                 name: "Bose QuietComfort 45",
                 price: 899,
                 mainCategory: "Headphones",
@@ -708,7 +708,7 @@ export const useProductsStore = defineStore('products', {
                 quantity: 0,
             },
             {
-                id: 22,
+                id: 23,
                 name: "JBL Tune 760NC",
                 price: 899,
                 mainCategory: "Headphones",
