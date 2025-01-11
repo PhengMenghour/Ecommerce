@@ -61,41 +61,72 @@ export default {
     },
 
     handleSignUp() {
+      if (!this.username || !this.email || !this.password) {
+        Swal.fire({
+          icon: "warning",
+          title: "Missing Information",
+          text: "Please fill in all fields.",
+          timer: 3000,
+          showConfirmButton: false,
+        });
+        return;
+      }
+
+      if (this.password.length < 8) {
+        Swal.fire({
+          icon: "error",
+          title: "Weak Password",
+          text: "Password must be at least 8 characters long.",
+          timer: 3000,
+          showConfirmButton: false,
+        });
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(this.email)) {
+        Swal.fire({
+          icon: "error",
+          title: "Invalid Email",
+          text: "Please enter a valid email address.",
+          timer: 3000,
+          showConfirmButton: false,
+        });
+        return;
+      }
+
+      // Check if email is already registered
       const users = JSON.parse(localStorage.getItem("users")) || [];
-        const userExists = users.some((user) => user.email === this.email);
-  
-        if (userExists) {
-          
-          Swal.fire({
-            icon: "info",
-            title: "",
-            text: "Email already registered. Please use a different email!",
-            timer: 3000, // Automatically closes after 3 seconds
-            showConfirmButton: false,
-          });
-          
+      const userExists = users.some((user) => user.email === this.email);
 
+      if (userExists) {
+        Swal.fire({
+          icon: "info",
+          title: "",
+          text: "Email already registered. Please use a different email!",
+          timer: 3000,
+          showConfirmButton: false,
+        });
+      } else {
+        users.push({
+          username: this.username,
+          email: this.email,
+          password: this.password,
+        });
+        localStorage.setItem("users", JSON.stringify(users));
 
-        } else {
-          users.push({
-            username: this.username,
-            email: this.email,
-            password: this.password,
-          });
-          localStorage.setItem("users", JSON.stringify(users));
-          
+        Swal.fire({
+          icon: "success",
+          title: "Sign Up Successful!",
+          text: "Sign Up successful! You can now sign in.",
+          timer: 1000,
+          showConfirmButton: false,
+        });
 
-          Swal.fire({
-            icon: "success",
-            title: "Sign Up Successful!",
-            text: "Sign Up successful! You can now sign in.",
-            timer: 1000, // Automatically closes after 3 seconds
-            showConfirmButton: false,
-          });
-          
-            this.$router.push("/signin");
-        }
+        this.$router.push("/signin");
+      }
     },
+
 
 
   },
