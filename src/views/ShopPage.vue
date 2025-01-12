@@ -5,7 +5,7 @@
         <nav class="breadcrumb">
           <span><a href="/">Home</a></span>
           <span> | </span>
-          <span>Shop</span>
+          <span><a href="/shop">Shop</a></span>
         </nav>
         <h1>{{ selectedMainCategory ? selectedMainCategory : 'Explore All Products' }}</h1>
       </div>
