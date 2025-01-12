@@ -24,9 +24,9 @@
           </fieldset>
         </div>
         <div class="buttom">
-        <button class="create-account-btn" type="submit">Sign in</button>
-        <span><a href="">Forget Password?</a></span>
-      </div>
+          <button class="create-account-btn" type="submit">Sign in</button>
+          <span><a href="">Forget Password?</a></span>
+        </div>
 
       </form>
     </div>
@@ -36,6 +36,7 @@
 <script>
 
 import Swal from 'sweetalert2';
+import { useUserStore } from '@/stores/User';
 
 export default {
   name: "SignIn",
@@ -47,7 +48,7 @@ export default {
       message: "",
     };
   },
-  
+
   methods: {
     createAccount() {
       console.log("Account Created:", {
@@ -61,41 +62,41 @@ export default {
     },
 
     handleSignIn() {
-      
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-        const user = users.find(
-          (user) =>
-            user.email === this.email && user.password === this.password
-        );
-  
-        if (user) {
-          // Replace alert with console.log
-          Swal.fire({
-            icon: "success",
-            title: "Sign-In Successful!",
-            text: "Welcome back!",
-            timer: 1000, // Automatically closes after 3 seconds
-            showConfirmButton: false,
-          });
-          
-            this.$router.push("/");
-          // Redirect after 3 seconds
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = users.find(
+        (user) =>
+          user.email === this.email && user.password === this.password
+      );
 
-          // Simulate navigation to a dashboard
-          
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Sign-In Fail!",
-            text: "Invalid email or password. Please try again.",
-            timer: 3000, // Automatically closes after 3 seconds
-            showConfirmButton: false,
-          });
-          
-        }
-      
+      if (user) {
+        // Replace alert with console.log
+        Swal.fire({
+          icon: "success",
+          title: "Sign-In Successful!",
+          text: "Welcome back!",
+          timer: 1000, // Automatically closes after 3 seconds
+          showConfirmButton: false,
+        });
+
+        // Use Pinia store to set user data
+        const userStore = useUserStore();  // Get the Pinia store instance
+        userStore.setUser(user);  // Store user information in Pinia
+
+        this.$router.push("/");
+
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Sign-In Fail!",
+          text: "Invalid email or password. Please try again.",
+          timer: 3000, // Automatically closes after 3 seconds
+          showConfirmButton: false,
+        });
+
+      }
+
     },
-    
+
   },
 };
 </script>
@@ -132,11 +133,11 @@ export default {
   align-items: flex-start;
 }
 
-.right-section h1{
+.right-section h1 {
   font-size: 28px;
 }
 
-.right-section p{
+.right-section p {
   font-size: 22px;
 }
 
