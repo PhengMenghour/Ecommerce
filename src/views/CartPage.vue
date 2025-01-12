@@ -41,30 +41,9 @@
 
     <OrderSummary :subtotal="subtotal" :tax="tax" :total="total" />
 
-    <footer class="features-section">
-      <div class="feature">
-        <!-- <img src="/assets/secure-icon.png" alt="Secure" /> -->
-        <i class="fas fa-lock"></i>
-        <p>Fast and Secure</p>
-      </div>
-      <div class="feature">
-        <!-- <img src="/assets/money-back-icon.png" alt="Money Back" /> -->
-        <i class="fas fa-money-bill"></i>
-        <p>Money Back Guarantee</p>
-      </div>
-      <div class="feature">
-        <!-- <img src="/assets/return-icon.png" alt="Return Policy" /> -->
-        <i class="fas fa-clock"></i>
-        <p>24 Hours Return Policy</p>
-      </div>
-      <div class="feature">
-        <!-- <img src="/assets/support-icon.png" alt="Support" /> -->
-        <i class="fas fa-headset"></i>
-        <p>Pro Quality Support</p>
-      </div>
-    </footer>
+
   </div>
-  <FooterComponent/>
+  <FooterComponent />
 </template>
 
 <script>
@@ -87,9 +66,9 @@ export default {
   },
   computed: {
     cartItems() {
-        const cartStore = useCartStore()
-        return cartStore.cartItems
-      },
+      const cartStore = useCartStore()
+      return cartStore.cartItems
+    },
 
     subtotal() {
       return this.cartItems.reduce(
@@ -140,7 +119,7 @@ export default {
   align-items: center;
 }
 
-.cart-header button{
+.cart-header button {
   height: 60px;
   width: 200px;
   border: 2px solid #b7b7b7;
@@ -149,31 +128,31 @@ export default {
   font-size: large;
 }
 
-.cart-header button:hover{
+.cart-header button:hover {
   background-color: #3577f0;
   color: #ffffff;
 }
 
-.column-container{
+.column-container {
   display: flex;
   align-items: center;
 }
 
-.column-product{
+.column-product {
   display: flex;
   justify-content: center;
   flex: 2.5
 }
 
-.column-price{
+.column-price {
   flex: 1;
 }
 
-.column-quantity{
+.column-quantity {
   flex: 1;
 }
 
-.column-quantity{
+.column-quantity {
   flex: 1;
 }
 
@@ -200,12 +179,12 @@ export default {
   font-size: larger;
 }
 
-.couple-left-side{
+.couple-left-side {
   display: flex;
   gap: 20px;
 }
 
-.coupon-left-side button{
+.coupon-left-side button {
   height: 60px;
   width: 100px;
   border: 2px solid #b7b7b7;
@@ -214,18 +193,18 @@ export default {
   font-size: large;
 }
 
-.coupon-left-side button:hover{
+.coupon-left-side button:hover {
   background-color: #3577f0;
   color: #ffffff;
 }
 
-.coupon-right-side{
+.coupon-right-side {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.coupon-right-side button{
+.coupon-right-side button {
   height: 60px;
   width: 150px;
   border: 2px solid #b7b7b7;
@@ -234,7 +213,7 @@ export default {
   font-size: large;
 }
 
-.coupon-right-side button:hover{
+.coupon-right-side button:hover {
   background-color: #3577f0;
   color: #ffffff;
 }
@@ -250,7 +229,7 @@ export default {
   height: 50px;
 }
 
-.feature{
+.feature {
   display: flex;
   align-items: center;
   gap: 20px;
