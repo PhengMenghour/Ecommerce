@@ -9,7 +9,7 @@
         <button @click="goToSignUp" class="sign-in-btn">Sign Up Now</button>
       </div>
       <h1>Sign in to SmartSphere</h1>
-      <p>Enter your detail below</p><br><br>
+      <p>Enter your details below</p><br><br>
       <form @submit.prevent="handleSignIn">
         <div class="input-group">
           <fieldset>
@@ -25,16 +25,14 @@
         </div>
         <div class="buttom">
           <button class="create-account-btn" type="submit">Sign in</button>
-          <span><a href="">Forget Password?</a></span>
+          <span><a href="#">Forget Password?</a></span>
         </div>
-
       </form>
     </div>
   </div>
 </template>
 
 <script>
-
 import Swal from 'sweetalert2';
 import { useUserStore } from '@/stores/User';
 
@@ -42,61 +40,52 @@ export default {
   name: "SignIn",
   data() {
     return {
-      username: "",
-      email: "",
+      email: "",  // Only keeping email and password
       password: "",
-      message: "",
     };
   },
 
   methods: {
-    createAccount() {
-      console.log("Account Created:", {
-        username: this.username,
-        email: this.email,
-        password: this.password,
-      });
-    },
+    // Redirect to Sign Up page
     goToSignUp() {
-      this.$router.push('/signUp') // or path: '/signup'
+      this.$router.push('/signUp'); 
     },
 
+    // Handle user sign-in logic
     handleSignIn() {
       const users = JSON.parse(localStorage.getItem("users")) || [];
       const user = users.find(
-        (user) =>
-          user.email === this.email && user.password === this.password
+        (user) => user.email === this.email && user.password === this.password
       );
 
       if (user) {
-        // Replace alert with console.log
+        // Show success message on successful sign-in
         Swal.fire({
           icon: "success",
           title: "Sign-In Successful!",
           text: "Welcome back!",
-          timer: 1000, // Automatically closes after 3 seconds
+          timer: 1000, // Automatically closes after 1 second
           showConfirmButton: false,
         });
 
-        // Use Pinia store to set user data
-        const userStore = useUserStore();  // Get the Pinia store instance
-        userStore.setUser(user);  // Store user information in Pinia
+        // Set user data in Pinia store
+        const userStore = useUserStore();
+        userStore.setUser(user);  // Store user in Pinia
 
+        // Redirect to homepage
         this.$router.push("/");
 
       } else {
+        // Show error message on failed sign-in
         Swal.fire({
           icon: "error",
-          title: "Sign-In Fail!",
+          title: "Sign-In Failed!",
           text: "Invalid email or password. Please try again.",
           timer: 3000, // Automatically closes after 3 seconds
           showConfirmButton: false,
         });
-
       }
-
     },
-
   },
 };
 </script>
@@ -155,7 +144,6 @@ export default {
   font-size: 20px;
   color: #000000;
   margin-right: 25px;
-
 }
 
 .sign-in-btn {
@@ -174,7 +162,6 @@ export default {
   background-color: #b82c66;
 }
 
-
 .input-group {
   margin-bottom: 20px;
   width: 456px;
@@ -188,7 +175,6 @@ fieldset {
   display: flex;
   align-items: center;
   height: 73px;
-
 }
 
 :placeholder-shown {
@@ -215,7 +201,6 @@ input {
   font-size: 24px;
   color: #000000;
   background: transparent;
-
 }
 
 input:focus {
@@ -227,20 +212,6 @@ fieldset:focus-within {
 }
 
 .create-account-btn {
-  /* width: 189px;
-  height: 67px;
-  background-color: #2975FD;
-  color: white;
-  font-size: 26px;
-  font-weight: normal;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 0px;
-  margin-top: 62px;
-  display: block;
-  margin-right: 75px; */
-
   width: 150px;
   height: 50px;
   color: white;
@@ -265,16 +236,12 @@ fieldset:focus-within {
   margin-top: 30px;
   margin-left: 10px;
   align-items: baseline;
-
 }
 
 .buttom span {
-
   font-size: 20px;
   color: #2975FD;
   margin-right: 25px;
-
-
 }
 
 .buttom span a {

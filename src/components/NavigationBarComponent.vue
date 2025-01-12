@@ -18,17 +18,31 @@
           Shop <i class="ri-arrow-down-s-line"></i>
         </RouterLink>
         <ul class="dropdown-menu">
-          <li><RouterLink to="/shop/phones">Phones</RouterLink></li>
-          <li><RouterLink to="/shop/computers">Computers</RouterLink></li>
-          <li><RouterLink to="/shop/accessories">Accessories</RouterLink></li>
-          <li><RouterLink to="/shop/laptops">Laptops</RouterLink></li>
-          <li><RouterLink to="/shop/monitors">Monitors</RouterLink></li>
-          <li><RouterLink to="/shop/networking">Networking</RouterLink></li>
-          <li><RouterLink to="/shop/headphones">Headphones</RouterLink></li>
+          <li>
+            <RouterLink to="/shop/phones">Phones</RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/shop/computers">Computers</RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/shop/accessories">Accessories</RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/shop/laptops">Laptops</RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/shop/monitors">Monitors</RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/shop/networking">Networking</RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/shop/headphones">Headphones</RouterLink>
+          </li>
         </ul>
       </li>
 
-      
+
 
       <li class="dropdown">
         <RouterLink class="main-links" :class="{ active: activeLink === 'pages' }" :to="{ name: 'home' }"
@@ -75,8 +89,7 @@
     <div class="nav-icons">
       <div class="search-container">
         <i class="ri-search-line" @click="handleSearch"></i>
-        <input type="text" v-model="searchQuery" placeholder="What are you looking for?" @input="handleSearch" 
-        />
+        <input type="text" v-model="searchQuery" placeholder="What are you looking for?" @input="handleSearch" />
         <i class="ri-search-line" @click="handleSearch"></i>
       </div>
       <button>
@@ -123,13 +136,14 @@ export default {
   components: {
     CartItemComponent
   },
-  
-  
+
+
 
   data() {
     return {
       activeLink: "home", // Default active link
       isCartOpen: false, // Sidebar visibility state
+      searchQuery: '', // Add a data property for the search input
     };
   },
 
@@ -157,12 +171,7 @@ export default {
       searchStore.setQuery(this.searchQuery); // Set the search query in the store
       this.$router.push('/shop'); // Navigate to the Shop page
     },
-    
-  },
-  data() {
-    return {
-      searchQuery: '', // Add a data property for the search input
-    };
+
   },
 };
 </script>

@@ -15,7 +15,7 @@
         <button class="view-item" @click="viewProductDetail(product.id)">
           <i class="ri-eye-line"></i>
         </button>
-        <button class="add-to-cart" @click="addToCart(product)">Add to Cart</button>
+        <button class="add-to-cart" @click="handleAddToCart">Add to Cart</button>
         <button class="wishlist">
           <i class="ri-heart-3-line"></i>
         </button>
@@ -27,6 +27,8 @@
 <script>
 import { useCartStore } from '@/stores/Cart';
 import { useProductsStore } from '@/stores/Product';
+import { useUserStore } from '@/stores/User';
+import { useRouter } from 'vue-router';
 
 export default {
   name: "ProductCards",
@@ -35,19 +37,9 @@ export default {
     const productsStore = useProductsStore();
     const products = productsStore.products;
 
-    const addToCart = (product) => {
-      const cartStore = useCartStore();
-      cartStore.addToCart({
-        ...product, // Pass the current product
-        selectedColor: product.selectedColor, // Include selected options
-        selectedSize: product.selectedSize,
-        quantity: product.quantity,
-      });
-    };
-
     return {
       products,
-      addToCart,  // Return addToCart function to template
+        // Return addToCart function to template
     };
   },
 
@@ -55,6 +47,25 @@ export default {
     viewProductDetail(id) {
       // Navigate to product detail page
       this.$router.push(`/productDetail/${id}`);
+    },
+
+    handleAddToCart() {
+      const userStore = useUserStore();
+      const cartStore = useCartStore();
+      const router = useRouter();
+
+      if (!userStore.isLoggedIn) {
+        // If the user is not logged in, redirect to the login page
+        this.$router.push('/signIn'); // Assuming 'login' is the name of your login route
+      } else {
+        // If the user is logged in, add the item to the cart
+        cartStore.addToCart({
+          ...this.product, // Pass the current product
+          selectedColor: this.product.selectedColor, // Include selected options
+          selectedSize: this.product.selectedSize,
+          quantity: this.product.quantity,
+        });
+      }
     },
   },
 };
