@@ -28,6 +28,8 @@
         </ul>
       </li>
 
+      
+
       <li class="dropdown">
         <RouterLink class="main-links" :class="{ active: activeLink === 'pages' }" :to="{ name: 'home' }"
           @click="setActiveLink('pages')">
@@ -72,8 +74,10 @@
 
     <div class="nav-icons">
       <div class="search-container">
-        <input type="text" placeholder="What are you looking for?" />
-        <i class="ri-search-line"></i>
+        <i class="ri-search-line" @click="handleSearch"></i>
+        <input type="text" v-model="searchQuery" placeholder="What are you looking for?" @input="handleSearch" 
+        />
+        <i class="ri-search-line" @click="handleSearch"></i>
       </div>
       <button>
         <i class="ri-heart-3-line"></i>
@@ -112,12 +116,15 @@
 <script>
 import { useCartStore } from '@/stores/Cart';
 import CartItemComponent from './CartItemComponent.vue';
+import { useSearchStore } from '@/stores/Search'; // Import the search store
 import { RouterLink } from 'vue-router';
 
 export default {
   components: {
     CartItemComponent
   },
+  
+  
 
   data() {
     return {
@@ -145,6 +152,17 @@ export default {
       this.$router.push(route); // Navigate to the specified route
       this.toggleCartSidebar(); // Close the sidebar
     },
+    handleSearch() {
+      const searchStore = useSearchStore();
+      searchStore.setQuery(this.searchQuery); // Set the search query in the store
+      this.$router.push('/shop'); // Navigate to the Shop page
+    },
+    
+  },
+  data() {
+    return {
+      searchQuery: '', // Add a data property for the search input
+    };
   },
 };
 </script>

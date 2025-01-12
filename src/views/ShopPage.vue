@@ -14,12 +14,10 @@
       </div>
     </div>
 
-    <!-- Page Heading -->
     <div class="page-heading">
       <h2>Explore All Products</h2>
     </div>
 
-    <!-- Main Content -->
     <div class="shop-container">
       <!-- Categories Sidebar -->
       <aside class="categories">
@@ -28,7 +26,9 @@
           <li v-for="category in categories" :key="category.id">
             <div class="category-header" @click="toggleCategory(category.id)">
               <span>{{ category.name }}</span>
-              <i class="dropdown-icon" :class="{ open: category.isOpen }"><i class="ri-arrow-down-s-line"></i></i>
+              <i class="dropdown-icon" :class="{ open: category.isOpen }">
+                <i class="ri-arrow-down-s-line"></i>
+              </i>
             </div>
             <ul v-if="category.isOpen" class="subcategory-list">
               <li v-for="subcategory in category.subcategories" :key="subcategory.id">
@@ -51,7 +51,6 @@
             <p>Showing {{ filteredProducts.length }} products</p>
           </div>
 
-          <!-- Sort by dropdown -->
           <div class="sort-by-container">
             <select v-model="sortOption" @change="sortProducts">
               <option value="latest">Sort by Latest</option>
@@ -68,7 +67,7 @@
             <p>No products found for this category.</p>
           </div>
 
-          <ProductComponent :product="product" v-for="product in filteredProducts" :key="product.id" />
+          <ProductComponent v-for="product in filteredProducts" :key="product.id" :product="product" />
         </div>
 
         <button v-if="filteredProducts.length > 0" class="load-more">
@@ -80,8 +79,10 @@
 </template>
 
 <script>
+import { ref, computed } from 'vue';
 import { useProductsStore } from "@/stores/Product";
 import ProductComponent from "@/components/ProductComponent.vue";
+import { useSearchStore } from "@/stores/Search";
 
 export default {
   components: {
@@ -95,138 +96,140 @@ export default {
     },
   },
 
-  data() {
-    return {
-      selectedCategory: null,
-      selectedMainCategory: this.mainCategory || null, // Use the route parameter if available
-      sortOption: "latest",
-      categories: [
-        {
-          id: 1,
-          name: "Phones",
-          isOpen: false,
-          subcategories: [
-            { id: 8, name: "Samsung", link: "samsung" },
-            { id: 9, name: "iPhone", link: "iphone" },
-            { id: 10, name: "Xiaomi", link: "xiaomi" },
-            { id: 11, name: "Oppo", link: "oppo" },
-            { id: 12, name: "Vivo", link: "vivo" },
-          ],
-        },
-        {
-          id: 2,
-          name: "Computers",
-          isOpen: false,
-          subcategories: [
-            { id: 13, name: "Dell", link: "dell" },
-            { id: 14, name: "HP", link: "hp" },
-            { id: 15, name: "Lenovo", link: "lenovo" },
-            { id: 16, name: "Asus", link: "asus" },
-          ],
-        },
-        {
-          id: 3,
-          name: "Accessories",
-          isOpen: false,
-          subcategories: [
-            { id: 17, name: "PowerBanks", link: "powerbanks" },
-            { id: 18, name: "Chargers", link: "chargers" },
-            { id: 19, name: "Controllers", link: "controllers" },
-          ],
-        },
-        {
-          id: 4,
-          name: "Laptops",
-          isOpen: false,
-          subcategories: [
-            { id: 20, name: "Apple", link: "apple" },
-            { id: 21, name: "Microsoft", link: "microsoft" },
-            { id: 22, name: "Acer", link: "acer" },
-          ],
-        },
-        {
-          id: 5,
-          name: "Monitors",
-          isOpen: false,
-          subcategories: [
-            { id: 23, name: "LG-Monitors", link: "lg_monitors" },
-            { id: 24, name: "Samsung-Monitors", link: "samsung_monitors" },
-            { id: 25, name: "Dell-Monitors", link: "dell_monitors" },
-          ],
-        },
-        {
-          id: 6,
-          name: "Networking",
-          isOpen: false,
-          subcategories: [
-            { id: 26, name: "Routers", link: "routers" },
-            { id: 27, name: "Switches", link: "switches" },
-          ],
-        },
-        {
-          id: 7,
-          name: "Headphones",
-          isOpen: false,
-          subcategories: [
-            { id: 28, name: "Sony", link: "sony" },
-            { id: 29, name: "Bose", link: "bose" },
-            { id: 30, name: "JBL", link: "jbl" },
-          ],
-        },
-        // Add other categories here...
-      ],
-    };
-  },
+  setup(props) {
+    const selectedCategory = ref(null);
+    const selectedMainCategory = ref(props.mainCategory || null);
+    const sortOption = ref("latest");
 
-  computed: {
-    filteredProducts() {
-      return this.products.filter((product) => {
-        const matchesMainCategory = this.selectedMainCategory
-          ? product.mainCategory.toLowerCase() === this.selectedMainCategory.toLowerCase()
+    const productsStore = useProductsStore();
+    const searchStore = useSearchStore();
+
+    const filteredProducts = computed(() => {
+      const searchQuery = searchStore.query.toLowerCase();
+
+      return productsStore.products.filter((product) => {
+        const matchesMainCategory = selectedMainCategory.value
+          ? product.mainCategory.toLowerCase() === selectedMainCategory.value.toLowerCase()
           : true;
-        const matchesSubcategory = this.selectedCategory
-          ? product.category.toLowerCase() === this.selectedCategory.toLowerCase()
+        const matchesSubcategory = selectedCategory.value
+          ? product.category.toLowerCase() === selectedCategory.value.toLowerCase()
           : true;
-        return matchesMainCategory && matchesSubcategory;
+        const matchesSearchQuery = product.name.toLowerCase().includes(searchQuery);
+
+        return matchesMainCategory && matchesSubcategory && matchesSearchQuery;
       });
-    },
+    });
 
-    products() {
-      const productsStore = useProductsStore();
-      return productsStore.products;
-    },
-  },
+    const categories = [
+      {
+        id: 1,
+        name: "Phones",
+        isOpen: false,
+        subcategories: [
+          { id: 8, name: "Samsung" },
+          { id: 9, name: "iPhone" },
+          { id: 10, name: "Xiaomi" },
+          { id:  11, name: "Oppo" },
+          { id: 12, name: "Vivo" },
+        ],
+      },
+      {
+        id: 2,
+        name: "Computers",
+        isOpen: false,
+        subcategories: [
+          { id: 13, name: "Dell" },
+          { id: 14, name: "HP" },
+          { id: 15, name: "Lenovo" },
+          { id: 16, name: "Asus" },
+        ],
+      },
+      {
+        id: 3,
+        name: "Accessories",
+        isOpen: false,
+        subcategories: [
+          { id: 17, name: "PowerBanks" },
+          { id: 18, name: "Chargers" },
+          { id: 19, name: "Controllers" },
+        ],
+      },
+      {
+        id: 4,
+        name: "Laptops",
+        isOpen: false,
+        subcategories: [
+          { id: 20, name: "Apple" },
+          { id: 21, name: "Microsoft" },
+          { id: 22, name: "Acer" },
+        ],
+      },
+      {
+        id: 5,
+        name: "Monitors",
+        isOpen: false,
+        subcategories: [
+          { id: 23, name: "LG-Monitors" },
+          { id: 24, name: "Samsung-Monitors" },
+          { id: 25, name: "Dell-Monitors" },
+        ],
+      },
+      {
+        id: 6,
+        name: "Networking",
+        isOpen: false,
+        subcategories: [
+          { id: 26, name: "Routers" },
+          { id: 27, name: "Switches" },
+        ],
+      },
+      {
+        id: 7,
+        name: "Headphones",
+        isOpen: false,
+        subcategories: [
+          { id: 28, name: "Sony" },
+          { id: 29, name: "Bose" },
+          { id: 30, name: "JBL" },
+        ],
+      },
+    ];
 
-  watch: {
-    mainCategory(newCategory) {
-      this.selectedMainCategory = newCategory || null;
-    },
-  },
-
-  methods: {
-    toggleCategory(categoryId) {
-      const category = this.categories.find((cat) => cat.id === categoryId);
+    const toggleCategory = (categoryId) => {
+      const category = categories.find((cat) => cat.id === categoryId);
       category.isOpen = !category.isOpen;
-      this.selectedMainCategory = category.isOpen ? category.name : null;
-      this.selectedCategory = null;
-    },
+      selectedMainCategory.value = category.isOpen ? category.name : null;
+      selectedCategory.value = null;
+    };
 
-    selectCategory(categoryName) {
-      this.selectedCategory = categoryName;
-    },
+    const selectCategory = (categoryName) => {
+      selectedCategory.value = categoryName;
+    };
 
-    clearCategory() {
-      this.selectedCategory = null;
-      this.selectedMainCategory = null;
-    },
+    const clearCategory = () => {
+      selectedCategory.value = null;
+      selectedMainCategory.value = null;
+    };
 
-    sortProducts() {
-      if (this.sortOption === "price_low") {
-        this.products.sort((a, b) => parseFloat(a.discountPrice) - parseFloat(b.discountPrice));
-      } else if (this.sortOption === "price_high") {
-        this.products.sort((a, b) => parseFloat(b.discountPrice) - parseFloat(a.discountPrice));
+    const sortProducts = () => {
+      if (sortOption.value === "price_low") {
+        productsStore.products.sort((a, b) => parseFloat(a.discountPrice) - parseFloat(b.discountPrice));
+      } else if (sortOption.value === "price_high") {
+        productsStore.products.sort((a, b) => parseFloat(b.discountPrice) - parseFloat(a.discountPrice));
       }
-    },
+    };
+
+    return {
+      selectedCategory,
+      selectedMainCategory,
+      sortOption,
+      filteredProducts,
+      categories,
+      toggleCategory,
+      selectCategory,
+      clearCategory,
+      sortProducts,
+    };
   },
 };
 </script>
