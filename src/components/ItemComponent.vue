@@ -1,8 +1,8 @@
 <template>
   <div class="item-list">
-    <div class="item" v-for="item in products.slice(10,16)" :key="item.id">
+    <div class="item" v-for="product in products.slice(10, 16)" :key="product.id">
       <div class="item-image">
-        <img :src="item.image" :alt="item.name" />
+        <img :src="product.image" :alt="product.name" />
       </div>
       <div class="item-details">
         <div class="rating">
@@ -13,13 +13,13 @@
             <span><i class="ri-star-fill"></i></span>
             <span><i class="ri-star-line"></i></span>
           </div>
-          <span>{{ item.reviews }}+ Reviews</span>
+          <span>{{ product.review }}+ Reviews</span>
         </div>
-        <h3 class="item-name">{{ item.name }}</h3>
-        <p class="item-price">${{ item.price }}</p>
+        <h3 class="item-name">{{ product.name }}</h3>
+        <p class="item-price">${{ product.price }}</p>
       </div>
       <div class="item-actions">
-        <button @click="handleAddToCart" class="add-to-cart">
+        <button @click="handleAddToCart(product)" class="add-to-cart">
           <i class="ri-shopping-cart-line"></i>
         </button>
         <button class="add-to-wishlist">
@@ -42,12 +42,6 @@ export default {
     const productsStore = useProductsStore();
     const products = productsStore.products; // Access the list of products from store
 
-    
-
-    // const addToWishlist = (id) => {
-    //   const wishlistStore = useWishlistStore();
-    //   wishlistStore.addToWishlist(id); // Add item to wishlist
-    // };
 
     return {
       products,
@@ -55,21 +49,21 @@ export default {
   },
 
   methods: {
-    handleAddToCart() {
+    handleAddToCart(product) {
       const userStore = useUserStore();
       const cartStore = useCartStore();
       const router = useRouter();
 
       if (!userStore.isLoggedIn) {
-        // If the user is not logged in, redirect to the login page
-        this.$router.push('/signIn'); // Assuming 'login' is the name of your login route
+        // Redirect to login page if the user is not logged in
+        this.$router.push('/signIn');
       } else {
-        // If the user is logged in, add the item to the cart
+        // Add the item to the cart
         cartStore.addToCart({
-          ...this.product, // Pass the current product
-          selectedColor: this.product.selectedColor, // Include selected options
-          selectedSize: this.product.selectedSize,
-          quantity: this.product.quantity,
+          ...product, // Pass the product object
+          selectedColor: product.selectedColor || null, // Include selected options if available
+          selectedSize: product.selectedSize || null,
+          quantity: product.quantity || 1,
         });
       }
     },
