@@ -9,6 +9,7 @@ import CheckoutPage from '@/views/CheckoutPage.vue'
 import SignUpPage from '@/views/SignUpPage.vue'
 import ProductDetail from '@/views/ProductDetail.vue'
 import AccountPage from '@/views/AccountPage.vue'
+import PaymentSuccessfulPage from '@/views/PaymentSuccessfulPage.vue'
  
 const routes = [
   {
@@ -67,7 +68,11 @@ const routes = [
     name: 'accountPage',
     component: AccountPage,
   },
- 
+  {
+    path: '/payment',
+    name: 'paymentSuccessfulPage',
+    component: PaymentSuccessfulPage,
+  },
   
 ]
 

@@ -19,25 +19,25 @@
         </RouterLink>
         <ul class="dropdown-menu">
           <li>
-            <RouterLink to="/shop/phones">Phones</RouterLink>
+            <RouterLink @click="setFilterCategory('Phones')" to="/shop/Phones">Phones</RouterLink>
           </li>
           <li>
-            <RouterLink to="/shop/computers">Computers</RouterLink>
+            <RouterLink @click="setFilterCategory('Computers')" to="/shop/Computers">Computers</RouterLink>
           </li>
           <li>
-            <RouterLink to="/shop/accessories">Accessories</RouterLink>
+            <RouterLink @click="setFilterCategory('Accessories')" to="/shop/Accessories">Accessories</RouterLink>
           </li>
           <li>
-            <RouterLink to="/shop/laptops">Laptops</RouterLink>
+            <RouterLink @click="setFilterCategory('Laptops')" to="/shop/Laptops">Laptops</RouterLink>
           </li>
           <li>
-            <RouterLink to="/shop/monitors">Monitors</RouterLink>
+            <RouterLink @click="setFilterCategory('Monitors')" to="/shop/Monitors">Monitors</RouterLink>
           </li>
           <li>
-            <RouterLink to="/shop/networking">Networking</RouterLink>
+            <RouterLink @click="setFilterCategory('Networking')" to="/shop/Networking">Networking</RouterLink>
           </li>
           <li>
-            <RouterLink to="/shop/headphones">Headphones</RouterLink>
+            <RouterLink @click="setFilterCategory('Headphones')" to="/shop/Headphones">Headphones</RouterLink>
           </li>
         </ul>
       </li>
@@ -131,13 +131,15 @@ import { useCartStore } from '@/stores/Cart';
 import CartItemComponent from './CartItemComponent.vue';
 import { useSearchStore } from '@/stores/Search'; // Import the search store
 import { RouterLink } from 'vue-router';
+import { mapState } from 'pinia';
 
 export default {
   components: {
     CartItemComponent
   },
-
-
+  props: {
+    mainCategory: String,
+  },
 
   data() {
     return {
@@ -152,6 +154,9 @@ export default {
       const cartStore = useCartStore();
       return cartStore.cartItems
     },
+    ...mapState(useSearchStore, {
+      setFilterCategory: 'setCategory',
+    })
   },
 
   methods: {

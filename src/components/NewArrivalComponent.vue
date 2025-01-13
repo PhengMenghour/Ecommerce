@@ -1,6 +1,6 @@
 <template>
   <div class="product-container">
-    <div v-for="product in products.slice(15,19)" :key="product.id" class="product-card">
+    <div v-for="product in products.slice(15, 19)" :key="product.id" class="product-card">
       <div class="card-image">
         <img :src="product.image" :alt="product.name" />
         <span class="discount-badge" v-if="product.discount">{{ product.discount }} Off</span>
@@ -8,14 +8,15 @@
       <div class="card-details">
         <h3 class="product-name">{{ product.name }}</h3>
         <p class="product-price">
-          <span class="original-price" v-if="product.originalPrice">${{ product.originalPrice }}</span> ${{ product.price }}
+          <span class="original-price" v-if="product.originalPrice">${{ product.originalPrice }}</span> ${{
+            product.price }}
         </p>
       </div>
       <div class="card-actions">
         <button class="view-item" @click="viewProductDetail(product.id)">
           <i class="ri-eye-line"></i>
         </button>
-        <button class="add-to-cart" @click="handleAddToCart">Add to Cart</button>
+        <button class="add-to-cart" @click="handleAddToCart(product)">Add to Cart</button>
         <button class="wishlist">
           <i class="ri-heart-3-line"></i>
         </button>
@@ -39,7 +40,7 @@ export default {
 
     return {
       products,
-        // Return addToCart function to template
+      // Return addToCart function to template
     };
   },
 
@@ -49,21 +50,21 @@ export default {
       this.$router.push(`/productDetail/${id}`);
     },
 
-    handleAddToCart() {
+    handleAddToCart(product) {
       const userStore = useUserStore();
       const cartStore = useCartStore();
       const router = useRouter();
 
       if (!userStore.isLoggedIn) {
-        // If the user is not logged in, redirect to the login page
-        this.$router.push('/signIn'); // Assuming 'login' is the name of your login route
+        // Redirect to login page if the user is not logged in
+        this.$router.push('/signIn');
       } else {
-        // If the user is logged in, add the item to the cart
+        // Add the item to the cart
         cartStore.addToCart({
-          ...this.product, // Pass the current product
-          selectedColor: this.product.selectedColor, // Include selected options
-          selectedSize: this.product.selectedSize,
-          quantity: this.product.quantity,
+          ...product, // Pass the product object
+          selectedColor: product.selectedColor || null, // Include selected options if available
+          selectedSize: product.selectedSize || null,
+          quantity: product.quantity || 1,
         });
       }
     },
@@ -102,8 +103,10 @@ export default {
 
 .card-image img {
   width: 100%;
-  height: 250px; /* Set a fixed height for consistency */
-  object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
+  height: 250px;
+  /* Set a fixed height for consistency */
+  object-fit: cover;
+  /* Ensures the image covers the area while maintaining aspect ratio */
   border-radius: 8px;
 }
 
@@ -161,7 +164,8 @@ export default {
   background: #dc2626;
 }
 
-.wishlist, .view-item{
+.wishlist,
+.view-item {
   background: none;
   /* border: none; */
   color: #374151;
@@ -172,7 +176,8 @@ export default {
   border-radius: 5px;
 }
 
-.wishlist:hover, .view-item:hover {
+.wishlist:hover,
+.view-item:hover {
   color: #ef4444;
 }
 
