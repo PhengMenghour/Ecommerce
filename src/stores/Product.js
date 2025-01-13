@@ -741,29 +741,7 @@ export const useProductsStore = defineStore('products', {
             },
 
         ],
-        comments: [
-            {
-                imageSrc: 'https://via.placeholder.com/50',
-                name: 'Jeffrey',
-                rating: 5,
-                comment:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
-            },
-            {
-                imageSrc: 'https://via.placeholder.com/50',
-                name: 'Emily',
-                rating: 4,
-                comment:
-                    'Donec bibendum orci quis magna ultrices porta. Morbi sagittis felis turpis, vitae molestie ligula viverra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
-            },
-            {
-                imageSrc: 'https://via.placeholder.com/50',
-                name: 'Michael',
-                rating: 3,
-                comment:
-                    'Nullam at sem vel neque finibus sollicitudin et eget enim. Fusce ac venenatis quam, sed aliquet est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
-            },
-        ],
+        comments: [],
 
     }),
     getters: {
@@ -795,7 +773,15 @@ export const useProductsStore = defineStore('products', {
 
         setProducts(newProducts) {
             this.products = newProducts; // This will trigger reactivity if the products array is replaced
-          },
+        },
+
+        addComment(productId, newComment) {
+            const product = this.products.find((p) => p.id === productId);
+            if (product) {
+                product.comments = product.comments || []; // Ensure comments array exists
+                product.comments.push(newComment);
+            }
+        }
 
     }
 
