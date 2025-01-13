@@ -5,7 +5,7 @@
       <div class="login-container">
         <i class="ri-user-fill"></i>
         <p>Returning Customer?</p>
-        <button>Click here to login <i class="ri-arrow-down-s-line"></i></button>
+        <button @click="$router.push('/signIn')">Click here to login <i class="ri-arrow-down-s-line"></i></button>
 
       </div>
 

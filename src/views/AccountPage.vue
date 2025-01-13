@@ -49,7 +49,7 @@
                   Details</router-link>
               </li>
               <li>
-                <router-link to="/"><i class="icon-logout"></i> Logout</router-link>
+                <router-link to="/signIn" @click="handleLogout()"><i class="icon-logout"></i> Logout</router-link>
               </li>
             </ul>
           </div>
