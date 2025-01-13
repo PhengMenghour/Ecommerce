@@ -19,7 +19,7 @@
         <p class="item-price">${{ item.price }}</p>
       </div>
       <div class="item-actions">
-        <button @click="addToCart(item)" class="add-to-cart">
+        <button @click="handleAddToCart" class="add-to-cart">
           <i class="ri-shopping-cart-line"></i>
         </button>
         <button class="add-to-wishlist">
@@ -33,6 +33,8 @@
 <script>
 import { useCartStore } from '@/stores/Cart';
 import { useProductsStore } from '@/stores/Product';
+import { useUserStore } from '@/stores/User';
+import { useRouter } from 'vue-router';
 
 export default {
   name: "Item",
@@ -40,15 +42,7 @@ export default {
     const productsStore = useProductsStore();
     const products = productsStore.products; // Access the list of products from store
 
-    const addToCart = (item) => {
-      const cartStore = useCartStore();
-      cartStore.addToCart({
-        ...item, // Pass the current item
-        selectedColor: item.selectedColor, // Include selected options
-        selectedSize: item.selectedSize,
-        quantity: item.quantity,
-      });
-    };
+    
 
     // const addToWishlist = (id) => {
     //   const wishlistStore = useWishlistStore();
@@ -57,9 +51,29 @@ export default {
 
     return {
       products,
-      addToCart,
     };
   },
+
+  methods: {
+    handleAddToCart() {
+      const userStore = useUserStore();
+      const cartStore = useCartStore();
+      const router = useRouter();
+
+      if (!userStore.isLoggedIn) {
+        // If the user is not logged in, redirect to the login page
+        this.$router.push('/signIn'); // Assuming 'login' is the name of your login route
+      } else {
+        // If the user is logged in, add the item to the cart
+        cartStore.addToCart({
+          ...this.product, // Pass the current product
+          selectedColor: this.product.selectedColor, // Include selected options
+          selectedSize: this.product.selectedSize,
+          quantity: this.product.quantity,
+        });
+      }
+    },
+  }
 };
 </script>
 

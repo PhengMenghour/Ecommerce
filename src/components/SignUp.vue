@@ -36,9 +36,9 @@
 </template>
 
 <script>
-
-
 import Swal from 'sweetalert2';
+import { useUserStore } from '@/stores/User';
+
 export default {
   name: "SignUp",
   data() {
@@ -49,15 +49,8 @@ export default {
     };
   },
   methods: {
-    createAccount() {
-      console.log("Account Created:", {
-        username: this.username,
-        email: this.email,
-        password: this.password,
-      });
-    },
     goToSignIn() {
-      this.$router.push('/signIn') // or path: '/signIn'
+      this.$router.push('/signIn') // Navigate to Sign In page
     },
 
     handleSignUp() {
@@ -108,12 +101,18 @@ export default {
           showConfirmButton: false,
         });
       } else {
-        users.push({
+        const newUser = {
           username: this.username,
           email: this.email,
           password: this.password,
-        });
+        };
+
+        users.push(newUser);
         localStorage.setItem("users", JSON.stringify(users));
+
+        // Use Pinia store to set the newly registered user
+        const userStore = useUserStore();  // Get the Pinia store instance
+        userStore.setUser(newUser);  // Store user in the global state
 
         Swal.fire({
           icon: "success",
@@ -126,9 +125,6 @@ export default {
         this.$router.push("/signin");
       }
     },
-
-
-
   },
 };
 </script>
@@ -187,7 +183,6 @@ export default {
   font-size: 20px;
   color: #000000;
   margin-right: 25px;
-
 }
 
 .sign-in-btn {
@@ -206,7 +201,6 @@ export default {
   background-color: #b82c66;
 }
 
-
 .input-group {
   margin-bottom: 20px;
   width: 456px;
@@ -220,7 +214,6 @@ fieldset {
   display: flex;
   align-items: center;
   height: 73px;
-
 }
 
 :placeholder-shown {
@@ -247,7 +240,6 @@ input {
   font-size: 24px;
   color: #000000;
   background: transparent;
-
 }
 
 input:focus {
@@ -259,20 +251,6 @@ fieldset:focus-within {
 }
 
 .create-account-btn {
-  /* width: 189px;
-  height: 67px;
-  background-color: #2975FD;
-  color: white;
-  font-size: 26px;
-  font-weight: normal;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 0px;
-  margin-top: 62px;
-  display: block;
-  margin-right: 75px; */
-
   width: 150px;
   height: 50px;
   color: white;
@@ -289,5 +267,4 @@ fieldset:focus-within {
 .create-account-btn:hover {
   background-color: #0056b3;
 }
-
 </style>

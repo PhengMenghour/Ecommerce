@@ -64,7 +64,7 @@
 
       <!-- Action Buttons -->
       <div class="action-buttons">
-        <button class="add-to-cart" @click="addToCart">Add to Cart</button>
+        <button class="add-to-cart" @click="handleAddToCart">Add to Cart</button>
         <button class="wishlist">
           <i class="ri-heart-line"></i>
         </button>
@@ -86,7 +86,9 @@
 import CommentComponent from '@/components/CommentComponent.vue';
 import { useCartStore } from '@/stores/Cart';
 import { useProductsStore } from '@/stores/Product';
+import { useUserStore } from '@/stores/User';
 import { mapState } from 'pinia';
+import { useRouter } from 'vue-router';
 
 
 export default {
@@ -153,15 +155,24 @@ export default {
   updateQuantity(amount) {
     this.product.quantity = Math.max(0, this.product.quantity + amount);
   },
-  addToCart() {
-    const cartStore = useCartStore();
-    cartStore.addToCart({
-      ...this.product, // Pass the current product
-      selectedColor: this.product.selectedColor, // Include selected options
-      selectedSize: this.product.selectedSize,
-      quantity: this.product.quantity,
-    });
-  },
+  handleAddToCart() {
+      const userStore = useUserStore();
+      const cartStore = useCartStore();
+      const router = useRouter();
+
+      if (!userStore.isLoggedIn) {
+        // If the user is not logged in, redirect to the login page
+        this.$router.push('/signIn'); // Assuming 'login' is the name of your login route
+      } else {
+        // If the user is logged in, add the item to the cart
+        cartStore.addToCart({
+          ...this.product, // Pass the current product
+          selectedColor: this.product.selectedColor, // Include selected options
+          selectedSize: this.product.selectedSize,
+          quantity: this.product.quantity,
+        });
+      }
+    },
 },
 
   computed: {

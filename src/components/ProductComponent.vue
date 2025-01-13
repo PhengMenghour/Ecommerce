@@ -18,7 +18,7 @@
         <button class="view-item" @click="viewProductDetail(product.id)">
           <i class="ri-eye-line"></i>
         </button>
-        <button class="add-to-cart" @click="addToCart">
+        <button class="add-to-cart" @click="handleAddToCart">
           Add to Cart
         </button>
         <button class="wishlist" @click="addToWishlist(product)">
@@ -32,6 +32,8 @@
 <script>
 import { useCartStore } from '@/stores/Cart';
 import { useProductsStore } from '../stores/Product';
+import { useUserStore } from '@/stores/User';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'ProductComponent',
@@ -39,17 +41,24 @@ export default {
     product: Object, // Accept a 'product' object as a prop
   },
 
-
-
   methods: {
-    addToCart() {
+    handleAddToCart() {
+      const userStore = useUserStore();
       const cartStore = useCartStore();
-      cartStore.addToCart({
-        ...this.product, // Pass the current product
-        selectedColor: this.product.selectedColor, // Include selected options
-        selectedSize: this.product.selectedSize,
-        quantity: this.product.quantity,
-      });
+      const router = useRouter();
+
+      if (!userStore.isLoggedIn) {
+        // If the user is not logged in, redirect to the login page
+        this.$router.push('/signIn'); // Assuming 'login' is the name of your login route
+      } else {
+        // If the user is logged in, add the item to the cart
+        cartStore.addToCart({
+          ...this.product, // Pass the current product
+          selectedColor: this.product.selectedColor, // Include selected options
+          selectedSize: this.product.selectedSize,
+          quantity: this.product.quantity,
+        });
+      }
     },
 
     viewProductDetail(id) {

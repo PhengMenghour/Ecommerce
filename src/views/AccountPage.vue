@@ -1,166 +1,156 @@
 <template>
-  <div class="breadcrumb-container">
-    <div class="text-container">
-      <nav class="breadcrumb">
-        <span><router-link to="/">Home</router-link></span>
-        <span> | </span>
-        <span><router-link to="/">Pages</router-link></span>
-        <span> | </span>
-        <span>Shop</span>
-      </nav>
-      <h1>Account</h1>
+  <div class="main-container">
+    <div class="breadcrumb-container">
+      <div class="text-container">
+        <nav class="breadcrumb">
+          <span><router-link to="/">Home</router-link></span>
+          <span> | </span>
+          <span><router-link to="/">Pages</router-link></span>
+          <span> | </span>
+          <span>Shop</span>
+        </nav>
+        <h1>Account</h1>
+      </div>
+      <div class="image-container">
+        <img src="@/assets/images/homepod.png" alt="Homepod Image" />
+      </div>
     </div>
-    <div class="image-container">
-      <img src="@/assets/images/homepod.png" alt="Homepod Image" />
-    </div>
-  </div>
 
-  <div class="account-page">
-    <div class="main-content">
-      <div class="profile-section">
-        <img
-          src="@/assets/images/profile.jpg"
-          alt="Profile Picture"
-          class="profile-img"
-        />
-        <h2>Hello Annie</h2>
-        <p style="margin-left: 90px">SmartSphere Member Since Sep 2020</p>
-      </div>
-      <div class="menu-section">
-        <ul class="menu-list">
-          <li>
-            <router-link to="#" @click.prevent="showSection('dashboard')"
-              ><i class="icon-dashboard"></i> Dashboard</router-link
-            >
-          </li>
-          <li>
-            <router-link to=/pages/cart
-            ><i class="icon-logout"></i>orders</router-link
-            >
-          </li>
-          <li>
-            <router-link to="#" @click.prevent="showSection('downloads')"
-              ><i class="icon-downloads"></i> Downloads</router-link
-            >
-          </li>
-          <li>
-            <router-link to="#" @click.prevent="showSection('addresses')"
-              ><i class="icon-addresses"></i> Addresses</router-link
-            >
-          </li>
-          <li>
-            <router-link to="#" @click.prevent="showSection('account-details')"
-              ><i class="icon-account"></i> Account Details</router-link
-            >
-          </li>
-          <li>
-            <router-link to="/logout"
-              ><i class="icon-logout"></i> Logout</router-link
-            >
-          </li>
-        </ul>
-      </div>
-      <div v-if="activeSection === 'dashboard'" class="content-section">
-        <p>
-          Hello Annie (not Annie?
-          <router-link to="/logout">Log Out</router-link>)
-        </p>
-        <p>
-          From your account dashboard, you can view your recent orders, manage
-          your shipping and billing addresses, and edit your password and
-          account details.
-        </p>
-      </div>
-      <div v-if="activeSection === 'downloads'" class="content-section">
-        <p>You don't have any downloads</p>
-      </div>
-      <div v-if="activeSection === 'addresses'" class="content-section">
-        <p>
-          The following addresses will be used on the checkout page by default.
-        </p>
-        <div class="address-section">
-          <div class="address-card">
-            <h3>Shipping Address</h3>
-            <p>Name: Annie Mario</p>
-            <p>Email: annie@example.com</p>
-            <p>Phone: 1234 567890</p>
-            <p>7398 Smoke Ranch Road</p>
-            <p>Las Vegas, Nevada 89128</p>
-          </div>
-          <div class="address-card">
-            <h3>Billing Address</h3>
-            <p>Name: Annie Mario</p>
-            <p>Email: annie@example.com</p>
-            <p>Phone: 1234 567890</p>
-            <p>7398 Smoke Ranch Road</p>
-            <p>Las Vegas, Nevada 89128</p>
-          </div>
+    <div class="account-page">
+      <div class="main-content">
+
+        <div class="profile-section" v-if="userStore.isLoggedIn">
+          <img :src="userStore.user?.profilePicture || '/src/assets/images/user1.jpg'" alt="Profile Picture"
+            class="profile-img" />
+          <h2>Hello, {{ userStore.user.username || 'Guest' }}</h2>
+          <p>SmartSphere Member Since 2020</p>
         </div>
-      </div>
-      <div v-if="activeSection === 'account-details'" class="content-section">
-        <div class="account-details-page">
-          <form>
-            <label for="first-name">First Name</label>
-            <input
-              type="text"
-              id="first-name"
-              placeholder="First Name"
-              value="Annie"
-            />
 
-            <label for="last-name">Last Name</label>
-            <input
-              type="text"
-              id="last-name"
-              placeholder="Last Name"
-              value="Mario"
-            />
-
-            <label for="country-region">Country/Region</label>
-            <select id="country-region">
-              <option>United Arab Emirates (UAE)</option>
-              <!-- Add other options here -->
-            </select>
-
-            <p class="small-text">
-              This will be how your name will be displayed in the account
-              section and in reviews
+        <div class="left-content">
+          <div class="menu-section">
+            <ul class="menu-list">
+              <li>
+                <router-link to="#" @click.prevent="showSection('dashboard')"><i class="icon-dashboard"></i>
+                  Dashboard</router-link>
+              </li>
+              <li>
+                <router-link to=/pages/cart><i class="icon-logout"></i>Orders</router-link>
+              </li>
+              <li>
+                <router-link to="#" @click.prevent="showSection('downloads')"><i class="icon-downloads"></i>
+                  Downloads</router-link>
+              </li>
+              <li>
+                <router-link to="#" @click.prevent="showSection('addresses')"><i class="icon-addresses"></i>
+                  Addresses</router-link>
+              </li>
+              <li>
+                <router-link to="#" @click.prevent="showSection('account-details')"><i class="icon-account"></i> Account
+                  Details</router-link>
+              </li>
+              <li>
+                <router-link to="/"><i class="icon-logout"></i> Logout</router-link>
+              </li>
+            </ul>
+          </div>
+          <div v-if="activeSection === 'dashboard'" class="content-section">
+            <div class="name-container">
+              <p>
+                Hello {{ userStore.user.username }} (not {{ userStore.user.username }}?)
+              </p>
+              <button @click="handleLogout()">Sign Out</button>
+            </div>
+            <p>
+              From your account dashboard, you can view your recent orders, manage
+              your shipping and billing addresses, and edit your password and
+              account details.
             </p>
+          </div>
+          <div v-if="activeSection === 'downloads'" class="content-section">
+            <p>You don't have any downloads</p>
+          </div>
+          <div v-if="activeSection === 'addresses'" class="content-section">
+            <p>
+              The following addresses will be used on the checkout page by default.
+            </p>
+            <div class="address-section">
+              <div class="address-card">
+                <h3>Shipping Address</h3>
+                <p>Name: Annie Mario</p>
+                <p>Email: annie@example.com</p>
+                <p>Phone: 1234 567890</p>
+                <p>7398 Smoke Ranch Road</p>
+                <p>Las Vegas, Nevada 89128</p>
+              </div>
+              <div class="address-card">
+                <h3>Billing Address</h3>
+                <p>Name: Annie Mario</p>
+                <p>Email: annie@example.com</p>
+                <p>Phone: 1234 567890</p>
+                <p>7398 Smoke Ranch Road</p>
+                <p>Las Vegas, Nevada 89128</p>
+              </div>
+            </div>
+          </div>
+          <div v-if="activeSection === 'account-details'" class="content-section">
+            <div class="account-details-page">
+              <form>
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" placeholder="First Name" value="Annie" />
 
-            <h2>Password Change</h2>
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" placeholder="Last Name" value="Mario" />
 
-            <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Password" />
+                <label for="country-region">Country/Region</label>
+                <select id="country-region">
+                  <option>United Arab Emirates (UAE)</option>
+                  <!-- Add other options here -->
+                </select>
 
-            <label for="new-password">New Password</label>
-            <input
-              type="password"
-              id="new-password"
-              placeholder="New Password"
-            />
+                <p class="small-text">
+                  This will be how your name will be displayed in the account
+                  section and in reviews
+                </p>
 
-            <label for="confirm-password">Confirm New Password</label>
-            <input
-              type="password"
-              id="confirm-password"
-              placeholder="Confirm New Password"
-            />
+                <h2>Password Change</h2>
 
-            <button type="submit">Save Changes</button>
-          </form>
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Password" />
+
+                <label for="new-password">New Password</label>
+                <input type="password" id="new-password" placeholder="New Password" />
+
+                <label for="confirm-password">Confirm New Password</label>
+                <input type="password" id="confirm-password" placeholder="Confirm New Password" />
+
+                <button type="submit">Save Changes</button>
+              </form>
+            </div>
+          </div>
         </div>
+
       </div>
+      <FooterComponent />
     </div>
-    <FooterComponent />
   </div>
 </template>
 
 <script>
-import FooterComponent from "@/components/FooterComponent.vue";
+import FooterComponent from '@/components/FooterComponent.vue';
+import { useUserStore } from '@/stores/User';
+
+
 
 export default {
   components: {
-    FooterComponent,
+    FooterComponent
+  },
+  setup() {
+    const userStore = useUserStore();
+    console.log('User Store:', userStore); // Debugging
+    return {
+      userStore,
+    };
   },
   data() {
     return {
@@ -171,36 +161,45 @@ export default {
     showSection(section) {
       this.activeSection = section;
     },
+
+    handleLogout() {
+      this.userStore.clearUser(); // Clear user from store
+      this.$router.push('/signIn'); // Redirect to sign-in page
+    },
   },
 };
 </script>
 
 <style scoped>
+.main-container {
+  font-family: "Poppins", sans-serif;
+}
+
 .breadcrumb-container {
-  font-family: "Poppins";
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #f8f8f8;
-  padding: 0 10%;
+  padding: 20px 10%;
 }
 
 .breadcrumb {
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .text-container h1 {
-  font-family: "Poppins";
   font-weight: 600;
+  margin: 0;
 }
 
 .image-container {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .image-container img {
-  width: 50%;
+  width: 40%;
+  object-fit: cover;
 }
 
 .account-page {
@@ -211,26 +210,34 @@ export default {
 
 .main-content {
   display: flex;
-  flex: 1;
+  flex-wrap: wrap;
+  justify-content: space-between;
   padding: 20px;
 }
 
 .profile-section {
   text-align: center;
   margin-right: 20px;
+  /* flex-basis: 45%; */
 }
 
 .profile-img {
   border-radius: 50%;
   width: 100px;
   height: 100px;
+  object-fit: cover;
+}
+
+.left-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 .menu-section {
-  margin-top: 250px;
-  margin-left: -250px;
-  height: 400px;
-  width: 300px;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 300px;
   border: 1px solid #dcdcdc;
   border-radius: 10px;
   padding: 20px;
@@ -261,7 +268,7 @@ export default {
 
 .menu-list li a:hover {
   background-color: #f5f5f5;
-  color: blue;
+  color: #007bff;
 }
 
 .menu-list li.active a {
@@ -271,25 +278,33 @@ export default {
 
 .content-section {
   flex: 1;
-  margin-top: 250px;
-  font-family: sans-serif;
-  margin-left: 100px;
+  margin-top: 20px;
+  padding: 20px;
 }
 
 .address-section {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .address-card {
   width: 45%;
   padding: 16px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
 }
-/* General Form Styles */
+
+.name-container{
+  display: flex;
+  gap: 20px;
+}
+
 form {
   font-family: "Arial", sans-serif;
-  width: 600px;
-  margin-left: -300px;
+  width: 100%;
+  max-width: 600px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -325,10 +340,6 @@ select:focus {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Section Title */
- 
-
-/* Button Styles */
 button {
   background-color: #007bff;
   color: #fff;
@@ -343,7 +354,6 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* Additional Instructions */
 .small-text {
   font-size: 12px;
   color: #666;
@@ -354,5 +364,66 @@ footer {
   padding: 10px;
   text-align: center;
   background-color: #f1f1f1;
+  margin-top: 20px;
 }
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .breadcrumb-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 5%;
+  }
+
+  .image-container img {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .main-content {
+    flex-direction: column;
+  }
+
+  .profile-section,
+  .menu-section {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .address-section {
+    flex-direction: column;
+  }
+
+  .address-card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 10px;
+  }
+
+  .breadcrumb-container {
+    padding: 15px 5%;
+  }
+
+  .menu-list li a {
+    font-size: 14px;
+  }
+
+  .menu-section {
+    padding: 15px;
+  }
+
+  .profile-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .address-card {
+    width: 100%;
+  }
+}
+
 </style>
