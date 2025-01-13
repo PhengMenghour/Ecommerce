@@ -257,12 +257,9 @@ body {
 
 /* Product image styling */
 .product-image {
-  /* max-width: 100%;   */
   width: 300px;
   background-color:rgba(255, 255, 255, 0);
-  /* Light gray background */
   padding: 20px;
-  /* Add padding for spacing */
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -271,11 +268,9 @@ body {
 }
 
 .product-image img {
-  /* max-width: 100%; */
-  width: 100%;
-  height: 450px;
-  /* Ensure the image scales properly */
-  border-radius: 3px;
+  object-fit: contain; /* Keeps the image within its container without cropping */
+  width: 100%;         /* Adjusts the width */
+  height: auto;        /* Automatically adjusts height to maintain aspect ratio */
 }
 
 /* Product details container */
