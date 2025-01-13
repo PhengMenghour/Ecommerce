@@ -83,6 +83,7 @@ import { ref, computed } from 'vue';
 import { useProductsStore } from "@/stores/Product";
 import ProductComponent from "@/components/ProductComponent.vue";
 import { useSearchStore } from "@/stores/Search";
+import { useRouter } from 'vue-router';
 
 export default {
   components: {
@@ -97,19 +98,23 @@ export default {
   },
 
   setup(props) {
-    const selectedCategory = ref(null);
-    const selectedMainCategory = ref(props.mainCategory || null);
-    const sortOption = ref("latest");
-
     const productsStore = useProductsStore();
     const searchStore = useSearchStore();
 
+    const selectedCategory = ref('');
+    const selectedMainCategory = ref( props.mainCategory || searchStore.category || null)
+    const sortOption = ref("latest");
+
+    if(props.mainCategory) {
+      searchStore.setCategory(props.mainCategory)
+    }
+    
     const filteredProducts = computed(() => {
       const searchQuery = searchStore.query.toLowerCase();
 
       return productsStore.products.filter((product) => {
-        const matchesMainCategory = selectedMainCategory.value
-          ? product.mainCategory.toLowerCase() === selectedMainCategory.value.toLowerCase()
+        const matchesMainCategory = searchStore.category
+          ? product.mainCategory.toLowerCase() === searchStore.category.toLowerCase()
           : true;
         const matchesSubcategory = selectedCategory.value
           ? product.category.toLowerCase() === selectedCategory.value.toLowerCase()
@@ -200,6 +205,8 @@ export default {
       category.isOpen = !category.isOpen;
       selectedMainCategory.value = category.isOpen ? category.name : null;
       selectedCategory.value = null;
+
+      searchStore.setCategory(category.name)
     };
 
     const selectCategory = (categoryName) => {
