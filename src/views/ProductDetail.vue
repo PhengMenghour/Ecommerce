@@ -257,8 +257,9 @@ body {
 
 /* Product image styling */
 .product-image {
-  max-width: 350px;
-  background-color: #f0f0f0;
+  /* max-width: 100%;   */
+  width: 300px;
+  background-color:rgba(255, 255, 255, 0);
   /* Light gray background */
   padding: 20px;
   /* Add padding for spacing */
@@ -266,13 +267,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 450px;
+  height: 400px;
 }
 
 .product-image img {
-  max-width: 100%;
+  /* max-width: 100%; */
+  width: 100%;
+  height: 450px;
   /* Ensure the image scales properly */
-  border-radius: 8px;
+  border-radius: 3px;
 }
 
 /* Product details container */
@@ -368,7 +371,7 @@ ul li {
   flex-direction: column;
   gap: 10px;
   width: 100px;
-  height: auto;
+  height: 400px;
 }
 
 .additional-image {
