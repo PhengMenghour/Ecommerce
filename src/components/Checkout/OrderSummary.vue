@@ -70,7 +70,7 @@
       </label>
       <hr>
     </div>
-    <button @click="$router.push('/payment')" class="checkout-button">Process to Checkout</button>
+    
   </div>
 </template>
 
