@@ -233,7 +233,7 @@ export default {
       ],
 
       // For countdown time
-      targetDate: new Date("2025-01-14T23:59:59").getTime(),
+      targetDate: new Date("2025-01-30T23:59:59").getTime(),
       days: 0,
       hours: 0,
       minutes: 0,
