@@ -13,11 +13,11 @@
         <span class="stars" v-for="i in 5" :key="i">
           <i class="ri-star-fill"></i>
         </span>
-        <span>({{ product.reviews }})</span>
+        <span>({{ product.review }})</span>
       </div>
       <div class="price">
         <span class="current-price">${{ product.price }}</span>
-        <span class="original-price" v-if="product.discount > 0">${{ product.originalPrice }}</span>
+        <span class="original-price" v-if="product.discount > 0">${{ product.price }}</span>
       </div>
     </div>
   </div>
@@ -84,6 +84,7 @@ export default {
 .product-image {
   width: 100%;
   max-width: 205px;
+  max-height: 205px;
   margin: 0 auto;
   border: none;
   position: relative;

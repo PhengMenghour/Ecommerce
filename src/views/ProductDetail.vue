@@ -2,8 +2,8 @@
   <div class="product-container">
     <!-- Additional Images -->
     <div class="additional-images">
-      <img v-for="(image, index) in product.additionalImages" :key="index" :src="image" :alt="'Product Image ' + (index + 1)"
-        class="additional-image" @click="product.selectedImage = image" />
+      <img v-for="(image, index) in product.additionalImages" :key="index" :src="image"
+        :alt="'Product Image ' + (index + 1)" class="additional-image" @click="product.selectedImage = image" />
     </div>
 
     <!-- Product Image -->
@@ -72,12 +72,23 @@
     </div>
   </div>
 
-  <!-- Customer Review Section -->
+  <!-- Customer Reviews Section -->
   <div class="customer-reviews">
+
     <h3>Customer Reviews</h3>
-    <div v-for="(comment, index) in comments" :key="index" class="comment-wrapper">
-      <CommentComponent :image-src="comment.imageSrc" :name="comment.name" :rating="comment.rating"
-        :comment="comment.comment" />
+
+    <hr>
+
+    <!-- Comment Input Form -->
+    <form class="comment-form" @submit.prevent="submitComment">
+      <textarea v-model="newComment" placeholder="Write your comment here..." rows="3" cols="50" required></textarea>
+      <button type="submit">Submit Comment</button>
+    </form>
+
+    <!-- Comments Display -->
+    <div v-for="(comment, index) in product.comments" :key="index" class="comment-wrapper">
+      <CommentComponent :comment="comment" :imageSrc="defaultImage" />
+
     </div>
   </div>
 </template>
@@ -106,56 +117,16 @@ export default {
 
   data() {
     return {
-      // product: {
-      //   name: "iPhone 13 Pro Max",
-      //   price: 1249.99,
-      //   reviews: 10,
-      //   description:
-      //     "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
-      //   image: "./src/assets/images/iphone-13-pro-max.jpg",
-      //   colors: ["#d8e3f3", "#f3ece1", "#d4d4d4", "#333333"],
-      //   sizes: ["128GB", "256GB", "512GB"],
-      // },
-      // additionalImages: [
-      //   "./src/assets/images/iphone-side1.jpg",
-      //   "./src/assets/images/iphone-side2.jpg",
-      //   "./src/assets/images/iphone16.png",
-      // ],
-      // selectedImage: "./src/assets/images/iphone-13-pro-max.jpg",
-      // selectedColor: "#d8e3f3",
-      // selectedSize: "128GB",
-      // quantity: 1,
-
-      // comments: [
-      //   {
-      //     imageSrc: 'https://via.placeholder.com/50',
-      //     name: 'Jeffrey',
-      //     rating: 5,
-      //     comment:
-      //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
-      //   },
-      //   {
-      //     imageSrc: 'https://via.placeholder.com/50',
-      //     name: 'Emily',
-      //     rating: 4,
-      //     comment:
-      //       'Donec bibendum orci quis magna ultrices porta. Morbi sagittis felis turpis, vitae molestie ligula viverra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
-      //   },
-      //   {
-      //     imageSrc: 'https://via.placeholder.com/50',
-      //     name: 'Michael',
-      //     rating: 3,
-      //     comment:
-      //       'Nullam at sem vel neque finibus sollicitudin et eget enim. Fusce ac venenatis quam, sed aliquet est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
-      //   },
-      // ],
+      newComment: '', // Local state for new comment input
+      defaultImage: 'https://via.placeholder.com/50', // Default profile image
     };
   },
   methods: {
-  updateQuantity(amount) {
-    this.product.quantity = Math.max(0, this.product.quantity + amount);
-  },
-  handleAddToCart() {
+    updateQuantity(amount) {
+      this.product.quantity = Math.max(0, this.product.quantity + amount);
+    },
+
+    handleAddToCart() {
       const userStore = useUserStore();
       const cartStore = useCartStore();
       const router = useRouter();
@@ -173,18 +144,38 @@ export default {
         });
       }
     },
-},
+
+    submitComment() {
+      if (this.newComment.trim()) {
+        const userStore = useUserStore(); // Access the user store
+        const comment = {
+          name: userStore.user.username || 'Anonymous User', // Use the dynamic username
+          rating: 5, // Static rating, adjust as needed
+          comment: this.newComment,
+        };
+
+        // Add the comment to the store
+        this.productsStore.addComment(this.product.id, comment);
+
+        // Clear the input
+        this.newComment = '';
+      }
+    },
+  },
 
   computed: {
     ...mapState(useProductsStore, {
-      products: "products",
-      comments: "comments",
+      products: 'products',
     }),
+
+    product() {
+      return this.products.find((p) => p.id === parseInt(this.$route.params.productId));
+    },
 
 
     product() {
       const product = this.products.find((p) => p.id === parseInt(this.$route.params.productId))
-      
+
       return product;
     }
   }
@@ -203,9 +194,11 @@ export default {
 }
 
 .customer-reviews h3 {
+  font-family: "Poppins";
+  font-weight: 500;
   font-size: 20px;
   margin-bottom: 10px;
-  border-bottom: 2px solid #007bff;
+  /* border-bottom: 2px solid #007bff; */
   padding-bottom: 5px;
 }
 
@@ -257,12 +250,9 @@ body {
 
 /* Product image styling */
 .product-image {
-  /* max-width: 100%;   */
   width: 300px;
   background-color:rgba(255, 255, 255, 0);
-  /* Light gray background */
   padding: 20px;
-  /* Add padding for spacing */
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -271,11 +261,9 @@ body {
 }
 
 .product-image img {
-  /* max-width: 100%; */
-  width: 100%;
-  height: 450px;
-  /* Ensure the image scales properly */
-  border-radius: 3px;
+  object-fit: contain; /* Keeps the image within its container without cropping */
+  width: 100%;         /* Adjusts the width */
+  height: auto;        /* Automatically adjusts height to maintain aspect ratio */
 }
 
 /* Product details container */
@@ -392,5 +380,38 @@ ul li {
 
 .comment-wrapper {
   margin-bottom: 16px;
+}
+
+.commentReview-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-form{
+  font-family: "Poppins";
+  margin: 20px 0 20px 0;
+  /* padding: 20px; */
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.comment-form textarea{
+  flex: 1;
+  resize: none;
+  height: 100px;
+}
+
+.comment-form button{
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.comment-form button:hover{
+  background-color: #0056b3;
+  transition: ease-in-out 0.3s;
 }
 </style>

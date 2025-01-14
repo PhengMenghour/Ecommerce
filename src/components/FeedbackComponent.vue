@@ -22,19 +22,19 @@
       return {
         feedbacks: [
           {
-            text: "She tilted her head back and let whip cream stream into her mouth while taking a bath. Combines are no longer just for farms. I honestly find her about as intimidating as a basket of kittens. He barked orders at his daughters but they just stared back with amusement. Charles ate the french fries knowing they would be his last meal.",
+            text: "The product quality exceeded my expectations, and the fast shipping was a pleasant surprise! I’ve never felt more confident in my purchase decisions. The customer service team was quick to assist me, making the whole experience seamless. I’ll definitely be back for more products soon!",
             image: "/src/assets/images/pf1.jpg", 
             role: "Head of Idea",
             name: "Mr. Chill Guy",
           },
           {
-            text: "She tilted her head back and let whip cream stream into her mouth while taking a bath. Combines are no longer just for farms. I honestly find her about as intimidating as a basket of kittens. He barked orders at his daughters but they just stared back with amusement. Charles ate the french fries knowing they would be his last meal.",
+            text: "Browsing through the categories was straightforward, and the detailed product descriptions helped me choose exactly what I needed. My new gadget works perfectly, and the packaging was secure and eco-friendly. It’s refreshing to shop on a website that genuinely values its customers.",
             image: "/src/assets/images/pf2.jpg", 
             role: "Advisor",
             name: "Ms. Capibara Nonchalant ",
           },
           {
-            text: "She tilted her head back and let whip cream stream into her mouth while taking a bath. Combines are no longer just for farms. I honestly find her about as intimidating as a basket of kittens. He barked orders at his daughters but they just stared back with amusement. Charles ate the french fries knowing they would be his last meal.",
+            text: "I was skeptical at first, but the reviews convinced me to give it a shot—and I’m so glad I did! The item arrived earlier than expected and was even better in person. I appreciate the little touches, like the thank-you note in the box. I’ll be recommending this site to all my friends!",
             image: "/src/assets/images/pf3.jpg", 
             role: "Therapist",
             name: "Ms. Otter Kawaii",

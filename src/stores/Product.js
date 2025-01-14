@@ -18,7 +18,7 @@ export const useProductsStore = defineStore('products', {
                 ],
                 discount: 20,
                 review: 10,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The iPhone 16 Pro Max display has rounded corners that follow a beautiful curved design...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -50,7 +50,7 @@ export const useProductsStore = defineStore('products', {
                 ],
                 discount: 10,
                 review: 15,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The Samsung Galaxy S24 Ultra display has rounded corners that follow a beautiful curved design...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -82,7 +82,7 @@ export const useProductsStore = defineStore('products', {
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The Dell Optiplex display has high specs...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -114,7 +114,7 @@ export const useProductsStore = defineStore('products', {
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The Xiaomi Mi 14 Ultra display has rounded corners that follow a beautiful curved design...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -146,7 +146,7 @@ export const useProductsStore = defineStore('products', {
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The Oppo Find X6 Pro display has rounded corners that follow a beautiful curved design...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -178,7 +178,7 @@ export const useProductsStore = defineStore('products', {
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The Vivo X100 Pro display has rounded corners that follow a beautiful curved design...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -210,7 +210,7 @@ export const useProductsStore = defineStore('products', {
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The HP Pro Desk 600 G3 display has high specs...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -242,7 +242,7 @@ export const useProductsStore = defineStore('products', {
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The Lenovo Legion Tower display with high specs...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -274,7 +274,7 @@ export const useProductsStore = defineStore('products', {
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The Asus Rox Strix display has high specs and best for working and gaming...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -306,7 +306,7 @@ export const useProductsStore = defineStore('products', {
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The Anker Power Bank display with portable design...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -338,7 +338,7 @@ export const useProductsStore = defineStore('products', {
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The Anker Fast Charger is best choice for your phones...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -370,7 +370,7 @@ export const useProductsStore = defineStore('products', {
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The PS5 Controller display with easy and fast game play...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -396,13 +396,13 @@ export const useProductsStore = defineStore('products', {
                 stock: 25,
                 image: "/src/assets/images/macbook_pro_m1.png",
                 additionalImages: [
-                    "/src/assets/images/iphone-side1.jpg",
-                    "/src/assets/images/iphone-side2.jpg",
-                    "/src/assets/images/iphone16.png",
+                    "/src/assets/images/mac2.jpg",
+                    "/src/assets/images/mac1.jpg",
+                    "/src/assets/images/mac3.jpg",
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The MacBook Peo M1 display has rounded corners that follow a beautiful curved design...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -414,7 +414,7 @@ export const useProductsStore = defineStore('products', {
                     "256GB",
                     "512GB",
                 ],
-                selectedImage: "/src/assets/images/dell_optiplex.jpg",
+                selectedImage: "/src/assets/images/macbook_pro_m1.png",
                 selectedColor: "#d8e3f3",
                 selectedSize: "128GB",
                 quantity: 0,
@@ -428,13 +428,13 @@ export const useProductsStore = defineStore('products', {
                 stock: 25,
                 image: "/src/assets/images/microsoft_surface_laptop_5.jpg",
                 additionalImages: [
-                    "/src/assets/images/iphone-side1.jpg",
-                    "/src/assets/images/iphone-side2.jpg",
-                    "/src/assets/images/iphone16.png",
+                    "/src/assets/images/microsoft1.jpg",
+                    "/src/assets/images/microsoft2.jpg",
+                    "/src/assets/images/microsoft3.jpg",
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The Microsoft Surface Laptop 5 display has rounded corners that follow a beautiful curved design...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -446,7 +446,7 @@ export const useProductsStore = defineStore('products', {
                     "256GB",
                     "512GB",
                 ],
-                selectedImage: "/src/assets/images/dell_optiplex.jpg",
+                selectedImage: "/src/assets/images/microsoft_surface_laptop_5.jpg",
                 selectedColor: "#d8e3f3",
                 selectedSize: "128GB",
                 quantity: 0,
@@ -460,13 +460,13 @@ export const useProductsStore = defineStore('products', {
                 stock: 25,
                 image: "/src/assets/images/acer_swift_3_oled.jpg",
                 additionalImages: [
-                    "/src/assets/images/iphone-side1.jpg",
-                    "/src/assets/images/iphone-side2.jpg",
-                    "/src/assets/images/iphone16.png",
+                    "/src/assets/images/swift1.jpg",
+                    "/src/assets/images/swift2.jpg",
+                    "/src/assets/images/swift3.jpg",
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The Acer Swift 3 OLED display has rounded corners that follow a beautiful curved design...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -478,7 +478,7 @@ export const useProductsStore = defineStore('products', {
                     "256GB",
                     "512GB",
                 ],
-                selectedImage: "/src/assets/images/dell_optiplex.jpg",
+                selectedImage: "/src/assets/images/acer_swift_3_oled.jpg",
                 selectedColor: "#d8e3f3",
                 selectedSize: "128GB",
                 quantity: 0,
@@ -492,13 +492,13 @@ export const useProductsStore = defineStore('products', {
                 stock: 25,
                 image: "/src/assets/images/lg_monitor.jpg",
                 additionalImages: [
-                    "/src/assets/images/iphone-side1.jpg",
-                    "/src/assets/images/iphone-side2.jpg",
-                    "/src/assets/images/iphone16.png",
+                    "/src/assets/images/lgmk1.jpeg",
+                    "/src/assets/images/lg_monitor.jpg",
+                    "/src/assets/images/lgmk2.png",
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The LG 22MK600M display has rounded corners that follow a beautiful curved design...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -510,7 +510,7 @@ export const useProductsStore = defineStore('products', {
                     "256GB",
                     "512GB",
                 ],
-                selectedImage: "/src/assets/images/dell_optiplex.jpg",
+                selectedImage: "/src/assets/images/lg_monitor.jpg",
                 selectedColor: "#d8e3f3",
                 selectedSize: "128GB",
                 quantity: 0,
@@ -524,13 +524,13 @@ export const useProductsStore = defineStore('products', {
                 stock: 25,
                 image: "/src/assets/images/samsung_odyssey.jpg",
                 additionalImages: [
-                    "/src/assets/images/iphone-side1.jpg",
-                    "/src/assets/images/iphone-side2.jpg",
-                    "/src/assets/images/iphone16.png",
+                    "/src/assets/images/samsung_odyssey.jpg",
+                    "/src/assets/images/ody2.jpg",
+                    "/src/assets/images/ody1.png",
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The Samsung Odyssey G5 Ultra display has rounded corners that follow a beautiful curved design...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -542,7 +542,7 @@ export const useProductsStore = defineStore('products', {
                     "256GB",
                     "512GB",
                 ],
-                selectedImage: "/src/assets/images/dell_optiplex.jpg",
+                selectedImage: "/src/assets/images/samsung_odyssey.jpg",
                 selectedColor: "#d8e3f3",
                 selectedSize: "128GB",
                 quantity: 0,
@@ -556,13 +556,13 @@ export const useProductsStore = defineStore('products', {
                 stock: 25,
                 image: "/src/assets/images/dell_sync_2024.jpg",
                 additionalImages: [
-                    "/src/assets/images/iphone-side1.jpg",
-                    "/src/assets/images/iphone-side2.jpg",
-                    "/src/assets/images/iphone16.png",
+                    "/src/assets/images/dell_sync_2024.jpg",
+                    "/src/assets/images/dell2.jpg",
+                    "/src/assets/images/dell1.jpg",
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The Dell Sync 2024 display has rounded corners that follow a beautiful curved design...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -574,7 +574,7 @@ export const useProductsStore = defineStore('products', {
                     "256GB",
                     "512GB",
                 ],
-                selectedImage: "/src/assets/images/dell_optiplex.jpg",
+                selectedImage: "/src/assets/images/dell_sync_2024.jpg",
                 selectedColor: "#d8e3f3",
                 selectedSize: "128GB",
                 quantity: 0,
@@ -594,7 +594,7 @@ export const useProductsStore = defineStore('products', {
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The Netgear Nighthwk AX12 display has strong ability...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -626,7 +626,7 @@ export const useProductsStore = defineStore('products', {
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The Cisco Catalyst 9200L display has strong ability...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -658,7 +658,7 @@ export const useProductsStore = defineStore('products', {
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The Sony WF-1000XM5 display has high quality sound and follow a beautiful curved design...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -690,7 +690,7 @@ export const useProductsStore = defineStore('products', {
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The Bose QuietComfort has high quality sound and follow a beautiful curved design...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -722,7 +722,7 @@ export const useProductsStore = defineStore('products', {
                 ],
                 discount: 10,
                 review: 5,
-                description: "The iPhone 13 Pro Max display has rounded corners that follow a beautiful curved design...",
+                description: "The JBL Tune 760NC display has high quality sound and follow a beautiful curved design...",
                 colors: [
                     "#d8e3f3",
                     "#f3ece1",
@@ -741,29 +741,7 @@ export const useProductsStore = defineStore('products', {
             },
 
         ],
-        comments: [
-            {
-                imageSrc: 'https://via.placeholder.com/50',
-                name: 'Jeffrey',
-                rating: 5,
-                comment:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
-            },
-            {
-                imageSrc: 'https://via.placeholder.com/50',
-                name: 'Emily',
-                rating: 4,
-                comment:
-                    'Donec bibendum orci quis magna ultrices porta. Morbi sagittis felis turpis, vitae molestie ligula viverra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
-            },
-            {
-                imageSrc: 'https://via.placeholder.com/50',
-                name: 'Michael',
-                rating: 3,
-                comment:
-                    'Nullam at sem vel neque finibus sollicitudin et eget enim. Fusce ac venenatis quam, sed aliquet est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at congue turpis, sed auctor nunc.',
-            },
-        ],
+        comments: [],
 
     }),
     getters: {
@@ -795,7 +773,15 @@ export const useProductsStore = defineStore('products', {
 
         setProducts(newProducts) {
             this.products = newProducts; // This will trigger reactivity if the products array is replaced
-          },
+        },
+
+        addComment(productId, newComment) {
+            const product = this.products.find((p) => p.id === productId);
+            if (product) {
+                product.comments = product.comments || []; // Ensure comments array exists
+                product.comments.push(newComment);
+            }
+        }
 
     }
 
