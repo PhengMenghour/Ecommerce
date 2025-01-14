@@ -52,7 +52,7 @@
       </div>
 
       <!-- Quantity Selector -->
-      <div class="quantity">
+      <!-- <div class="quantity">
         <button @click="updateQuantity(-1)">
           <i class="ri-subtract-line"></i>
         </button>
@@ -60,7 +60,7 @@
         <button @click="updateQuantity(1)">
           <i class="ri-add-large-fill"></i>
         </button>
-      </div>
+      </div> -->
 
       <!-- Action Buttons -->
       <div class="action-buttons">
